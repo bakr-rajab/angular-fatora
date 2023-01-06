@@ -1,0 +1,55 @@
+<!--app-container-->
+<div class="app-container">
+  <app-comman-header></app-comman-header>
+      <div class="app-main">
+        <app-common-side-nav></app-common-side-nav>
+          <div class="app-main_outer">
+             
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="d-flex align-items-start justify-content-between">
+                                  <h1 class="page-title">
+                                       أنواع الضرائب
+                                  </h1>
+                              </div>
+                          </div>
+                      </div>
+                     <div class="row">
+                       <div class="col-12">
+                          <div class="main-table">
+                      
+      
+                            <table id="example" class="display table table-hover" style="width:100%">
+                              <thead>
+                                  <tr>
+                                  
+                                      <th>كود نوع الضريبة	</th>
+                                      <th>اسم نوع الضريبة عربى	</th>
+                                      <th>اسم نوع الضريبة انجليزى </th>                               
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let tax of taxTypesData">
+                                  <td>
+                                    {{tax.Code}}
+                                  </td>
+                                  <td>
+                                    {{tax.Desc_ar}}
+                                  </td>
+                                  <td>
+                                    {{tax.Desc_en}}
+                                  </td>
+                  
+                                </tr>
+                               
+                                
+                              </tbody>
+                          </table>
+                          </div>
+                       </div>
+                     </div>
+                     
+                    </div>
+       
+      </div>
+  </div>

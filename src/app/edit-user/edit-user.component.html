@@ -1,0 +1,71 @@
+<div class="app-container">
+    <app-comman-header></app-comman-header>
+        <div class="app-main">
+          <app-common-side-nav></app-common-side-nav>
+<div class="app-main_outer">
+             
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex align-items-start justify-content-between">
+            <h1 class="page-title">
+تعديل المستخدم
+            </h1>
+        </div>
+    </div>
+    </div>
+   <div class="row">
+     <div class="col-12">
+        <div class="main-form">
+          <form>
+            <div class="row">
+                <div class="col-lg-6 col-md-12  mb-3">
+                    <div class="form-floating">
+                      <input [(ngModel)]="name"  name ="name" type="text" class="form-control" id="floatingText" placeholder="ملاحظه">
+                      <label for="floatingText">اسم المستخدم</label>
+                    </div>
+                  </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="phone"  name ="phone" type="text" class="form-control" id="floatingText" placeholder="ملاحظه">
+                  <label for="floatingText">رقم الهاتف</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="mail"  name ="mail" type="text" class="form-control" id="floatingText" placeholder="ملاحظه">
+                  <label for="floatingText">البريد الالكترونى</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="secNo"  name ="secNo" type="text" class="form-control" id="floatingText" placeholder="ملاحظه">
+                  <label for="floatingText">الرقم السرى</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                   <div class="main-table inner-table">
+                     <div class="table-actions">
+                      <button (click)="editeUser()" type="button" class="btn btn-success"
+                      >
+تأكيد و رجوع   
+                    </button>
+                     
+                     </div>
+
+                     <div>
+                         <span *ngIf="showError" style="color:red">Something wrong happened try again later</span>
+                     </div>
+                     
+                   </div>
+                </div>
+              </div>
+            </div>
+           </form>
+
+        </div>
+     </div>
+   </div>
+   </div>
+</div>
+</div>

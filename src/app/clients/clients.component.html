@@ -1,0 +1,216 @@
+<!--app-container-->
+<div class="app-container">
+  <app-comman-header></app-comman-header>
+      <div class="app-main">
+       <app-common-side-nav></app-common-side-nav>
+          <div class="app-main_outer">
+             
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="d-flex align-items-start justify-content-between">
+                                  <h1 class="page-title">
+                                       العملاء
+                                  </h1>
+                               
+                                  <button (click)="modalReset()" type="button" class="btn btn-success"
+                                  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  إضافة عميل
+                                </button>
+                                <button type="button" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#uploadFileModal">
+                                  تحميل ملف
+                           </button>
+                              </div>
+                          </div>
+                      </div>
+                     <div class="row">
+                       <div class="col-12">
+                          <div class="main-table">
+                      
+      
+                            <table id="example" class="display table table-hover" style="width:100%">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>العميل</th>
+                                      <th>الإيميل</th>
+                                      <th>الموبايل</th>
+                                      <th>رقم التسجيل الضريبي</th>
+                                      <th>العنوان</th>
+                                      <th>كود العميل</th>
+                                      <th>الاجراءات</th>
+                                  </tr>
+                              </thead>
+                         <tbody>
+                          <tr *ngFor="let client of clientsList; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{client.client_name}}</td>
+                            <td>{{client.email}}</td>
+                            <td>{{client.ph_number}}</td>
+                            <td>{{client.tax_number}}</td>
+                            <td>{{client.address}}</td>
+                            <td>{{client.client_code_number}}</td>
+                            <td>
+                              <ul>
+                                <li> 
+                                 
+                                  <a (click)="setClientToEdite(client)" href="" data-bs-toggle="modal" data-bs-target="#exampleModalEditClient">
+                                    <i class="far fa-edit"></i>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a (click)="setAndDeleteClient(client)" href="javascript:void(0);">
+                                    <i class="far fa-trash-alt"></i>
+                                  </a>
+                                </li>
+                              </ul>
+                            </td>
+                        </tr>
+  
+                         </tbody>
+                          </table>
+                          </div>
+                       </div>
+                     </div>
+                     
+                    </div>
+       
+      </div>
+  </div>
+  <!--/app-container-->
+  <!--Add user modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            إضافة عميل جديد
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="clientName"  name ="clientName" type="text" class="form-control" id="floatingText" placeholder="محمود حمدي">
+                  <label for="floatingText">اسم العميل</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="clientCode"  name ="clientName" type="text" class="form-control" id="floatingText" placeholder="محمود حمدي">
+                  <label for="floatingText">كود العميل</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="email"  name ="email" type="email" class="form-control" id="floatingText" placeholder="mahmoud@gmail.com">
+                  <label for="floatingEmail">الإيميل</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="addres"  name ="addres" type="email" class="form-control" id="floatingText" placeholder="mahmoud@gmail.com">
+                  <label for="floatingEmail">العنوان</label>
+                </div>
+              </div>
+           
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="phoneNo"  name ="phone" type="tel" class="form-control" id="floatingNumber" placeholder="15000">
+                  <label for="floatingNumber">الموبايل</label>
+                </div>
+              </div>
+           
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="taxNo"  name ="taxNo" type="number" class="form-control" id="floatingNumber" placeholder="15000">
+                  <label for="floatingNumber">رقم التسجيل الضريبي</label>
+                </div>
+              </div>
+  
+              <div class="col-12 justify-content-end">
+                <div class="modal-buttons d-flex align-items-center justify-content-end">
+                  <button (click)="addClient()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة عميل</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+              </div>
+            </div>
+           </form>
+        </div>
+   
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalEditClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            تعديل مستخدم
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="clientName"  name ="clientName" type="text" class="form-control" id="floatingText" placeholder="محمود حمدي">
+                  <label for="floatingText">اسم العميل</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="email"  name ="email" type="email" class="form-control" id="floatingText" placeholder="mahmoud@gmail.com">
+                  <label for="floatingEmail">الإيميل</label>
+                </div>
+              </div>
+            
+           
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="phoneNo"  name ="phone" type="tel" class="form-control" id="floatingNumber" placeholder="15000">
+                  <label for="floatingNumber">الموبايل</label>
+                </div>
+              </div>
+           
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="taxNo"  name ="taxNo" type="number" class="form-control" id="floatingNumber" placeholder="15000">
+                  <label for="floatingNumber">رقم التسجيل الضريبي</label>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="addres"  name ="addres" type="email" class="form-control" id="floatingText" placeholder="mahmoud@gmail.com">
+                  <label for="floatingEmail">العنوان</label>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input [(ngModel)]="clientCode"  name ="clientName" type="text" class="form-control" id="floatingText" placeholder="محمود حمدي">
+                  <label for="floatingText">كود العميل</label>
+                </div>
+              </div>
+  
+              <div class="col-12 justify-content-end">
+                <div class="modal-buttons d-flex align-items-center justify-content-end">
+                  <button (click)="editClient()" type="submit" data-bs-dismiss="modal" class="btn btn-success">تعديل</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+              </div>
+            </div>
+           </form>
+        </div>
+   
+      </div>
+    </div>
+  </div>
+
+  <app-file-upload></app-file-upload>

@@ -1,0 +1,52 @@
+<div class="app-main_outer">
+           
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-start justify-content-between">
+                <h1 class="page-title">
+                      فواتير البيع
+                </h1>
+            </div>
+        </div>
+    </div>
+   <div class="row">
+     <div class="col-12">
+        <div class="main-table">
+          <div class="table-actions">
+              <a href="./sales-invoices-add.html" class="link-outlined">
+                إضافة فاتورة
+              </a>
+             
+          </div>
+
+          <table id="example" class="display table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>رقم الفاتورة</th>
+                    <th>تاريخ الفاتورة</th>
+                    <th>العميل</th>                               
+                    <th>الإجمالي</th>                               
+                    <th>الخصم</th>                             
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let envoice of envoicesList; let i=index">
+                <td>{{i+1}}</td>
+                <td>{{envoice.invoice_code}}</td>
+                <td>{{envoice.date}}</td>
+                <td>{{envoice.client}}</td>
+                <td>{{envoice.total_invoice}}</td>
+                <td>{{envoice.discount_ratio}}</td>
+              </tr>
+             
+              
+            </tbody>
+        </table>
+        </div>
+     </div>
+   </div>
+   
+  </div>
+
+  

@@ -1,0 +1,47 @@
+<!--app-container-->
+<div class="app-container">
+  <app-comman-header></app-comman-header>
+      <div class="app-main">
+        <app-common-side-nav></app-common-side-nav>
+          <div class="app-main_outer">
+             
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="d-flex align-items-start justify-content-between">
+                                  <h1 class="page-title">
+                                       الدول
+                                  </h1>
+                              </div>
+                          </div>
+                      </div>
+                     <div class="row">
+                       <div class="col-12">
+                          <div class="main-table">
+                      
+      
+                            <table id="example" class="display table table-hover" style="width:100%">
+                              <thead>
+                                  <tr>
+                                      <th>كود الدولة</th>
+                                      <th>اسم الدولة عربي</th>
+                                      <th>اسم الدولة إنجليزي</th>                               
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let country of countriesData">
+                                  
+                                  <td>{{country.code}}</td>
+                                  <td>{{country.Desc_ar}}</td>
+                                  <td>{{country.Desc_en}}</td> 
+                              </tr>
+                             
+                              </tbody>
+                          </table>
+                          </div>
+                       </div>
+                     </div>
+                     
+                    </div>
+       
+      </div>
+  </div>

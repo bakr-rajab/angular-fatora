@@ -1,0 +1,153 @@
+<!--app-container-->
+<div class="app-container">
+  <app-comman-header></app-comman-header>
+     <div class="app-main">
+      <app-common-side-nav></app-common-side-nav>
+         <div class="app-main_outer">
+            
+                     <div class="row">
+                         <div class="col-12">
+                             <div class="d-flex align-items-start justify-content-between">
+                                 <h1 class="page-title">
+                                      البرامج
+                                 </h1>
+                              
+                                 <button type="button" class="btn btn-success"
+                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                 إضافة برنامج
+                               </button>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="row">
+                      <div class="col-12">
+                         <div class="main-table">
+                     
+     
+                           <table id="example" class="display table table-hover" style="width:100%">
+                             <thead>
+                                 <tr>
+                                     <th>اسم البرنامج</th>
+                                     <th>فترة البرنامج</th>
+                                     <th>الإجراءات</th>
+                                
+                                 </tr>
+                             </thead>
+                             <tbody>
+ 
+ <tr *ngFor="let plan of plans">
+   <td>{{plan.plan_name}}</td>
+   <td>{{plan.plan_duration}}</td>
+   <td>
+    <ul>
+      <li> 
+       
+        <a (click)="setPlanIdToEdite(plan.plan_id)" href="" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+          <i class="far fa-edit"></i>
+        </a>
+      </li>
+      <li>
+        <a (click)="setPlanToRm(plan.plan_id)">
+          <i class="far fa-trash-alt"></i>
+        </a>
+      </li>
+    </ul>
+  </td>
+ </tr>
+ 
+ 
+                             </tbody>
+                          
+                         </table>
+                         </div>
+                      </div>
+                    </div>
+                    
+                   </div>
+      
+     </div>
+ </div>
+ <!--/app-container-->
+ <!--Add user modal-->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">
+           إضافة برنامج جديد
+         </h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form>
+           <div class="row">
+             <div class="col-lg-6 col-md-12  mb-3">
+               <div class="form-floating">
+                 <input type="text"  [(ngModel)]="addPlanModel.plan_name" name="programName"
+                 class="form-control" id="floatingInput" placeholder="6Monthes" required>
+                 <label for="floatingInput">اسم البرنامج</label>
+               </div>
+             </div>
+           
+             <div class="col-lg-6 col-md-12  mb-3">
+               <div class="form-floating">
+                 <input [(ngModel)]="addPlanModel.plan_duration" name="duration" 
+                 class="form-control" id="floatingText" placeholder="120 يوم" required>
+                 <label for="floatingText">فترة البرنامج</label>
+               </div>
+             </div>
+           
+             <div class="col-12 justify-content-end">
+               <div class="modal-buttons d-flex align-items-center justify-content-end">
+                 <button  (click)="addPlan()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة برنامج</button>
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+               </div>
+             </div>
+           </div>
+          </form>
+       </div>
+  
+     </div>
+   </div>
+ </div>
+
+ <div class="modal fade" id="exampleModalEdit" 
+ tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalEditLabel">
+             تعديل البرنامج
+         </h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form>
+           <div class="row">
+             <div class="col-lg-6 col-md-12 mb-3">
+               <div class="form-floating">
+                 <input type="text" class="form-control" [(ngModel)]="editeModel.plan_name" name="planName"
+                  id="floatingText" placeholder="محمود حمدى فهمى">
+                 <label for="floatingText">اسم البرنامج</label>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-12  mb-3">
+               <div class="form-floating">
+                 <input [(ngModel)]="editeModel.plan_duration" name="duration2" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                 <label for="floatingInput">فترة البرنامج</label>
+               </div>
+             </div>
+          
+             <div class="col-12 justify-content-end">
+               <div class="modal-buttons d-flex align-items-center justify-content-end">
+                 <button (click)="editePlan()" type="submit" data-bs-dismiss="modal" class="btn btn-success">تعديل</button>
+               <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+               </div>
+             </div>
+           </div>
+          </form>
+       </div>
+  
+     </div>
+   </div>
+ </div>
