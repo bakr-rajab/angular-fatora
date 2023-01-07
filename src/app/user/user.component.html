@@ -1,0 +1,244 @@
+<!--app-container-->
+<div class="app-container">
+   <app-comman-header></app-comman-header>
+     <div class="app-main">
+      <app-common-side-nav></app-common-side-nav>
+         <div class="app-main_outer">
+            
+                     <div class="row">
+                         <div class="col-12">
+                             <div class="d-flex align-items-start justify-content-between">
+                                 <h1 class="page-title">
+                                      المستخدمين
+                                 </h1>
+                              
+                                 <button (click)="resetAddModal()" type="button" class="btn btn-success"
+                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                 إضافة مستخدم
+                               </button>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="row">
+                      <div class="col-12">
+                         <div class="main-table">
+                     
+     
+                           <table id="example" class="display table table-hover" style="width:100%">
+                             <thead>
+                                 <tr>
+                                     <th>اسم المستخدم</th>
+                                     <th>الإيميل</th>
+                                     <th>كود النشاط</th>
+                                     <th>رقم التليفون</th>
+                                     <th>الرقم الضريبى</th>
+                                     <th>الإجراءات</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr *ngFor="let user of usersList">
+                                     <td>{{user.name}}</td>
+                                     <td>{{user.email}}</td>
+                                     <td>{{user.activity_code}}</td>
+                                     <td>{{user.ph_number}}</td>
+                                     <td>{{user.tax_number}}</td>
+                                     <td>
+                                       <ul>
+                                         <li> 
+                                          
+                                           <a (click)="setTaxNo(user)" href="" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                                             <i class="far fa-edit"></i>
+                                           </a>
+                                         </li>
+                                         <li>
+                                           <a (click)="setUserTorm(user.user_id)">
+                                             <i class="far fa-trash-alt"></i>
+                                           </a>
+                                         </li>
+                                       </ul>
+                                     </td>
+                                 </tr>
+                              
+                               
+ 
+                             </tbody>
+                          
+                         </table>
+                         </div>
+                      </div>
+                    </div>
+                    
+                   </div>
+      
+     </div>
+ </div>
+ <!--/app-container-->
+ <!--Add user modal-->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">
+           إضافة مستخدم جديد
+         </h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form>
+           <div class="row">
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="userName" name="userName" type="text" class="form-control"
+                 id="floatingText" placeholder="محمود حمدى فهمى">
+                <label for="floatingText">اسم المستخدم</label>
+              </div>
+            </div>
+             <div class="col-lg-6 col-md-12  mb-3">
+               <div class="form-floating">
+                 <input [(ngModel)]="email" name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                 <label for="floatingInput">الإيميل</label>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-12 mb-3">
+               <div class="form-floating">
+                 <input [(ngModel)]="pass" name="secretNo" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                 <label for="floatingPassword">الرقم السري</label>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-12  mb-3">
+               <div class="form-floating">
+                 <input [(ngModel)]="taxNo" name="taxNo" type="text" class="form-control" id="floatingText" placeholder="TU98745">
+                 <label for="floatingText">الرقم الضريبي</label>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="phoneNo" name="phoneNo" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">رقم التليفون</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="clientId" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <label for="floatingInput">كود العميل</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="clientSecret1" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <label for="floatingInput">client secret 1</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="clientSecret2" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <label for="floatingInput">client secret 2</label>
+              </div>
+            </div>
+             <div class="col-lg-6 col-md-12 mb-3">
+               <div class="form-floating">
+                 <select [(ngModel)]="selectedCode"  name="code" (change)="setcode()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                   <option [ngValue]="code" *ngFor="let code of codeList" selected>{{code.code}}/ {{code.Desc_ar}}</option>
+                
+                 </select>
+                 <label for="floatingSelect">كود النشاط</label>
+               </div>
+             </div>
+             <div class="col-12 justify-content-end">
+               <div class="modal-buttons d-flex align-items-center justify-content-end">
+                 <button (click)="createUser()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة مستخدم</button>
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+               </div>
+             </div>
+           </div>
+          </form>
+       </div>
+  
+     </div>
+   </div>
+ </div>
+ <!--Add user modal-->
+ <!--Add user modal-->
+ <div class="modal fade" id="exampleModalEdit" 
+ tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalEditLabel">
+             تعديل المستخدم (محمود حمدى فهمى)
+         </h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form>
+           <div class="row">
+             <div class="col-lg-6 col-md-12 mb-3">
+               <div class="form-floating">
+                 <input [(ngModel)]="userName" name="userName" type="text" class="form-control"
+                  id="floatingText" placeholder="محمود حمدى فهمى">
+                 <label for="floatingText">اسم المستخدم</label>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-12  mb-3">
+               <div class="form-floating">
+                 <input [(ngModel)]="email" name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                 <label for="floatingInput">الإيميل</label>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="phoneNo" name="phoneNo" type="phoneNo" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">رقم التليفون</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="taxNo" name="taxNo" type="taxNo" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">الرقم الضريبى</label>
+              </div>
+            </div>
+             <div class="col-lg-6 col-md-12 mb-3">
+               <div class="form-floating">
+                <select [(ngModel)]="selectedCode"  name="code" (change)="setcode()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                  <option [ngValue]="code" *ngFor="let code of codeList" selected>{{code.code}}</option>
+               
+                </select>
+                 <label for="floatingSelect">كود النشاط</label>
+               </div>
+             </div>
+
+             <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="clientId" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <label for="floatingInput">كود العميل</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="clientSecret1" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <label for="floatingInput">client secret 1</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="clientSecret2" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <label for="floatingInput">client secret 2</label>
+              </div>
+            </div>
+             <div class="col-12 justify-content-end">
+               <div class="modal-buttons d-flex align-items-center justify-content-end">
+                 <button (click)="editeUser()" type="submit" data-bs-dismiss="modal" class="btn btn-success">تعديل</button>
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+               </div>
+             </div>
+           </div>
+          </form>
+       </div>
+  
+     </div>
+   </div>
+ </div>

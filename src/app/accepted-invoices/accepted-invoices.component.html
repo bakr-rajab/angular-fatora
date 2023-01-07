@@ -1,0 +1,347 @@
+<!--app-container-->
+<div class="app-container">
+   <div class="app-header">
+     <!--Header Logo-->
+ <div class="app-header-logo">
+ <div class="logo-src">
+ <!-- <img src="../assets/img/inner-logo.png" alt="inner-logo"> -->
+   <span>
+     <svg xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 2.77 2.89" style="fill: rgb(0, 0, 0);" role="img"><defs><linearGradient gradientUnits="userSpaceOnUse" id="__id4_sasmfh5m3q" x1=".6" x2="2.42" y1="2.54" y2=".72"><stop offset="0" style="stop-color: rgb(255, 255, 255);"></stop><stop offset="1" style="stop-color: rgb(255, 255, 255);"></stop></linearGradient></defs><g><path d="M1.6 1.95c0.18,-0 0.26,0.15 0.38,0.27 0.06,0.06 0.17,0.06 0.23,0l0.29 -0.29c0.06,-0.06 0.06,-0.17 -0,-0.23l-0.29 -0.29c-0.11,-0.11 -0.24,-0.18 -0.15,-0.25 0.04,-0.03 0.07,-0.05 0.14,-0.05 0.11,-0 0.15,0.09 0.23,0.16 0.04,0.04 0.1,0.04 0.14,0l0.18 -0.18c0.04,-0.04 0.04,-0.1 -0,-0.14l-0.18 -0.18c-0.04,-0.04 -0.1,-0.04 -0.14,-0 -0.07,0.07 -0.13,0.17 -0.23,0.17 -0.1,0 -0.16,-0.1 -0.23,-0.17 -0.04,-0.04 -0.1,-0.04 -0.14,0l-0.18 0.18c-0.04,0.04 -0.04,0.1 0,0.14 0.15,0.15 0.4,0.24 0.28,0.38 -0.09,0.11 -0.19,0.23 -0.33,0.23 -0.17,0 -0.27,-0.17 -0.39,-0.29 -0.06,-0.06 -0.17,-0.06 -0.23,0l-0.07 0.07 -0.22 0.22c-0.06,0.06 -0.06,0.17 0,0.23l0.24 0.24 0.05 0.05c0.06,0.06 0.17,0.06 0.23,0 0.13,-0.13 0.2,-0.27 0.39,-0.27zm-0.3 -1.13l0.56 0.56c-0.07,0.09 -0.17,0.2 -0.26,0.2 -0.12,-0 -0.24,-0.18 -0.32,-0.26 -0.1,-0.1 -0.27,-0.1 -0.38,0l-0.29 0.29c-0.1,0.1 -0.1,0.27 0,0.38l0.29 0.29c0.1,0.1 0.27,0.1 0.38,0 0.09,-0.09 0.18,-0.24 0.32,-0.24 0.11,-0 0.19,0.1 0.26,0.19l-0.56 0.56c-0.12,0.12 -0.31,0.12 -0.43,0l-0.77 -0.77c-0.12,-0.12 -0.12,-0.31 0,-0.43l0.77 -0.77c0.12,-0.12 0.31,-0.12 0.43,0zm1.02 -0.59l0.11 0.11c0.03,0.03 0.08,0.03 0.11,0l0.11 -0.11c0.03,-0.03 0.03,-0.08 0,-0.11l-0.11 -0.11c-0.03,-0.03 -0.08,-0.03 -0.11,0l-0.11 0.11c-0.03,0.03 -0.03,0.08 0,0.11z" style="fill: url(&quot;#__id4_sasmfh5m3q&quot;);"></path></g></svg>
+   </span>
+   فــــاتورة
+ </div>
+ <div class="header-pane">
+     <button type="button" class="btn hamburger" id="btn-collapse">
+         <span class="hamburger-box"></span>
+         <span class="hamburger-box"></span>
+         <span class="hamburger-box"></span>
+     </button>
+ </div>
+ </div>
+ <!--/Header Logo-->
+ <!--header search-->
+ <div class="app-header-search">
+ <form class="">
+ <input class="form-control" type="search"
+ placeholder="البحث عن" aria-label="Search" name="header-search">
+ <button class="btn" type="submit" name="header-search-submit">
+ <i class="fas fa-search"></i>
+ </button>
+ </form>
+ </div>
+ <!--/header search-->
+ 
+ 
+ </div>
+     <div class="app-main">
+      <app-common-side-nav></app-common-side-nav>
+         <div class="app-main_outer">
+            
+                     <div class="row">
+                         <div class="col-12">
+                             <div class="d-flex align-items-start justify-content-between">
+                                 <h1 class="page-title">
+                                      الفواتير المقبولة
+                                 </h1>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="row">
+                      <div class="col-12">
+                         <div class="main-table">
+                           <div class="table-actions">
+                             <button type="button" class="btn btn-print">
+                               <i class="fas fa-print"></i>
+                               طباعة
+                             </button>
+                             <button type="button" class="btn btn-export">
+                               <i class="far fa-file-excel"></i>
+                               export
+                             </button>
+                           </div>
+     
+                           <table id="example" class="display table table-hover" style="width:100%">
+                             <thead>
+                                 <tr>
+                                     <th>#</th>
+                                     <th>رقم الفاتورة</th>
+                                     <th>تاريخ الفاتورة</th>
+                                     <th>العميل</th>                               
+                                     <th>الإجمالي</th>                               
+                                     <th>الخصم</th>       
+                                     <th>الصافي</th>                        
+                                 </tr>
+                             </thead>
+                             <tbody>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               <tr>
+                                 <td>#</td>
+                                 <td>1</td>
+                                 <td>20/12/2022</td>
+                                 <td>محمود حمدى فهمى</td>
+                                 <td>2000</td>
+                                 <td>20</td>
+                                 <td>1600</td>
+                               </tr>
+                               
+                             </tbody>
+                         </table>
+                         </div>
+                      </div>
+                    </div>
+                    
+                   </div>
+      
+     </div>
+ </div>

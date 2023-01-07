@@ -1,0 +1,842 @@
+<!--app-container-->
+<div class="app-container">
+    <div class="app-header">
+      <!--Header Logo-->
+  <div class="app-header-logo">
+  <div class="logo-src">
+  <!-- <img src="../assets/img/inner-logo.png" alt="inner-logo"> -->
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 2.77 2.89" style="fill: rgb(0, 0, 0);" role="img"><defs><linearGradient gradientUnits="userSpaceOnUse" id="__id4_sasmfh5m3q" x1=".6" x2="2.42" y1="2.54" y2=".72"><stop offset="0" style="stop-color: rgb(255, 255, 255);"></stop><stop offset="1" style="stop-color: rgb(255, 255, 255);"></stop></linearGradient></defs><g><path d="M1.6 1.95c0.18,-0 0.26,0.15 0.38,0.27 0.06,0.06 0.17,0.06 0.23,0l0.29 -0.29c0.06,-0.06 0.06,-0.17 -0,-0.23l-0.29 -0.29c-0.11,-0.11 -0.24,-0.18 -0.15,-0.25 0.04,-0.03 0.07,-0.05 0.14,-0.05 0.11,-0 0.15,0.09 0.23,0.16 0.04,0.04 0.1,0.04 0.14,0l0.18 -0.18c0.04,-0.04 0.04,-0.1 -0,-0.14l-0.18 -0.18c-0.04,-0.04 -0.1,-0.04 -0.14,-0 -0.07,0.07 -0.13,0.17 -0.23,0.17 -0.1,0 -0.16,-0.1 -0.23,-0.17 -0.04,-0.04 -0.1,-0.04 -0.14,0l-0.18 0.18c-0.04,0.04 -0.04,0.1 0,0.14 0.15,0.15 0.4,0.24 0.28,0.38 -0.09,0.11 -0.19,0.23 -0.33,0.23 -0.17,0 -0.27,-0.17 -0.39,-0.29 -0.06,-0.06 -0.17,-0.06 -0.23,0l-0.07 0.07 -0.22 0.22c-0.06,0.06 -0.06,0.17 0,0.23l0.24 0.24 0.05 0.05c0.06,0.06 0.17,0.06 0.23,0 0.13,-0.13 0.2,-0.27 0.39,-0.27zm-0.3 -1.13l0.56 0.56c-0.07,0.09 -0.17,0.2 -0.26,0.2 -0.12,-0 -0.24,-0.18 -0.32,-0.26 -0.1,-0.1 -0.27,-0.1 -0.38,0l-0.29 0.29c-0.1,0.1 -0.1,0.27 0,0.38l0.29 0.29c0.1,0.1 0.27,0.1 0.38,0 0.09,-0.09 0.18,-0.24 0.32,-0.24 0.11,-0 0.19,0.1 0.26,0.19l-0.56 0.56c-0.12,0.12 -0.31,0.12 -0.43,0l-0.77 -0.77c-0.12,-0.12 -0.12,-0.31 0,-0.43l0.77 -0.77c0.12,-0.12 0.31,-0.12 0.43,0zm1.02 -0.59l0.11 0.11c0.03,0.03 0.08,0.03 0.11,0l0.11 -0.11c0.03,-0.03 0.03,-0.08 0,-0.11l-0.11 -0.11c-0.03,-0.03 -0.08,-0.03 -0.11,0l-0.11 0.11c-0.03,0.03 -0.03,0.08 0,0.11z" style="fill: url(&quot;#__id4_sasmfh5m3q&quot;);"></path></g></svg>
+    </span>
+    فــــاتورة
+  </div>
+  <div class="header-pane">
+      <button type="button" class="btn hamburger" id="btn-collapse">
+          <span class="hamburger-box"></span>
+          <span class="hamburger-box"></span>
+          <span class="hamburger-box"></span>
+      </button>
+  </div>
+  </div>
+  <!--/Header Logo-->
+  <!--header search-->
+  <div class="app-header-search">
+  <form class="">
+  <input class="form-control" type="search"
+  placeholder="البحث عن" aria-label="Search" name="header-search">
+  <button class="btn" type="submit" name="header-search-submit">
+  <i class="fas fa-search"></i>
+  </button>
+  </form>
+  </div>
+  <!--/header search-->
+  
+  
+  </div>
+      <div class="app-main">
+        <div class="app-sidebar" id="sidebar">
+          <div class="sidenav accordion" id="sidenavAccordion">
+  
+              <div class="navbar-inner">
+                <!-- Collapse -->
+        
+                    <!-- Nav items -->
+                    <ul class="navbar-nav">
+                      <li class="nav-item active">
+                        <a class="nav-link active" href="./index.html">
+                            <i class="fas fa-home"></i>
+                          <span class="nav-link-text">لوحة التحكم</span>
+                        </a>
+                      </li>
+                      
+                      <li class="nav-item">
+                        <a class="nav-link active" href="./users.html">
+                            <i class="far fa-user"></i>
+                          <span class="nav-link-text">
+                            قائمة المستخدمين
+                          </span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="./programes.html">
+                          <i class="fas fa-tasks"></i>
+                          <span class="nav-link-text">
+                             قائمة البرامج
+                          </span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="./license.html">
+                            <i class="fas fa-clipboard-check"></i>
+                          <span class="nav-link-text">
+                            license 
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                        data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
+                        <i class="fas fa-border-all"></i>
+                        <span class="nav-link-text">الأكواد الأساسية</span>
+                        <i class="fas fa-angle-down"></i>
+                      </a>
+                      <div class="collapse" id="collapseLayouts3" 
+                      aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                      <nav class="sidenav-menu-nested">
+                        <a class="nav-link" href="./branches.html">
+                          الفروع
+                        </a>
+                        <a class="nav-link" href="./units.html">
+                          الوحدات
+                        </a>
+                        <a class="nav-link" href="./tax-types.html">
+                          أنواع الضرائب
+                        </a>
+                        <a class="nav-link" href="./types-group.html">
+                          مجموعات الأصناف
+                        </a>
+                        <a class="nav-link" href="./types.html">
+                          الأصناف
+                        </a>
+                        <a class="nav-link" href="./clients.html">
+                          العملاء
+                        </a>
+                        <a class="nav-link" href="./country.html">
+                          الدول
+                        </a>
+                      </nav>
+                  </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                      data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts4">
+                      <i class="fas fa-shopping-cart"></i>
+                     <span class="nav-link-text">المبيعات</span>
+                      <i class="fas fa-angle-down"></i>
+                    </a>
+                    <div class="collapse" id="collapseLayouts4" 
+                    aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sidenav-menu-nested">
+                      <a class="nav-link" href="./register-sales-invoices.html">
+                        تسجيل فواتير بيع
+                      </a>
+                      <a class="nav-link" href="./register-debit-view.html">
+                        تسجيل إشعار خصم
+                      </a>
+                      <a class="nav-link" href="./register-credit-view.html">
+                        تسجيل إشعار إضافة
+                      </a>
+                      <a class="nav-link" href="./send-invoices.html">
+                         إرسال فواتير البيع
+                      </a>
+                      <a class="nav-link" href="./types.html">
+                        الفواتير الواردة
+                      </a>
+                    
+                    </nav>
+                </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                    data-bs-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts5">
+                    <i class="far fa-list-alt"></i>
+                   <span class="nav-link-text">التقارير</span>
+                    <i class="fas fa-angle-down"></i>
+                  </a>
+                  <div class="collapse" id="collapseLayouts5" 
+                  aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                  <nav class="sidenav-menu-nested">
+                    
+                    <a class="nav-link" href="./accepted-invoices.html">
+                      الفواتير المقبولة
+                    </a>
+                    <a class="nav-link" href="./rejected-invoices.html">
+                      الفواتير المرفوضة
+                    </a>
+                  
+                  </nav>
+              </div>
+                </li>
+                      <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                        data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
+                        <i class="fas fa-ban"></i>
+                        <span class="nav-link-text">صفحات خطأ</span>
+                        <i class="fas fa-angle-down"></i>
+                      </a>
+                      <div class="collapse" id="collapseLayouts2" 
+                      aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                      <nav class="sidenav-menu-nested">
+                        <a class="nav-link" href="404.html">
+                          404
+                        </a>
+                        <a class="nav-link" href="500.html">
+                          500
+                        </a>
+                      </nav>
+                  </div>
+                    </li>
+  
+                    </ul>
+            
+               
+              </div>
+   
+  </div>
+      </div>
+          <div class="app-main_outer">
+             
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="d-flex align-items-start justify-content-between">
+                                  <h1 class="page-title">
+                                       المستخدمين
+                                  </h1>
+                               
+                                  <button type="button" class="btn btn-success"
+                                  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  إضافة مستخدم
+                                </button>
+                              </div>
+                          </div>
+                      </div>
+                     <div class="row">
+                       <div class="col-12">
+                          <div class="main-table">
+                      
+      
+                            <table id="example" class="display table table-hover" style="width:100%">
+                              <thead>
+                                  <tr>
+                                      <th>اسم المستخدم</th>
+                                      <th>الإيميل</th>
+                                      <th>كود النشاط</th>
+                                      <th>الإجراءات</th>
+                                 
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>محمود حمدى فهمى</td>
+                                      <td>mahmoud@gmail.com</td>
+                                      <td>Tu9874</td>
+                                      <td>
+                                        <ul>
+                                          <li> 
+                                           
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                                              <i class="far fa-edit"></i>
+                                            </a>
+                                          </li>
+                                          <li>
+                                            <a href="javascript:void(0);">
+                                              <i class="far fa-trash-alt"></i>
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </td>
+                                 
+                                  </tr>
+                               
+                                  <tr>
+                                    <td>محمود حمدى فهمى</td>
+                                    <td>mahmoud@gmail.com</td>
+                                    <td>Tu9874</td>
+                                    <td>
+                                      <ul>
+                                        <li>
+                                          <i class="far fa-edit"></i>
+                                        </li>
+                                        <li>
+                                          <i class="far fa-trash-alt"></i>
+                                        </li>
+                                      </ul>
+                                    </td>
+                               
+                                </tr>
+                                <tr>
+                                  <td>محمود حمدى فهمى</td>
+                                  <td>mahmoud@gmail.com</td>
+                                  <td>Tu9874</td>
+                                  <td>
+                                    <ul>
+                                      <li>
+                                        <i class="far fa-edit"></i>
+                                      </li>
+                                      <li>
+                                        <i class="far fa-trash-alt"></i>
+                                      </li>
+                                    </ul>
+                                  </td>
+                             
+                              </tr>
+                              <tr>
+                                <td>محمود حمدى فهمى</td>
+                                <td>mahmoud@gmail.com</td>
+                                <td>Tu9874</td>
+                                <td>
+                                  <ul>
+                                    <li>
+                                      <i class="far fa-edit"></i>
+                                    </li>
+                                    <li>
+                                      <i class="far fa-trash-alt"></i>
+                                    </li>
+                                  </ul>
+                                </td>
+                           
+                            </tr>
+                            <tr>
+                              <td>محمود حمدى فهمى</td>
+                              <td>mahmoud@gmail.com</td>
+                              <td>Tu9874</td>
+                              <td>
+                                <ul>
+                                  <li>
+                                    <i class="far fa-edit"></i>
+                                  </li>
+                                  <li>
+                                    <i class="far fa-trash-alt"></i>
+                                  </li>
+                                </ul>
+                              </td>
+                         
+                          </tr>
+                          <tr>
+                            <td>محمود حمدى فهمى</td>
+                            <td>mahmoud@gmail.com</td>
+                            <td>Tu9874</td>
+                            <td>
+                              <ul>
+                                <li>
+                                  <i class="far fa-edit"></i>
+                                </li>
+                                <li>
+                                  <i class="far fa-trash-alt"></i>
+                                </li>
+                              </ul>
+                            </td>
+                       
+                        </tr>
+                        <tr>
+                          <td>محمود حمدى فهمى</td>
+                          <td>mahmoud@gmail.com</td>
+                          <td>Tu9874</td>
+                          <td>
+                            <ul>
+                              <li>
+                                <i class="far fa-edit"></i>
+                              </li>
+                              <li>
+                                <i class="far fa-trash-alt"></i>
+                              </li>
+                            </ul>
+                          </td>
+                     
+                      </tr>
+                      <tr>
+                        <td>محمود حمدى فهمى</td>
+                        <td>mahmoud@gmail.com</td>
+                        <td>Tu9874</td>
+                        <td>
+                          <ul>
+                            <li>
+                              <i class="far fa-edit"></i>
+                            </li>
+                            <li>
+                              <i class="far fa-trash-alt"></i>
+                            </li>
+                          </ul>
+                        </td>
+                   
+                    </tr>
+                    <tr>
+                      <td>محمود حمدى فهمى</td>
+                      <td>mahmoud@gmail.com</td>
+                      <td>Tu9874</td>
+                      <td>
+                        <ul>
+                          <li>
+                            <i class="far fa-edit"></i>
+                          </li>
+                          <li>
+                            <i class="far fa-trash-alt"></i>
+                          </li>
+                        </ul>
+                      </td>
+                 
+                  </tr>
+                  <tr>
+                    <td>محمود حمدى فهمى</td>
+                    <td>mahmoud@gmail.com</td>
+                    <td>Tu9874</td>
+                    <td>
+                      <ul>
+                        <li>
+                          <i class="far fa-edit"></i>
+                        </li>
+                        <li>
+                          <i class="far fa-trash-alt"></i>
+                        </li>
+                      </ul>
+                    </td>
+               
+                </tr>
+                <tr>
+                  <td>محمود حمدى فهمى</td>
+                  <td>mahmoud@gmail.com</td>
+                  <td>Tu9874</td>
+                  <td>
+                    <ul>
+                      <li>
+                        <i class="far fa-edit"></i>
+                      </li>
+                      <li>
+                        <i class="far fa-trash-alt"></i>
+                      </li>
+                    </ul>
+                  </td>
+             
+              </tr>
+              <tr>
+                <td>محمود حمدى فهمى</td>
+                <td>mahmoud@gmail.com</td>
+                <td>Tu9874</td>
+                <td>
+                  <ul>
+                    <li>
+                      <i class="far fa-edit"></i>
+                    </li>
+                    <li>
+                      <i class="far fa-trash-alt"></i>
+                    </li>
+                  </ul>
+                </td>
+           
+            </tr>
+            <tr>
+              <td>محمود حمدى فهمى</td>
+              <td>mahmoud@gmail.com</td>
+              <td>Tu9874</td>
+              <td>
+                <ul>
+                  <li>
+                    <i class="far fa-edit"></i>
+                  </li>
+                  <li>
+                    <i class="far fa-trash-alt"></i>
+                  </li>
+                </ul>
+              </td>
+         
+          </tr>
+          <tr>
+            <td>محمود حمدى فهمى</td>
+            <td>mahmoud@gmail.com</td>
+            <td>Tu9874</td>
+            <td>
+              <ul>
+                <li>
+                  <i class="far fa-edit"></i>
+                </li>
+                <li>
+                  <i class="far fa-trash-alt"></i>
+                </li>
+              </ul>
+            </td>
+       
+        </tr>
+        <tr>
+          <td>محمود حمدى فهمى</td>
+          <td>mahmoud@gmail.com</td>
+          <td>Tu9874</td>
+          <td>
+            <ul>
+              <li>
+                <i class="far fa-edit"></i>
+              </li>
+              <li>
+                <i class="far fa-trash-alt"></i>
+              </li>
+            </ul>
+          </td>
+     
+      </tr>
+      <tr>
+        <td>محمود حمدى فهمى</td>
+        <td>mahmoud@gmail.com</td>
+        <td>Tu9874</td>
+        <td>
+          <ul>
+            <li>
+              <i class="far fa-edit"></i>
+            </li>
+            <li>
+              <i class="far fa-trash-alt"></i>
+            </li>
+          </ul>
+        </td>
+   
+    </tr>
+    <tr>
+      <td>محمود حمدى فهمى</td>
+      <td>mahmoud@gmail.com</td>
+      <td>Tu9874</td>
+      <td>
+        <ul>
+          <li>
+            <i class="far fa-edit"></i>
+          </li>
+          <li>
+            <i class="far fa-trash-alt"></i>
+          </li>
+        </ul>
+      </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  <tr>
+    <td>محمود حمدى فهمى</td>
+    <td>mahmoud@gmail.com</td>
+    <td>Tu9874</td>
+    <td>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+        </li>
+        <li>
+          <i class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </td>
+  
+  </tr>
+  
+                              </tbody>
+                           
+                          </table>
+                          </div>
+                       </div>
+                     </div>
+                     
+                    </div>
+       
+      </div>
+  </div>
+  <!--/app-container-->
+  <!--Add user modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            إضافة مستخدم جديد
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <label for="floatingInput">الإيميل</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12 mb-3">
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <label for="floatingPassword">الرقم السري</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingText" placeholder="TU98745">
+                  <label for="floatingText">الرقم الضريبي</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12 mb-3">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <option selected>T1111</option>
+                    <option value="1">T4444</option>
+                    <option value="2">T2222</option>
+                    <option value="3">T3333</option>
+                  </select>
+                  <label for="floatingSelect">كود النشاط</label>
+                </div>
+              </div>
+              <div class="col-12 justify-content-end">
+                <div class="modal-buttons d-flex align-items-center justify-content-end">
+                  <button type="submit" class="btn btn-success">إضافة مستخدم</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+              </div>
+            </div>
+           </form>
+        </div>
+   
+      </div>
+    </div>
+  </div>
+  <!--Add user modal-->
+  <!--Add user modal-->
+  <div class="modal fade" id="exampleModalEdit" 
+  tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalEditLabel">
+              تعديل المستخدم (محمود حمدى فهمى)
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="col-lg-6 col-md-12 mb-3">
+                <div class="form-floating">
+                  <input type="text" class="form-control"
+                   id="floatingText" placeholder="محمود حمدى فهمى">
+                  <label for="floatingText">اسم المستخدم</label>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12  mb-3">
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <label for="floatingInput">الإيميل</label>
+                </div>
+              </div>
+             
+              <div class="col-lg-6 col-md-12 mb-3">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <option selected>T1111</option>
+                    <option value="1">T4444</option>
+                    <option value="2">T2222</option>
+                    <option value="3">T3333</option>
+                  </select>
+                  <label for="floatingSelect">كود النشاط</label>
+                </div>
+              </div>
+              <div class="col-12 justify-content-end">
+                <div class="modal-buttons d-flex align-items-center justify-content-end">
+                  <button type="submit" class="btn btn-success">تعديل</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+              </div>
+            </div>
+           </form>
+        </div>
+   
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,35 @@
+
+
+<!-- <button type="button" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#uploadFileModal">
+       تحميل ملف
+</button> -->
+
+<div class="modal fade" id="uploadFileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+       <div class="modal-dialog modal-dialog-centered modal-lg">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">
+               تحميل ملف
+             </h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+           
+              <input type="file" class="file-input"
+              (change)="onFileSelected($event)" #fileUpload>
+              <p *ngIf="showSuccessMsg" style="color: green">تم التحميل </p>
+              
+              <p *ngIf="showErrorMsg" style="color: red">حدث خطأ, برجاء مراجعة البيانات</p>
+              <div class="modal-buttons d-flex align-items-center justify-content-end">
+                     
+                <button (click)="doUploadAction()" *ngIf="showUploadBtn" type="button" class="btn btn-success">upload</button>
+                </div>
+              <div class="modal-buttons d-flex align-items-center justify-content-end">
+                     
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                   </div>
+           </div>
+      
+         </div>
+       </div>
+     </div>
