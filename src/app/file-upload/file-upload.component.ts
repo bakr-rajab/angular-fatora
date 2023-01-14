@@ -51,7 +51,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   doUploadAction(){
-    const upload$ = this.http.post("http://backend.fatuora.com/api/uploadfile", this.formData, {headers: this.headers});
+    const upload$ = this.http.post("http://localhost:8500/api/uploadfile", this.formData, {headers: this.headers});
 
           upload$.subscribe(res =>{
             this.fileUpRes = res;
