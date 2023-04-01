@@ -12,7 +12,7 @@ export class GenericService {
     console.log({body})
     // return this.httpClient.post('http://backend.fatuora.com/api/inbound', JSON.stringify(body), {headers: headers});
     //return this.httpClient.post('http://23.97.144.112:5400/api/inbound', JSON.stringify(body), {headers: headers});
-    return this.httpClient.post('http://127.0.0.1:8500/api/inbound', JSON.stringify(body), {headers: headers});
+    return this.httpClient.post('http://127.0.0.1:8000/api/inbound', JSON.stringify(body), {headers: headers});
     //return this.httpClient.post('/api/inbound', JSON.stringify(body), {headers: headers});
 
     //return this.httpClient.post('/api/inbound', JSON.stringify(body), {headers: headers});

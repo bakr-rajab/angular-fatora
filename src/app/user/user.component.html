@@ -139,11 +139,13 @@
             </div>
              <div class="col-lg-6 col-md-12 mb-3">
                <div class="form-floating">
-                 <select [(ngModel)]="selectedCode"  name="code" (change)="setcode()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                 <!-- <select [(ngModel)]="selectedCode"  name="code" (change)="setcode()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                    <option [ngValue]="code" *ngFor="let code of codeList" selected>{{code.code}}/ {{code.Desc_ar}}</option>
                 
-                 </select>
-                 <label for="floatingSelect">كود النشاط</label>
+                 </select> -->
+                <input [(ngModel)]="selectedCode" name="code" type="text" class="form-control" id="floatingInput">
+
+                 <label for="floatingSelect"> 777777كود النشاط</label>
                </div>
              </div>
              <div class="col-12 justify-content-end">
