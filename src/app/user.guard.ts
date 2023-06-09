@@ -6,14 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserGuard implements CanActivate {
-  constructor(public router: Router){}
-  canActivate(){
-      if(sessionStorage.getItem('userRole') == 'admin'){
-        return true;
-      }else{
-        this.router.navigate(['/login']);
-        return false;
-      }
+  constructor(public router: Router) { }
+  canActivate() {
+    if (sessionStorage.getItem('userRole') == 'superAdmin') {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
-  
 }
