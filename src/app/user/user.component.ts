@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
     name: '',
     clientId: '',
     clientSecret1: '',
-    branchId: 'tow',
+    branchId: '4',
     clientSecret2: '',
     role: '3'
   }
@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
   constructor(private apiCall: UserService) { }
 
   ngOnInit(): void {
-  //   sidebarToggling()
+    //   sidebarToggling()
     this.getAllUser()
     //   this.getActivityCodes()
   }
@@ -85,22 +85,12 @@ export class UserComponent implements OnInit {
   // }
 
   createUser() {
-    //   this.createUserReq = {
-    //     // "target":"user",
-    //     // "action":"create",
-    //     "email": this.email,
-    //     "password": this.pass,
-    //     "taxNumber": Number(this.taxNo),
-    //     "activity": this.code,
-    //     "ph_number": Number(this.phoneNo),
-    //     "name": this.userName,
-    //     "client_id": this.clientId,
-    //     "client_secret_1": this.clientSecret1,
-    //     "client_secret_2": this.clientSecret2
-    //   }
+
 
     this.apiCall.createUser(this.user).subscribe(res => {
       console.log(res)
+      this.usersList = [...this.usersList, res]
+
     })
   }
 

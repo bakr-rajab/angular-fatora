@@ -29,6 +29,7 @@ import { UserComponent } from './user/user.component';
 import { ViewAddedDeductionNoticeComponent } from './view-added-deduction-notice/view-added-deduction-notice.component';
 import { ViewAddedNoticeComponent } from './view-added-notice/view-added-notice.component';
 import { ViewSalesInvoiceComponent } from './view-sales-invoice/view-sales-invoice.component';
+import { RoleComponent } from './role/role.component';
 
 
 
@@ -49,12 +50,12 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
-    canActivate : [UserGuard]
+    canActivate: [UserGuard]
   },
   {
     path: 'programs',
     component: ProgramsComponent,
-    canActivate : [UserGuard]
+    canActivate: [UserGuard]
   },
   {
     path: 'accepted-invoices',
@@ -94,8 +95,14 @@ const routes: Routes = [
   {
     path: 'license',
     component: LicenseComponent,
-    canActivate : [UserGuard]
+    canActivate: [UserGuard]
   },
+  {
+    path: 'roles',
+    component: RoleComponent,
+    canActivate: [UserGuard]
+  },
+
   {
     path: 'viewAddedNotice',
     component: ViewAddedNoticeComponent,
@@ -160,7 +167,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
-      
+
     ]
   }
 ];

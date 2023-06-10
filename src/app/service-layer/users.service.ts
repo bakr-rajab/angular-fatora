@@ -2,10 +2,11 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user/auth-user.model';
+import { environment } from '../../environments/environment';
 
-const API_URL = 'http://localhost:4000';
+const API_URL = environment.apiUrl;
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: environment.headers
 };
 
 @Injectable({

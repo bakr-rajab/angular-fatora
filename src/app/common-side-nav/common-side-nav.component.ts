@@ -11,10 +11,10 @@ export class CommonSideNavComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem('userRole') == 'admin'){
+    if (sessionStorage.getItem('userRole') == 'superAdmin') {
       this.showAdminPriv = true;
       this.showClientPriv = false;
-    }else if(sessionStorage.getItem('userRole') == 'user'){
+    } else if (sessionStorage.getItem('userRole') == 'user') {
       this.showClientPriv = true;
       this.showAdminPriv = false;
     }

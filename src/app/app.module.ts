@@ -37,6 +37,7 @@ import { EditeEnvoiceComponent } from './edite-envoice/edite-envoice.component';
 import { CommanHeaderComponent } from './comman-header/comman-header.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { RoleComponent } from './role/role.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     EditeEnvoiceComponent,
     CommanHeaderComponent,
     EditUserComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    RoleComponent
   ],
   imports: [
     BrowserModule,
