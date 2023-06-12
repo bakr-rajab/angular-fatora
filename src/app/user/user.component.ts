@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SelectClient } from '../models/client/select-client.model';
 import { GenericService } from '../service-layer/generic.service';
 import { UserService } from '../service-layer/users.service';
-import { User, userList } from '../models/user/auth-user.model';
+import { User } from '../models/user/auth-user.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Role } from '../models/roles/roles.model';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -12,19 +14,10 @@ declare function sidebarToggling(): any;
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user: User = {
-    email: '',
-    password: '',
-    activity: '',
-    taxNumber: '',
-    phone: '',
-    name: '',
-    clientId: '',
-    clientSecret1: '',
-    branchId: '4',
-    clientSecret2: '',
-    role: '3'
-  }
+  user!: User;
+  id!: string;
+  userDat: any
+  roleList!: Role[];
 
   public clientModel = new SelectClient();
   getUserModel: any
@@ -49,16 +42,17 @@ export class UserComponent implements OnInit {
   clientId: any
   clientSecret1: any
   clientSecret2: any
-  constructor(private apiCall: UserService) { }
+  constructor(private apiCall: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.user = new User();
     //   sidebarToggling()
     this.getAllUser()
     //   this.getActivityCodes()
   }
 
   getAllUser() {
-    this.apiCall.getUsers().subscribe(res => {
+    this.apiCall.getAllUsers().subscribe(res => {
       console.log(res)
       this.usersRes = res
       this.usersList = this.usersRes
@@ -68,6 +62,29 @@ export class UserComponent implements OnInit {
         paggnation();
         this.initTable = true;
       }
+    })
+  }
+
+  getAllRoles() {
+    this.apiCall.getAllUsers().subscribe(res => {
+      console.log(res)
+      this.roleList = res
+    })
+  }
+
+  getUser() {
+    this.id = this.route.snapshot.params['id'];
+
+    this.apiCall.getUser(this.id).subscribe(res => {
+      console.log(res)
+    })
+  }
+
+  updateUser() {
+    this.id = this.route.snapshot.params['id'];
+    return this.apiCall.updateUser(this.id, this.user).subscribe(res => {
+      console.log(res)
+      this.usersList.unshift(res)
     })
   }
 
@@ -85,12 +102,13 @@ export class UserComponent implements OnInit {
   // }
 
   createUser() {
-
-
+    console.log(this.user.role)
+    this.user.branchId = "1"
+    this.user.activity = "1"
     this.apiCall.createUser(this.user).subscribe(res => {
       console.log(res)
-      this.usersList = [...this.usersList, res]
-
+      // this.usersList = [...this.usersList, res]//sss
+      this.usersList.push(res)
     })
   }
 
@@ -98,11 +116,6 @@ export class UserComponent implements OnInit {
   //   }
 
   editeUser() {
-    //   this.editeUserReq = {
-    //     "target": "user",
-    //     "action": "edit",
-    //     "unique_value": {
-    //       "tax_number": Number(this.taxNo)
   }
 
   //     "name": this.userName,
@@ -156,5 +169,13 @@ export class UserComponent implements OnInit {
     //   this.clientSecret1 = ""
     //   this.clientSecret2 = ""
     //   this.selectedCode = ""
+  }
+
+  getRoles() {
+    this.roleList = [
+      { name: 'SuperAdmin', id: "1" },
+      { name: 'Admin', id: "2" },
+      { name: 'User', id: "3" },
+    ]
   }
 }

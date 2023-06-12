@@ -32,20 +32,21 @@
                                      <th>كود النشاط</th>
                                      <th>رقم التليفون</th>
                                      <th>الرقم الضريبى</th>
-                                     <th>الإجراءات</th>
                                      <th>الفرع</th>
                                      <th>الصلاحية</th>
+                                     <th>الإجراءات</th>
+
                                  </tr>
                              </thead>
                              <tbody>
                                  <tr  *ngFor="let user of usersList">
                                      <td>{{user.name}}</td>
                                      <td>{{user.email}}</td>
-                                     <td>{{user.activity}}</td>
+                                     <td>{{user.activity.code}}</td>
                                      <td>{{user.phone}}</td>
                                      <td>{{user.taxNumber}}</td>
-                                     <!-- <td>{{user.branch.name_en}}</td>
-                                     <td>{{user.role.name}}</td> -->
+                                     <td>{{user.branch.name_en}}</td>
+                                     <td>{{user.role.name}}</td>
                                      <td>
                                        <ul>
                                          <li>
@@ -143,38 +144,40 @@
                 <input [(ngModel)]="user.clientSecret2" name="ipConnection" type="text" class="form-control" id="floatingInput">
                 <label for="floatingInput">client secret 2</label>
               </div>
+               </div>
+               <div class="col-lg-6 col-md-12 mb-3">
+               <div class="form-floating">
+                 <select [(ngModel)]="user.branchId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                  <option selected>Open this select menu</option>
+                  <option [value]="1">One</option>
+                  <option [value]="2">Two</option>
+                  <option [value]="3">Three</option>
+                </select>
+               </div>
+
             </div>
              <div class="col-lg-6 col-md-12 mb-3">
                <div class="form-floating">
-                 <select [(ngModel)]="user.branchId"  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                  <option selected>Open this select menu</option>
-                  <option [value]="1">One</option>
-                  <option [value]="2">Two</option>
-                  <option [value]="3">Three</option>
+                 <select (click)="getRoles()" [(ngModel)]="user.role"  name="role" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                  <option *ngFor="let role of roleList" [ngValue]="role.id" >{{role.name}}</option>
+
                 </select>
+                <label for="floatingSelect"> الصلاحية</label>
+
                </div>
              </div>
-             <div class="col-lg-6 col-md-12 mb-3">
+
+             <!-- <div class="col-lg-6 col-md-12 mb-3">
                <div class="form-floating">
-                 <select [(ngModel)]="user.role" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                  <option selected>Open this select menu</option>
-                  <option [value]="1">One</option>
-                  <option [value]="2">Two</option>
-                  <option [value]="3">Three</option>
-                </select>
-               </div>
-             </div>
-             <div class="col-lg-6 col-md-12 mb-3">
-               <div class="form-floating">
-                 <!-- <select [(ngModel)]="selectedCode"  name="code" (change)="setcode()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                 <select [(ngModel)]="selectedCode"  name="code" (change)="setcode()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                    <option [ngValue]="code" *ngFor="let code of codeList" selected>{{code.code}}/ {{code.Desc_ar}}</option>
 
-                 </select> -->
-                <input [(ngModel)]="user.activity" name="code" type="text" class="form-control" id="floatingInput">
+                 </select>
+                 <input [(ngModel)]="user.activity" name="code" type="text" class="form-control" id="floatingInput"> -->
 
-                 <label for="floatingSelect"> 777777كود النشاط</label>
+                 <!-- <label for="floatingSelect"> 777777كود النشاط</label>
                </div>
-             </div>
+             </div> -->
              <div class="col-12 justify-content-end">
                <div class="modal-buttons d-flex align-items-center justify-content-end">
                  <button (click)="createUser()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة مستخدم</button>
@@ -203,64 +206,81 @@
        <div class="modal-body">
          <form>
            <div class="row">
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="user.name" name="userName" type="text" class="form-control"
+                 id="floatingText" placeholder="محمود حمدى فهمى">
+                <label for="floatingText">اسم المستخدم</label>
+              </div>
+            </div>
+             <div class="col-lg-6 col-md-12  mb-3">
+               <div class="form-floating">
+                 <input [(ngModel)]="user.email" name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                 <label for="floatingInput">الإيميل</label>
+               </div>
+             </div>
              <div class="col-lg-6 col-md-12 mb-3">
                <div class="form-floating">
-                 <input [(ngModel)]="userName" name="userName" type="text" class="form-control"
-                  id="floatingText" placeholder="محمود حمدى فهمى">
-                 <label for="floatingText">اسم المستخدم</label>
+                 <input [(ngModel)]="user.password" name="secretNo" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                 <label for="floatingPassword">الرقم السري</label>
                </div>
              </div>
              <div class="col-lg-6 col-md-12  mb-3">
                <div class="form-floating">
-                 <input [(ngModel)]="email" name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                 <label for="floatingInput">الإيميل</label>
+                 <input [(ngModel)]="user.taxNumber" name="taxNo" type="text" class="form-control" id="floatingText" placeholder="TU98745">
+                 <label for="floatingText">الرقم الضريبي</label>
                </div>
              </div>
              <div class="col-lg-6 col-md-12  mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="phoneNo" name="phoneNo" type="phoneNo" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input [(ngModel)]="user.phone" name="phoneNo" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">رقم التليفون</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12  mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="taxNo" name="taxNo" type="taxNo" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">الرقم الضريبى</label>
-              </div>
-            </div>
-             <div class="col-lg-6 col-md-12 mb-3">
-               <div class="form-floating">
-                <select [(ngModel)]="selectedCode"  name="code" (change)="setcode()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                  <!-- <option [ngValue]="code" *ngFor="let code of codeList" selected>{{code.code}}</option> -->
-
-                </select>
-                 <label for="floatingSelect">كود النشاط</label>
-               </div>
-             </div>
-
-             <div class="col-lg-6 col-md-12  mb-3">
-              <div class="form-floating">
-                <input [(ngModel)]="clientId" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <input [(ngModel)]="user.clientId" name="ipConnection" type="text" class="form-control" id="floatingInput">
                 <label for="floatingInput">كود العميل</label>
               </div>
             </div>
 
             <div class="col-lg-6 col-md-12  mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="clientSecret1" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <input [(ngModel)]="user.clientSecret1" name="ipConnection" type="text" class="form-control" id="floatingInput">
                 <label for="floatingInput">client secret 1</label>
               </div>
             </div>
 
             <div class="col-lg-6 col-md-12  mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="clientSecret2" name="ipConnection" type="text" class="form-control" id="floatingInput">
+                <input [(ngModel)]="user.clientSecret2" name="ipConnection" type="text" class="form-control" id="floatingInput">
                 <label for="floatingInput">client secret 2</label>
               </div>
+               </div>
+               <div class="col-lg-6 col-md-12 mb-3">
+               <div class="form-floating">
+                 <select [(ngModel)]="user.branchId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                  <option selected>Open this select menu</option>
+                  <option [value]="1">One</option>
+                  <option [value]="2">Two</option>
+                  <option [value]="3">Three</option>
+                </select>
+               </div>
+
             </div>
+             <div class="col-lg-6 col-md-12 mb-3">
+               <div class="form-floating">
+                 <select (click)="getRoles()" [(ngModel)]="user.role"  name="role" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                  <option *ngFor="let role of roleList" [ngValue]="role.id" >{{role.name}}</option>
+
+                </select>
+                <label for="floatingSelect"> الصلاحية</label>
+
+               </div>
+             </div>
              <div class="col-12 justify-content-end">
                <div class="modal-buttons d-flex align-items-center justify-content-end">
-                 <button (click)="editeUser()" type="submit" data-bs-dismiss="modal" class="btn btn-success">تعديل</button>
+                 <button (click)="updateUser()" type="submit" data-bs-dismiss="modal" class="btn btn-success">تعديل</button>
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
                </div>
              </div>

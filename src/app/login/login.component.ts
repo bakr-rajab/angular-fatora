@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit {
           console.log("object")
           this.router.navigate(['/user'])
         } else if (this.response.role.name == 'user') {
+          this.router.navigate(['/analytics'])
           if (this.response.expire == false) {
-            this.router.navigate(['/analytics'])
           } else {
             this.showExpiryError = false
           }

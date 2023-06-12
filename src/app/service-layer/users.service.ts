@@ -19,9 +19,22 @@ export class UserService {
     return this.http.post(API_URL + '/users', JSON.stringify(data), httpOptions)
   }
 
-  getUsers(): Observable<any> {
+  getAllUsers(): Observable<any> {
     return this.http.get(API_URL + '/users/all', { responseType: 'json' });
   }
+
+  getUser(_id: string): Observable<any> {
+    return this.http.get(API_URL + '/users/${id}', { responseType: 'json' });
+  }
+
+  updateUser(_id: string, value: User): Observable<any> {
+    return this.http.put(API_URL + '/users/${id}', value, httpOptions)
+  }
+
+  // updateUser(id : number, value : any) : Observable<object>{
+  //return this.http.put(API_URL )
+
+  // }
 
   getModeratorBoard(): Observable<any> {
     return this.http.get(API_URL + 'mod', { responseType: 'json' });
