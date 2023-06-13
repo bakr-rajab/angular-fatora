@@ -41,7 +41,15 @@
           <a class="nav-link active" [routerLink]="['/roles']">
             <i class="fas fa-clipboard-check"></i>
             <span class="nav-link-text">
-              Roles
+              الصلاحيات
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminPriv">
+          <a class="nav-link active" [routerLink]="['/company']">
+            <i class="fas fa-clipboard-check"></i>
+            <span class="nav-link-text">
+              الشركات
             </span>
           </a>
         </li>

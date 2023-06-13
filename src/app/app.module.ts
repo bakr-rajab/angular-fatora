@@ -38,6 +38,7 @@ import { CommanHeaderComponent } from './comman-header/comman-header.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RoleComponent } from './role/role.component';
+import { CompanyComponent } from './company/company.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { RoleComponent } from './role/role.component';
     CommanHeaderComponent,
     EditUserComponent,
     FileUploadComponent,
-    RoleComponent
+    RoleComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,

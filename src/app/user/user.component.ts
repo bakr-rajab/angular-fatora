@@ -5,6 +5,9 @@ import { UserService } from '../service-layer/users.service';
 import { User } from '../models/user/auth-user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from '../models/roles/roles.model';
+import { RoleService } from '../service-layer/roles.service';
+import { CompanyService } from '../service-layer/company.service';
+import { Company } from '../models/company/company.model';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -18,6 +21,7 @@ export class UserComponent implements OnInit {
   id!: string;
   userDat: any
   roleList!: Role[];
+  companysList!: Company[];
 
   public clientModel = new SelectClient();
   getUserModel: any
@@ -42,7 +46,11 @@ export class UserComponent implements OnInit {
   clientId: any
   clientSecret1: any
   clientSecret2: any
-  constructor(private apiCall: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private apiCall: UserService,
+    private roleService: RoleService,
+    private companyService: CompanyService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.user = new User();
@@ -65,12 +73,6 @@ export class UserComponent implements OnInit {
     })
   }
 
-  getAllRoles() {
-    this.apiCall.getAllUsers().subscribe(res => {
-      console.log(res)
-      this.roleList = res
-    })
-  }
 
   getUser() {
     this.id = this.route.snapshot.params['id'];
@@ -172,10 +174,18 @@ export class UserComponent implements OnInit {
   }
 
   getRoles() {
-    this.roleList = [
-      { name: 'SuperAdmin', id: "1" },
-      { name: 'Admin', id: "2" },
-      { name: 'User', id: "3" },
-    ]
+    this.roleService.getRoles().subscribe(roles => {
+      console.log("111111", roles);
+
+      this.roleList = roles
+    })
+  }
+  getCompanys() {
+    this.companyService.getAll().subscribe(comp => {
+      console.log("111111", comp);
+
+      this.companysList = comp
+    })
   }
 }
+

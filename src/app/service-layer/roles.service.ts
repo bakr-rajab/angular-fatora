@@ -23,7 +23,7 @@ export class RoleService {
     }
 
     getRoles(): Observable<any> {
-        return this.http.get(environment.apiUrl + '/roles/all', httpOptions);
+        return this.http.get(environment.apiUrl + '/roles/all', { responseType: 'json' });
     }
     deleteRole(id: string): Observable<any> {
         return this.http.delete(environment.apiUrl + `/roles/${id} `, httpOptions);

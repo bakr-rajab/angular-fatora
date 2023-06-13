@@ -30,6 +30,7 @@ import { ViewAddedDeductionNoticeComponent } from './view-added-deduction-notice
 import { ViewAddedNoticeComponent } from './view-added-notice/view-added-notice.component';
 import { ViewSalesInvoiceComponent } from './view-sales-invoice/view-sales-invoice.component';
 import { RoleComponent } from './role/role.component';
+import { CompanyComponent } from './company/company.component';
 
 
 
@@ -100,6 +101,11 @@ const routes: Routes = [
   {
     path: 'roles',
     component: RoleComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'company',
+    component: CompanyComponent,
     canActivate: [UserGuard]
   },
 
