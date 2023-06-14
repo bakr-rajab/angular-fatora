@@ -12,7 +12,6 @@ export const environment = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

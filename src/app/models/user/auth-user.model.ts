@@ -11,8 +11,7 @@ export class User {
   name!: string;
   clientId!: string;
   clientSecret1!: string;
-  branchId!: string;
-  activity!: string;
   clientSecret2!: string;
   role!: string;
+  company!: string;
 }

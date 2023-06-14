@@ -26,6 +26,8 @@
                 <tr>
                   <th>رقم</th>
                   <th>اسم الشركه</th>
+                  <th>الشهاده</th>
+                  <th>كود النشاط</th>
                   <th>الاجراءات</th>
 
                 </tr>
@@ -35,6 +37,10 @@
                 <tr *ngFor="let comp of companyList">
                   <td>{{comp.id}}</td>
                   <td>{{comp.name}}</td>
+                  <td>{{comp.certificate}}</td>
+                  <td>{{comp.activity.code}}</td>
+
+
                   <td>
                     <ul>
                       <li>
@@ -77,6 +83,26 @@
                 <input [(ngModel)]="companyModel.name" name="roleName" type="text" class="form-control" id="roleName"
                   placeholder="اسم الشركه">
                 <label for="floatingSelect">اسم الشركه</label>
+              </div>
+            </div>
+             <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select
+                (click)="getActiviteis()"
+                [(ngModel)]="companyModel.activity" name="activity" class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example">
+                  <option  *ngFor="let activity of activityList" [ngValue]="activity.id">{{activity.code}}</option>
+
+                </select>
+                <label for="floatingSelect"> الصلاحية</label>
+
+              </div>
+            </div>
+             <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="companyModel.certificate" name="roleName" type="text" class="form-control" id="roleName"
+                  placeholder="اسم الشركه">
+                <label for="floatingSelect">شهادة الشركه</label>
               </div>
             </div>
             <div class="col-12 justify-content-end">

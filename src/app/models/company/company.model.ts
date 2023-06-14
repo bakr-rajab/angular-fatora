@@ -1,5 +1,5 @@
 export interface Company {
-    id: string;
-    name: string;
-    certificate: string | null;
+  name: string;
+  certificate: string | null;
+  activity: string | null;
 }

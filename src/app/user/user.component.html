@@ -50,15 +50,14 @@
                   <td>
                     <ul>
                       <li>
-
-                        <a (click)="setTaxNo(user)" href="" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                        <a (click)="setUserData(user)" href="" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
                           <i class="far fa-edit"></i>
                         </a>
                       </li>
                       <li>
-                        <!-- <a (click)="setUserTorm(user.user_id)"> -->
+                         <a (click)="deleteUser(user.id)">
                         <i class="far fa-trash-alt"></i>
-                        <!-- </a> -->
+                         </a>
                       </li>
                     </ul>
                   </td>
@@ -154,13 +153,13 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="user.branchId" class="form-select form-select-lg mb-3"
+                <select (click)="getCompanys()" [(ngModel)]="user.company" name="company" class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example">
-                  <option selected>Open this select menu</option>
-                  <option [value]="1">One</option>
-                  <option [value]="2">Two</option>
-                  <option [value]="3">Three</option>
+                  <option *ngFor="let company of companysList" selected>{{company.name}}</option>
+
                 </select>
+                 <label for="floatingSelect"> الشركه</label>
+
               </div>
 
             </div>
@@ -208,7 +207,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalEditLabel">
-          تعديل المستخدم (محمود حمدى فهمى)
+          {{user.name}}تعديل المستخدم ::
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -275,12 +274,10 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="user.branchId" class="form-select form-select-lg mb-3"
+                <select (click)="getCompanys()" [(ngModel)]="user.company" class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example">
-                  <option selected>Open this select menu</option>
-                  <option [value]="1">One</option>
-                  <option [value]="2">Two</option>
-                  <option [value]="3">Three</option>
+                  <option *ngFor="let company of companysList" selected>{{company.name}}</option>
+
                 </select>
               </div>
 
@@ -298,7 +295,7 @@
             </div>
             <div class="col-12 justify-content-end">
               <div class="modal-buttons d-flex align-items-center justify-content-end">
-                <button (click)="updateUser()" type="submit" data-bs-dismiss="modal"
+                <button (click)="updateUser(id)" type="submit" data-bs-dismiss="modal"
                   class="btn btn-success">تعديل</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
               </div>

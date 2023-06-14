@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SelectClient } from '../models/client/select-client.model';
 import { GenericService } from '../service-layer/generic.service';
 import { UserService } from '../service-layer/users.service';
@@ -18,8 +18,9 @@ declare function sidebarToggling(): any;
 })
 export class UserComponent implements OnInit {
   user!: User;
-  id!: string;
+  id !: string;
   userDat: any
+  valEditUser: any;
   roleList!: Role[];
   companysList!: Company[];
 
@@ -49,14 +50,23 @@ export class UserComponent implements OnInit {
   constructor(private apiCall: UserService,
     private roleService: RoleService,
     private companyService: CompanyService,
-    private router: Router,
-    private route: ActivatedRoute) { }
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
     this.user = new User();
     //   sidebarToggling()
     this.getAllUser()
     //   this.getActivityCodes()
+  }
+
+  createUser() {
+    console.log(this.user.role)
+    this.apiCall.createUser(this.user).subscribe(res => {
+      console.log(res)
+      // this.usersList = [...this.usersList, res]//sss
+      this.usersList.push(res)
+    })
   }
 
   getAllUser() {
@@ -73,21 +83,33 @@ export class UserComponent implements OnInit {
     })
   }
 
-
-  getUser() {
-    this.id = this.route.snapshot.params['id'];
-
-    this.apiCall.getUser(this.id).subscribe(res => {
+  getUser(id: any) {
+    id = this.id
+    this.apiCall.getUser(id).subscribe(res => {
       console.log(res)
     })
   }
 
-  updateUser() {
-    this.id = this.route.snapshot.params['id'];
-    return this.apiCall.updateUser(this.id, this.user).subscribe(res => {
+  updateUser(id: string) {
+    console.log('====================================');
+    console.log("qqqq", this.user);
+    console.log('====================================');
+    return this.apiCall.updateUser(id, this.valEditUser).subscribe(res => {
       console.log(res)
-      this.usersList.unshift(res)
+      this.user = res
     })
+  }
+
+  deleteUser(id: string) {
+    this.apiCall.deleteUser(id).subscribe(res => {
+      console.log(res);
+      this.cd.detectChanges()
+      if (res.affected == 1) {
+        this.usersList = this.usersList.filter((item: any) => item.id != id);
+        console.log(this.usersList);
+      }
+    })
+    this.cd.detectChanges()
   }
 
   // getActivityCodes() {
@@ -102,17 +124,6 @@ export class UserComponent implements OnInit {
   //     this.codeList = this.codesRes.data;
   //   })
   // }
-
-  createUser() {
-    console.log(this.user.role)
-    this.user.branchId = "1"
-    this.user.activity = "1"
-    this.apiCall.createUser(this.user).subscribe(res => {
-      console.log(res)
-      // this.usersList = [...this.usersList, res]//sss
-      this.usersList.push(res)
-    })
-  }
 
   // this.getAllUser()
   //   }
@@ -152,13 +163,18 @@ export class UserComponent implements OnInit {
     //   console.log(this.code);
   }
 
-  setTaxNo(user: any) {
-    //   //this.selectedTaxNo = user.tax_number
-    //   this.phoneNo = user.ph_number
-    //   this.email = user.email
-    //   this.taxNo = user.tax_number
-    //   this.selectedCode = user.activity_code
-    //   this.userName = user.name
+  setUserData(user: any) {
+    console.log({ user })
+    this.user.name = user.name;
+    this.user.email = user.email;
+    this.user.phone = user.phone;
+    this.user.password = user.password;
+    this.user.clientSecret1 = user.clientSecret1;
+    this.user.clientSecret2 = user.clientSecret2;
+    this.user.role = user.role.id;
+    this.user.company = user.company.id;
+    this.user.clientId = user.clientId;
+    this.user.taxNumber = user.tax
   }
 
   resetAddModal() {
@@ -180,6 +196,7 @@ export class UserComponent implements OnInit {
       this.roleList = roles
     })
   }
+
   getCompanys() {
     this.companyService.getAll().subscribe(comp => {
       console.log("111111", comp);
@@ -188,4 +205,3 @@ export class UserComponent implements OnInit {
     })
   }
 }
-
