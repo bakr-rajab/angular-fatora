@@ -6,14 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientsGuard implements CanActivate {
-  constructor(public router: Router){}
-  canActivate(){
-      if(sessionStorage.getItem('userRole') == 'user'){
-        return true;
-      }else{
-        this.router.navigate(['/login']);
-        return false;
-      }
+  constructor(public router: Router) { }
+  canActivate() {
+    if (sessionStorage.getItem('userRole') == 'user'
+      // && sessionStorage.getItem('endDate') >= new Date()
+    ) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
-  
 }

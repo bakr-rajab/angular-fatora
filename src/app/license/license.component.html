@@ -4,14 +4,14 @@
       <div class="app-main">
         <app-common-side-nav></app-common-side-nav>
           <div class="app-main_outer">
-             
+
                       <div class="row">
                           <div class="col-12">
                               <div class="d-flex align-items-start justify-content-between">
                                   <h1 class="page-title">
                                        license
                                   </h1>
-                               
+
                                   <button type="button" class="btn btn-success"
                                   data-bs-toggle="modal" data-bs-target="#exampleModal">
                                   إضافة license
@@ -22,8 +22,8 @@
                      <div class="row">
                        <div class="col-12">
                           <div class="main-table">
-                      
-      
+
+
                             <table id="example" class="display table table-hover" style="width:100%">
                               <thead>
                                   <tr>
@@ -34,11 +34,11 @@
                                       <th>اسم المستخدم</th>
                                       <th>الرقم الضريبى</th>
                                       <th>الاجراءات</th>
-                                      
+
                                   </tr>
                               </thead>
                               <tbody>
-  
+
   <tr *ngFor="let license of licenseList">
     <td>{{license.start_date}}</td>
     <td>{{license.end_date}}</td>
@@ -58,14 +58,14 @@
   </tr>
 
                               </tbody>
-                           
+
                           </table>
                           </div>
                        </div>
                      </div>
-                     
+
                     </div>
-       
+
       </div>
   </div>
   <!--/app-container-->
@@ -87,18 +87,15 @@
                   <select class="form-select" id="floatingSelect" [(ngModel)]="selectedUser"  name="user" (change)="setUserId()"
                    aria-label="Floating label select example">
                     <option [ngValue]="user" selected *ngFor="let user of usersList">{{user.name}}</option>
-        
+
                   </select>
                   <label for="floatingSelect">اسم المستخدم</label>
                 </div>
               </div>
               <div class="col-lg-6 col-md-12 mb-3">
                 <div class="form-floating">
-                  <select  class="form-select" id="floatingSelect"  [(ngModel)]="selectedPlane" name="plan" (change)="setPlanId()"
-                  aria-label="Floating label select example" >
-                    <option [ngValue]="plan" selected *ngFor="let plan of plans">{{plan.plan_name}}</option>
-              
-                  </select>
+                 <input type="datetime-local" id="Test_DatetimeLocal">
+
                   <label for="floatingSelect">البرنامج</label>
                 </div>
               </div>
@@ -111,7 +108,7 @@
             </div>
            </form>
         </div>
-   
+
       </div>
     </div>
   </div>

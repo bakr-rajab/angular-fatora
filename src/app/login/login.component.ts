@@ -30,17 +30,18 @@ export class LoginComponent implements OnInit {
       this.response = res;
       if (this.response.status == true) {
         console.log("pp", this.response)
+        console.log(Date.now())
         sessionStorage.setItem('userRole', this.response.role.name)
         sessionStorage.setItem('userId', this.response.id)
         sessionStorage.setItem('userName', this.response.name)
+        sessionStorage.setItem('endDate', this.response?.license?.endDate)
         if (this.response.role.name == 'superAdmin') {
           console.log("object")
           this.router.navigate(['/user'])
         } else if (this.response.role.name == 'user') {
           this.router.navigate(['/analytics'])
-          if (this.response.expire == false) {
-          } else {
-            this.showExpiryError = false
+          if (this.response.license.endDate < Date.now()) {
+            this.showExpiryError = true
           }
         }
 

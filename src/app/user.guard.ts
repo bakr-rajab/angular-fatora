@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class UserGuard implements CanActivate {
   constructor(public router: Router) { }
   canActivate() {
+    console.log("1111", new Date())
+    console.log("22222", sessionStorage.getItem('endDate'))
     if (sessionStorage.getItem('userRole') == 'superAdmin') {
       return true;
     } else {

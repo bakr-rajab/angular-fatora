@@ -61,7 +61,7 @@ export class UserComponent implements OnInit {
   }
 
   createUser() {
-    console.log(this.user.role)
+    console.log(this.user.roleId)
     this.apiCall.createUser(this.user).subscribe(res => {
       console.log(res)
       // this.usersList = [...this.usersList, res]//sss
@@ -171,8 +171,8 @@ export class UserComponent implements OnInit {
     this.user.password = user.password;
     this.user.clientSecret1 = user.clientSecret1;
     this.user.clientSecret2 = user.clientSecret2;
-    this.user.role = user.role.id;
-    this.user.company = user.company.id;
+    this.user.roleId = user.role.id;
+    this.user.companyId = user.company.id;
     this.user.clientId = user.clientId;
     this.user.taxNumber = user.tax
   }

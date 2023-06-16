@@ -153,9 +153,9 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select (click)="getCompanys()" [(ngModel)]="user.company" name="company" class="form-select form-select-lg mb-3"
+                <select (select)="user.companyId" (click)="getCompanys()" [(ngModel)]="user.companyId" name="company"  class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example">
-                  <option *ngFor="let company of companysList" selected>{{company.name}}</option>
+                  <option *ngFor="let company of companysList" [ngValue]="company.id" selected="selected">{{company.name}}</option>
 
                 </select>
                  <label for="floatingSelect"> الشركه</label>
@@ -165,7 +165,7 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select (click)="getRoles()" [(ngModel)]="user.role" name="role" class="form-select form-select-lg mb-3"
+                <select (click)="getRoles()" [(ngModel)]="user.roleId" name="role" class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example">
                   <option *ngFor="let role of roleList" [ngValue]="role.id">{{role.name}}</option>
 
@@ -237,7 +237,7 @@
             </div>
             <div class="col-lg-6 col-md-12  mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.taxNumber" name="taxNo" type="text" class="form-control" id="floatingText"
+                <input [(ngModel)]="user.taxNumber" name="taxNumber" type="text" class="form-control" id="floatingText"
                   placeholder="TU98745">
                 <label for="floatingText">الرقم الضريبي</label>
               </div>
@@ -274,9 +274,10 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select (click)="getCompanys()" [(ngModel)]="user.company" class="form-select form-select-lg mb-3"
+                <select (click)="getCompanys()"  [(ngModel)]="user.companyId" class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example">
-                  <option *ngFor="let company of companysList" selected>{{company.name}}</option>
+                  <!-- <option value="qqq" selected="1111"></option> -->
+                  <option *ngFor="let company of companysList" selected="qqqqqqq">{{company.name}}</option>
 
                 </select>
               </div>
@@ -284,7 +285,7 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select (click)="getRoles()" [(ngModel)]="user.role" name="role" class="form-select form-select-lg mb-3"
+                <select (click)="getRoles()"  [(ngModel)]="user.roleId" name="role" class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example">
                   <option *ngFor="let role of roleList" [ngValue]="role.id">{{role.name}}</option>
 
