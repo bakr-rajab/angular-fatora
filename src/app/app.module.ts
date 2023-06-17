@@ -40,7 +40,6 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
 import { AuthInterceptor } from './auth.interceptor';
-import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -84,8 +83,7 @@ import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    CommonModule,
-    NgbDatepickerModule, NgbAlertModule, FormsModule
+    CommonModule
   ],
   // providers: [GenericService],
   providers: [

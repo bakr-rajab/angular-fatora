@@ -82,16 +82,16 @@
         <form>
           <div class="row">
             <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
+              <!-- <div class="form-floating">
                 <select class="form-select" id="floatingSelect" [(ngModel)]="selectedUser" name="user"
                   (change)="setUserId()" aria-label="Floating label select example">
                   <option [ngValue]="user" selected *ngFor="let user of usersList">{{user.name}}</option>
 
                 </select>
                 <label for="floatingSelect">اسم المستخدم</label>
-              </div>
+              </div> -->
             </div>
-            <div class="row row-cols-sm-auto">
+            <!-- <div class="row row-cols-sm-auto">
               <div class="col-12">
                 <div class="input-group">
                   <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="modelDate" ngbDatepicker
@@ -99,7 +99,7 @@
                   <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="col-12 justify-content-end">
               <div class="modal-buttons d-flex align-items-center justify-content-end">
                 <button (click)="addLicense()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
