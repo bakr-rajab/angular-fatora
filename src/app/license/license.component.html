@@ -1,114 +1,116 @@
 <!--app-container-->
 <div class="app-container">
   <app-comman-header></app-comman-header>
-      <div class="app-main">
-        <app-common-side-nav></app-common-side-nav>
-          <div class="app-main_outer">
+  <div class="app-main">
+    <app-common-side-nav></app-common-side-nav>
+    <div class="app-main_outer">
 
-                      <div class="row">
-                          <div class="col-12">
-                              <div class="d-flex align-items-start justify-content-between">
-                                  <h1 class="page-title">
-                                       license
-                                  </h1>
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-start justify-content-between">
+            <h1 class="page-title">
+              license
+            </h1>
 
-                                  <button type="button" class="btn btn-success"
-                                  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                  إضافة license
-                                </button>
-                              </div>
-                          </div>
-                      </div>
-                     <div class="row">
-                       <div class="col-12">
-                          <div class="main-table">
-
-
-                            <table id="example" class="display table table-hover" style="width:100%">
-                              <thead>
-                                  <tr>
-                                      <th>تاريخ البدايه</th>
-                                      <th> تاريخ النهايه</th>
-                                      <th> اسم البرنامج</th>
-                                      <th>الايميل</th>
-                                      <th>اسم المستخدم</th>
-                                      <th>الرقم الضريبى</th>
-                                      <th>الاجراءات</th>
-
-                                  </tr>
-                              </thead>
-                              <tbody>
-
-  <tr *ngFor="let license of licenseList">
-    <td>{{license.start_date}}</td>
-    <td>{{license.end_date}}</td>
-    <td>{{license.plan_name}}</td>
-    <td>{{license.user.user_email}}</td>
-    <td>{{license.user.user_name}}</td>
-    <td>{{license.user.user_tax_number}}</td>
-    <td>
-      <ul>
-        <li>
-          <a (click)="rmLicense(license.license_id)">
-            <i class="far fa-trash-alt"></i>
-          </a>
-        </li>
-      </ul>
-    </td>
-  </tr>
-
-                              </tbody>
-
-                          </table>
-                          </div>
-                       </div>
-                     </div>
-
-                    </div>
-
-      </div>
-  </div>
-  <!--/app-container-->
-  <!--Add user modal-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            إضافة license
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              إضافة license
+            </button>
+          </div>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-              <div class="col-lg-6 col-md-12 mb-3">
-                <div class="form-floating">
-                  <select class="form-select" id="floatingSelect" [(ngModel)]="selectedUser"  name="user" (change)="setUserId()"
-                   aria-label="Floating label select example">
-                    <option [ngValue]="user" selected *ngFor="let user of usersList">{{user.name}}</option>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="main-table">
 
-                  </select>
-                  <label for="floatingSelect">اسم المستخدم</label>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-12 mb-3">
-                <div class="form-floating">
-                 <input type="datetime-local" id="Test_DatetimeLocal">
 
-                  <label for="floatingSelect">البرنامج</label>
-                </div>
+            <table id="example" class="display table table-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th>تاريخ البدايه</th>
+                  <th> تاريخ النهايه</th>
+                  <th> اسم البرنامج</th>
+                  <th>الايميل</th>
+                  <th>اسم المستخدم</th>
+                  <th>الرقم الضريبى</th>
+                  <th>الاجراءات</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let license of licenseList">
+                  <td>{{license.start_date}}</td>
+                  <td>{{license.end_date}}</td>
+                  <td>{{license.plan_name}}</td>
+                  <td>{{license.user.user_email}}</td>
+                  <td>{{license.user.user_name}}</td>
+                  <td>{{license.user.user_tax_number}}</td>
+                  <td>
+                    <ul>
+                      <li>
+                        <a (click)="rmLicense(license.license_id)">
+                          <i class="far fa-trash-alt"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!--/app-container-->
+<!--Add user modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          إضافة license
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select class="form-select" id="floatingSelect" [(ngModel)]="selectedUser" name="user"
+                  (change)="setUserId()" aria-label="Floating label select example">
+                  <option [ngValue]="user" selected *ngFor="let user of usersList">{{user.name}}</option>
+
+                </select>
+                <label for="floatingSelect">اسم المستخدم</label>
               </div>
-              <div class="col-12 justify-content-end">
-                <div class="modal-buttons d-flex align-items-center justify-content-end">
-                  <button (click)="addLicense()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة License</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+            </div>
+            <div class="row row-cols-sm-auto">
+              <div class="col-12">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="datepick" ngbDatepicker
+                    #d="ngbDatepicker" />
+                  <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
                 </div>
               </div>
             </div>
-           </form>
-        </div>
-
+            <div class="col-12 justify-content-end">
+              <div class="modal-buttons d-flex align-items-center justify-content-end">
+                <button (click)="addLicense()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
+                  License</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
+
     </div>
   </div>
+</div>

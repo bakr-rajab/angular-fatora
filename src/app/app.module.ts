@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -39,6 +39,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 
 @NgModule({
@@ -84,7 +85,14 @@ import { CompanyComponent } from './company/company.component';
     FormsModule,
     CommonModule
   ],
-  providers: [GenericService],
+  // providers: [GenericService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

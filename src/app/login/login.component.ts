@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       if (this.response.status == true) {
         console.log("pp", this.response)
         console.log(Date.now())
+        sessionStorage.setItem('token', this.response.token)
         sessionStorage.setItem('userRole', this.response.role.name)
         sessionStorage.setItem('userId', this.response.id)
         sessionStorage.setItem('userName', this.response.name)
