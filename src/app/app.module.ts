@@ -31,7 +31,7 @@ import { TaxTypesComponent } from './tax-types/tax-types.component';
 import { TypesComponent } from './types/types.component';
 import { TypesGroupComponent } from './types-group/types-group.component';
 import { UnitsComponent } from './units/units.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { SalesInvoicesComponent } from './sales-invoices/sales-invoices.component';
 import { EditeEnvoiceComponent } from './edite-envoice/edite-envoice.component';
 import { CommanHeaderComponent } from './comman-header/comman-header.component';
@@ -40,6 +40,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { AuthInterceptor } from './auth.interceptor';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    NgbDatepickerModule, NgbAlertModule, FormsModule
   ],
   // providers: [GenericService],
   providers: [

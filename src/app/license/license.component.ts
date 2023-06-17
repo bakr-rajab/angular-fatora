@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GetPrograms } from '../models/programs/getPrograms';
 import { GenericService } from '../service-layer/generic.service';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -27,7 +29,7 @@ export class LicenseComponent implements OnInit {
   plans: any
   rmLicenseModel: any
   initTable: boolean = false
-
+  modelDate!: NgbDateStruct;
   constructor(private apiCall: GenericService) { }
 
   ngOnInit(): void {
@@ -42,14 +44,14 @@ export class LicenseComponent implements OnInit {
       target: "license",
       action: "get_all_licenses"
     }
-    this.apiCall.restServiceCall(this.licenseModel).subscribe(res => {
-      this.response = res
-      this.licenseList = this.response.data;
-      if (this.initTable == false) {
-        paggnation();
-        this.initTable = true;
-      }
-    })
+    // this.apiCall.restServiceCall(this.licenseModel).subscribe(res => {
+    //   this.response = res
+    //   this.licenseList = this.response.data;
+    //   if (this.initTable == false) {
+    //     paggnation();
+    //     this.initTable = true;
+    //   }
+    // })
   }
 
   getAllUsers() {
