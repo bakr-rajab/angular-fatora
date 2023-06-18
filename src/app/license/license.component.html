@@ -84,6 +84,14 @@
             <div class="row">
               <div class="col-lg-6 col-md-12 mb-3">
                 <div class="form-floating">
+                 <form>
+                      <label for="datepicker">Select Start date:</label>
+                      <input type="date" id="datepicker" name="datepicker" >
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12 mb-3">
+                <div class="form-floating">
                   <select class="form-select" id="floatingSelect" [(ngModel)]="selectedUser"  name="user" (change)="setUserId()"
                    aria-label="Floating label select example">
                     <option [ngValue]="user" selected *ngFor="let user of usersList">{{user.name}}</option>
@@ -94,9 +102,10 @@
               </div>
               <div class="col-lg-6 col-md-12 mb-3">
                 <div class="form-floating">
-                 <input type="datetime-local" id="Test_DatetimeLocal">
-
-                  <label for="floatingSelect">البرنامج</label>
+                 <form>
+                      <label for="datepicker">Select End date:</label>
+                      <input type="date" id="datepicker" name="datepicker" >
+                  </form>
                 </div>
               </div>
               <div class="col-12 justify-content-end">
