@@ -39,8 +39,13 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './auth.interceptor';
-
 
 @NgModule({
   declarations: [
@@ -79,11 +84,15 @@ import { AuthInterceptor } from './auth.interceptor';
     CompanyComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
   ],
   // providers: [GenericService],
   providers: [

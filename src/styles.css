@@ -324,3 +324,6 @@ body {
     -webkit-transition: all 0.3s 1s ease-out;
     transition: all 0.3s 1s ease-out;
   }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
