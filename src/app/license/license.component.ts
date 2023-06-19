@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetPrograms } from '../models/programs/getPrograms';
 import { GenericService } from '../service-layer/generic.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -26,7 +27,10 @@ export class LicenseComponent implements OnInit {
   plans: any
   rmLicenseModel: any
   initTable: boolean = false
-  constructor(private apiCall: GenericService) { }
+  constructor(private apiCall: GenericService, public dialogRef: MatDialog<LicenseComponent>) { }
+  close(): void {
+    this.dialogRef.close();
+  }
 
   ngOnInit(): void {
     sidebarToggling();

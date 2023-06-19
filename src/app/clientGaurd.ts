@@ -1,20 +1,40 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientsGuard  {
-  constructor(public router: Router) { }
-  canActivate() {
+class PermissionsService {
+
+  constructor(private router: Router) { }
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (sessionStorage.getItem('userRole') == 'user'
       // && sessionStorage.getItem('endDate') >= new Date()
     ) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/demo']);
       return false;
     }
+
   }
 }
+
+export const ClientsGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
+  return inject(PermissionsService).canActivate(next, state);
+}
+// export class ClientsGuard {
+//   constructor(public router: Router) { }
+//   canActivate() {
+//     if (sessionStorage.getItem('userRole') == 'user'
+//       // && sessionStorage.getItem('endDate') >= new Date()
+//     ) {
+//       return true;
+//     } else {
+//       this.router.navigate(['/login']);
+//       return false;
+//     }
+//   }
+// }
