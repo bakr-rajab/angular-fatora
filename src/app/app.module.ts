@@ -1,3 +1,4 @@
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -40,7 +41,6 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -91,8 +91,10 @@ import { AuthInterceptor } from './auth.interceptor';
     FormsModule,
     CommonModule,
     BrowserAnimationsModule,
-    MatDatepickerModule,
+    // MatNativeDateModule,
+    // MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
   ],
   // providers: [GenericService],
   providers: [
