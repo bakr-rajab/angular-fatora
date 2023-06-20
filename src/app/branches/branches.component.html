@@ -1,188 +1,190 @@
 <!--app-container-->
 <div class="app-container">
   <app-comman-header></app-comman-header>
-      <div class="app-main">
-        <app-common-side-nav></app-common-side-nav>
-          <div class="app-main_outer">
-             
-                      <div class="row">
-                          <div class="col-12">
-                              <div class="d-flex align-items-start justify-content-between">
-                                  <h1 class="page-title">
-                                       الفروع
-                                  </h1>
-                               
-                                  <button type="button" class="btn btn-success"
-                                  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                  إضافة فرع
-                                </button>
-                                
-                                <button type="button" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#uploadFileModal">
-                                  تحميل ملف
-                           </button>
-                              </div>
-                          </div>
-                      </div>
-                     <div class="row">
-                       <div class="col-12">
-                          <div class="main-table">
-                      
-      
-                            <table id="example"  class=" table table-hover" style="width:100%">
-                              <thead>
-                                  <tr>
-                                      <th>#</th>
-                                      <th>كود الفرع</th>
-                                     
-                                      <th>اسم الفرع عربي</th>
-                                      <th>اسم الفرع إنجليزي</th>
-                                      <th>الإجراءات</th>
-                                 
-                                  </tr>
-                              </thead>
-                          <tbody>
-                            <tr *ngFor="let branch of branchesList; let i = index;">
-                              <td>{{i+1}}</td>
-                              <td>{{branch.account_branch_code}}</td>
-                              <td>{{branch.brnach_name_ar}}</td>
-                              <td>{{branch.branch_name_en}}</td>
-                             
-                              <td>
-                                <ul>
-                                  <li> 
-                                   
-                                    <a (click)="setBranchToEdite(branch)" href="" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                                      <i class="far fa-edit"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a (click)="setAndDeleteBranch(branch)" href="javascript:void(0);">
-                                      <i class="far fa-trash-alt"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </td>
-                         
-                          </tr>
-                        
-  
-                          </tbody>
-                          </table>
-                          </div>
-                       </div>
-                     </div>
-                     
-                    </div>
-       
-      </div>
-  </div>
-  <!--/app-container-->
-  <!--Add user modal-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            إضافة فرع جديد
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="app-main">
+    <app-common-side-nav></app-common-side-nav>
+    <div class="app-main_outer">
+
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-start justify-content-between">
+            <h1 class="page-title">
+              الفروع
+            </h1>
+
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              إضافة فرع
+            </button>
+            <!-- 
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#uploadFileModal">
+              تحميل ملف
+            </button> -->
+          </div>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="branchNameAr"  name ="branchNameAr2" type="text" class="form-control" 
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="main-table">
+
+
+            <table id="example" class=" table table-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>كود الفرع</th>
+
+                  <th>اسم الفرع عربي</th>
+                  <th>اسم الفرع إنجليزي</th>
+                  <th>الإجراءات</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let branch of branchesList">
+                  <!-- <td>{{i+1}}</td> -->
+                  <td>{{branch.id}}</td>
+                  <td>{{branch.code}}</td>
+                  <td>{{branch.name_ar}}</td>
+                  <td>{{branch.name_en}}</td>
+
+                  <td>
+                    <ul>
+                      <li>
+
+                        <a (click)="setBranchToEdite(branch)" href="" data-bs-toggle="modal"
+                          data-bs-target="#exampleModalEdit">
+                          <i class="far fa-edit"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a (click)="setAndDeleteBranch(branch)" href="javascript:void(0);">
+                          <i class="far fa-trash-alt"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </td>
+
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!--/app-container-->
+<!--Add branch modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          إضافة فرع جديد
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="branchModel.name_ar" name="branchNameAr2" type="text" class="form-control"
                   id="floatingInputText" placeholder="أدخل الاسم بالعربي">
-                  <label for="floatingInput">اسم الفرع عربي</label>
-                </div>
+                <label for="floatingInput">اسم الفرع عربي</label>
               </div>
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="branchNameEn"  name ="branchNameEn2" type="text" class="form-control" 
+            </div>
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="branchModel.name_en" name="branchNameEn2" type="text" class="form-control"
                   id="floatingInputText2" placeholder="أدخل الاسم بالانجليزى">
-                  <label for="floatingInput">اسم الفرع انجليزى</label>
-                </div>
+                <label for="floatingInput">اسم الفرع انجليزى</label>
               </div>
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="invoiceSerial"  name ="invoiceSerial" type="text" class="form-control" 
+            </div>
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="branchModel.invoiceSerial" name="invoiceSerial" type="number" class="form-control"
                   id="floatingInputText2" placeholder="تسلسل الفاتوره">
-                  <label for="floatingInput">تسلسل الفواتير</label>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="branchCode"  name ="branchCode" type="text" class="form-control" 
-                  id="floatingInputText2" placeholder="كود الفرع">
-                  <label for="floatingInput">كود الفرع</label>
-                </div>
-              </div>
-             
-             
-              <div class="col-12 justify-content-end">
-                <div class="modal-buttons d-flex align-items-center justify-content-end">
-                  <button (click)="AddBranch()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة فرع</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-                </div>
+                <label for="floatingInput">تسلسل الفواتير</label>
               </div>
             </div>
-           </form>
-        </div>
-   
-      </div>
-    </div>
-  </div>
-  <!--Add user modal-->
-  <!--Add user modal-->
-  <div class="modal fade" id="exampleModalEdit" 
-  tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalEditLabel">
-              تعديل الفرع 
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-              <div class="col-lg-6 col-md-12 mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="branchNameAr"  name ="branchNameAr" type="text" class="form-control"
-                   id="floatingText" placeholder="محمود حمدى فهمى">
-                  <label for="floatingText">اسم الفرع عربي</label>
-                </div>
-              </div>
-        
-              <div class="col-lg-6 col-md-12 mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="branchNameEn"  name ="branchNameEn" type="text" class="form-control"
-                   id="floatingText" placeholder="محمود حمدى فهمى">
-                  <label for="floatingText">اسم الفرع انجليزى</label>
-                </div>
-              </div>
-
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="branchCode"  name ="branchCode" type="text" class="form-control" 
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="branchModel.code" name="branchCode" type="text" class="form-control"
                   id="floatingInputText2" placeholder="كود الفرع">
-                  <label for="floatingInput">كود الفرع</label>
-                </div>
-              </div>
-              <div class="col-12 justify-content-end">
-                <div class="modal-buttons d-flex align-items-center justify-content-end">
-                  <button (click)="editeBranch()" type="submit" data-bs-dismiss="modal" class="btn btn-success">تعديل</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-                </div>
+                <label for="floatingInput">كود الفرع</label>
               </div>
             </div>
-           </form>
-        </div>
-   
+
+
+            <div class="col-12 justify-content-end">
+              <div class="modal-buttons d-flex align-items-center justify-content-end">
+                <button (click)="AddBranch()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
+                  فرع</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
+
     </div>
   </div>
+</div>
+<!--Add user modal-->
+<!--Add user modal-->
+<!-- <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalEditLabel">
+          تعديل الفرع
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="branch.name_ar" name="branchNameAr" type="text" class="form-control"
+                  id="floatingText" placeholder="محمود حمدى فهمى">
+                <label for="floatingText">اسم الفرع عربي</label>
+              </div>
+            </div>
 
-  <app-file-upload></app-file-upload>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="branch.name_en" name="branchNameEn" type="text" class="form-control"
+                  id="floatingText" placeholder="محمود حمدى فهمى">
+                <label for="floatingText">اسم الفرع انجليزى</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="branch.code" name="branchCode" type="text" class="form-control"
+                  id="floatingInputText2" placeholder="كود الفرع">
+                <label for="floatingInput">كود الفرع</label>
+              </div>
+            </div>
+            <div class="col-12 justify-content-end">
+              <div class="modal-buttons d-flex align-items-center justify-content-end">
+                <button (click)="editeBranch()" type="submit" data-bs-dismiss="modal"
+                  class="btn btn-success">تعديل</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<app-file-upload></app-file-upload>

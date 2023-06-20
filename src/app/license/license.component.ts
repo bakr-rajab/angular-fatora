@@ -27,9 +27,9 @@ export class LicenseComponent implements OnInit {
   plans: any
   rmLicenseModel: any
   initTable: boolean = false
-  constructor(private apiCall: GenericService, public dialogRef: MatDialog<LicenseComponent>) { }
+  constructor(private apiCall: GenericService,) { }
   close(): void {
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
 
   ngOnInit(): void {
