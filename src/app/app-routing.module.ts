@@ -16,7 +16,6 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LicenseComponent } from './license/license.component';
 import { LoginComponent } from './login/login.component';
-import { ProgramsComponent } from './programs/programs.component';
 import { RejectedInvoicesComponent } from './rejected-invoices/rejected-invoices.component';
 import { SalesInvoicesComponent } from './sales-invoices/sales-invoices.component';
 import { SendInvoiceComponent } from './send-invoice/send-invoice.component';
@@ -51,11 +50,6 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
-    canActivate: [UserGuard]
-  },
-  {
-    path: 'programs',
-    component: ProgramsComponent,
     canActivate: [UserGuard]
   },
   {

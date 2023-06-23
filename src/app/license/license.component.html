@@ -12,7 +12,8 @@ app-container
               license
             </h1>
 
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button (click)="getCompanys()" type="button" class="btn btn-success" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
               إضافة license
             </button>
           </div>
@@ -26,12 +27,10 @@ app-container
             <table id="example" class="display table table-hover" style="width:100%">
               <thead>
                 <tr>
-                  <th>تاريخ البدايه</th>
+                  <th>رقم</th>
                   <th> تاريخ النهايه</th>
-                  <th> اسم البرنامج</th>
-                  <th>الايميل</th>
-                  <th>اسم المستخدم</th>
-                  <th>الرقم الضريبى</th>
+                  <th> تاريخ البدايه</th>
+                  <th>اسم الشركه</th>
                   <th>الاجراءات</th>
 
                 </tr>
@@ -39,16 +38,14 @@ app-container
               <tbody>
 
                 <tr *ngFor="let license of licenseList">
-                  <td>{{license.start_date}}</td>
-                  <td>{{license.end_date}}</td>
-                  <td>{{license.plan_name}}</td>
-                  <td>{{license.user.user_email}}</td>
-                  <td>{{license.user.user_name}}</td>
-                  <td>{{license.user.user_tax_number}}</td>
+                  <td>{{license.id}}</td>
+                  <td>{{license.startDate}}</td>
+                  <td>{{license.endDate}}</td>
+                  <td>{{license.company.name}}</td>
                   <td>
                     <ul>
                       <li>
-                        <a (click)="rmLicense(license.license_id)">
+                        <a (click)="rmLicense(license.id)">
                           <i class="far fa-trash-alt"></i>
                         </a>
                       </li>
@@ -82,31 +79,26 @@ app-container
         <form>
           <div class="row">
             <div class="col-lg-6 col-md-12 mb-3">
-              <h2>Select a Date</h2>
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Select a date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-              <button mat-raised-button color="primary" (click)="close()">Close</button>
-
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select class="form-select" id="floatingSelect" [(ngModel)]="selectedUser" name="user"
-                  (change)="setUserId()" aria-label="Floating label select example">
-                  <option [ngValue]="user" selected *ngFor="let user of usersList">{{user.name}}</option>
-
+                <select [(ngModel)]="licenseModel.companyId" name="company" class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example">
+                  <option selected>اختر الشركه</option>
+                  <option *ngFor="let company of companyList" [value]="company.id">{{company.name}}
+                  </option>
                 </select>
-                <label for="floatingSelect">اسم المستخدم</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <!-- <form>
-                  <label for="datepicker">Select End date:</label>
-                  <input type="date" id="datepicker" name="datepicker">
-                </form> -->
+                <mat-form-field class="example-full-width">
+                  <mat-label>حدد تاريخ انتهاء الرخصه</mat-label>
+                  <input matInput [matDatepicker]="picker" [(ngModel)]="licenseModel.endDate" name="datep">
+                  <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                  <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
               </div>
             </div>
             <div class="col-12 justify-content-end">

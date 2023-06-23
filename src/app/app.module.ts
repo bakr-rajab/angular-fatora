@@ -9,7 +9,6 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { ProgramsComponent } from './programs/programs.component';
 import { AcceptedInvoicesComponent } from './accepted-invoices/accepted-invoices.component';
 import { DemoComponent } from './demo/demo.component';
 import { BranchesComponent } from './branches/branches.component';
@@ -39,12 +38,14 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './auth.interceptor';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +54,6 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    ProgramsComponent,
     AcceptedInvoicesComponent,
     DemoComponent,
     BranchesComponent,
@@ -94,6 +94,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    MatIconModule
   ],
   // providers: [GenericService],
   providers: [

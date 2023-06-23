@@ -1,7 +1,8 @@
+import { License } from './../models/license/license.model';
 import { Component, OnInit } from '@angular/core';
 import { GetPrograms } from '../models/programs/getPrograms';
-import { GenericService } from '../service-layer/generic.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CompanyService } from '../service-layer/company.service';
+import { LicenseService } from '../service-layer/license.service.';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -11,78 +12,64 @@ declare function sidebarToggling(): any;
   styleUrls: ['./license.component.css']
 })
 export class LicenseComponent implements OnInit {
-  usersModel: any
-  licenseModel: any
+  licenseList!: License[]
+  licenseModel: License = {
+    companyId: "",
+    endDate: new Date()
+  }
   usersRes: any
-  usersList: any
+  companyList: any
   response: any;
-  licenseList: any
-  selectedUser: any
-  selectedPlane: any
-  userId: any
-  planId: any
-  addLicenseModel: any
-  licenseToRm: any
+
   programsModel: GetPrograms = new GetPrograms;
   plans: any
   rmLicenseModel: any
   initTable: boolean = false
-  constructor(private apiCall: GenericService,) { }
-  close(): void {
-    // this.dialogRef.close();
-  }
+  constructor(private licenseSer: LicenseService, private companySer: CompanyService) { }
+
 
   ngOnInit(): void {
+    this.licenseModel.companyId = "اختر الشركه"
     sidebarToggling();
-    this.getAllLicense();
-    this.getAllPlans();
-    this.getAllUsers();
+    this.getAllLicense()
   }
 
   getAllLicense() {
-    this.licenseModel = {
-      target: "license",
-      action: "get_all_licenses"
-    }
-    // this.apiCall.restServiceCall(this.licenseModel).subscribe(res => {
-    //   this.response = res
-    //   this.licenseList = this.response.data;
-    //   if (this.initTable == false) {
-    //     paggnation();
-    //     this.initTable = true;
-    //   }
-    // })
+    this.licenseSer.getAll().subscribe(license => {
+      this.response = license;
+      this.licenseList = this.response
+    })
   }
 
-  getAllUsers() {
-    this.usersModel = {
-      target: "user",
-      action: "get_all_users"
-    }
-    this.apiCall.restServiceCall(this.usersModel).subscribe(res => {
-      this.usersRes = res
-      this.usersList = this.usersRes.data;
+  getCompanys() {
+    this.companySer.getAll().subscribe(res => {
+      this.response = res
+      this.companyList = this.response;
     })
   }
 
   getAllPlans() {
     this.programsModel.target = "plan"
     this.programsModel.action = "get_all_plans"
-    this.apiCall.restServiceCall(this.programsModel).subscribe(res => {
-      this.response = res;
-      this.plans = this.response.data;
-    })
+    // this.apiCall.restServiceCall(this.programsModel).subscribe(res => {
+    //   this.response = res;
+    //   this.plans = this.response.data;
+    // })
   }
   addLicense() {
-    this.addLicenseModel = {
-      target: "license",
-      action: "create",
-      user_id: this.userId,
-      plan_id: this.planId
+
+    const body = {
+      companyId: this.licenseModel.companyId,
+      endDate: this.licenseModel.endDate,
+      startDate: new Date()
     }
-    this.apiCall.restServiceCall(this.addLicenseModel).subscribe(res => {
+    this.licenseSer.create(body).subscribe(data => {
+      if (data) {
+        this.response = data;
+        this.licenseList = [...this.licenseList, this.response];
+      }
     })
-    this.getAllLicense()
+
   }
 
   rmLicense(id: any) {
@@ -92,21 +79,21 @@ export class LicenseComponent implements OnInit {
       "key": "license_id",
       "value": id
     }
-    this.apiCall.restServiceCall(this.rmLicenseModel).subscribe(res => {
-    })
+    // this.apiCall.restServiceCall(this.rmLicenseModel).subscribe(res => {
+    // })
     this.getAllLicense()
   }
   setUserId() {
-    console.log(this.selectedUser)
-    this.userId = this.selectedUser.user_id
+    // console.log(this.selectedUser)
+    // this.userId = this.selectedUser.user_id
   }
   setPlanId() {
-    console.log(this.selectedPlane)
-    this.planId = this.selectedPlane.plan_id
+    // console.log(this.selectedPlane)
+    // this.planId = this.selectedPlane.plan_id
   }
 
   setLicenseToRm(id: any) {
-    this.licenseToRm = id;
+    // this.licenseToRm = id;
   }
 
 }
