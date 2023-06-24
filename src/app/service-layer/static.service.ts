@@ -16,4 +16,8 @@ export class ActivityService {
   getActivity(): Observable<any> {
     return this.http.get(environment.apiUrl + '/static/activities', { responseType: 'json' });
   }
+
+  getGpcCodes(name: string): Observable<any> {
+    return this.http.get(environment.apiUrl + `/static/gpc?name=${name}`, { responseType: 'json' });
+  }
 }

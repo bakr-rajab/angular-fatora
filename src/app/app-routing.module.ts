@@ -21,7 +21,7 @@ import { SalesInvoicesComponent } from './sales-invoices/sales-invoices.componen
 import { SendInvoiceComponent } from './send-invoice/send-invoice.component';
 import { TaxTypesComponent } from './tax-types/tax-types.component';
 import { TypesGroupComponent } from './types-group/types-group.component';
-import { TypesComponent } from './types/types.component';
+import { ItemComponent } from './types/types.component';
 import { UnitsComponent } from './units/units.component';
 import { UserGuard } from './user.guard';
 import { UserComponent } from './user/user.component';
@@ -60,7 +60,7 @@ const routes: Routes = [
   {
     path: 'branches',
     component: BranchesComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [UserGuard]
   },
   {
     path: 'clients',
@@ -139,8 +139,8 @@ const routes: Routes = [
     canActivate: [ClientsGuard]
   },
   {
-    path: 'types',
-    component: TypesComponent,
+    path: 'items',
+    component: ItemComponent,
     canActivate: [ClientsGuard]
   },
   {
@@ -149,7 +149,7 @@ const routes: Routes = [
     canActivate: [ClientsGuard]
   },
   {
-    path: 'typesGroup',
+    path: 'groups',
     component: TypesGroupComponent,
     canActivate: [ClientsGuard]
   },

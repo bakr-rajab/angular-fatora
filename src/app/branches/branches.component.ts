@@ -85,7 +85,10 @@ export class BranchesComponent implements OnInit {
     // this.getAllBranches()
   }
   AddBranch() {
-    console.log("bbbb", this.branchModel);
+    this.apiCall.create(this.branchModel).subscribe(res => {
+
+      console.log("bbbb", res);
+    })
 
   }
   setBranchToEdite(branch: any) {

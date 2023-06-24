@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from '../service-layer/generic.service';
+import { GroupService } from '../service-layer/group.service';
+import { Group } from '../models/group.model';
 
 
-declare function paggnation():any;
+declare function paggnation(): any;
 declare function sidebarToggling(): any
 @Component({
   selector: 'app-types-group',
@@ -10,89 +12,55 @@ declare function sidebarToggling(): any
   styleUrls: ['./types-group.component.css']
 })
 export class TypesGroupComponent implements OnInit {
-  getAllTypeGroupReq:any
-  typeGroupsRes:any
-  typeGroupsList:any
-  i:any
-  typeGroupAr:any
-  typeGroupEn:any
-  addTypeGroupReq:any
-  initTable:boolean = false
-  arabicName:any
-  englishName:any
-  selectedType:any
-  deleteTypeReq:any
-  editeTypeReq:any
-  constructor(private apiCall: GenericService) { }
+  groupsList: Group[] = [];
+  groupModel: Group = {
+    name: "",
+    code: ""
+  };
+  initTable: boolean = false
+
+  constructor(private apiCall: GroupService) { }
 
   ngOnInit(): void {
-    
+
     sidebarToggling();
     this.getAllTypeGroup()
   }
 
-  getAllTypeGroup(){
-    this.getAllTypeGroupReq={
-      "target":"type_group",
-      "action":"get_all_types_groups",
-      "user_id":sessionStorage.getItem('userId')
+  getAllTypeGroup() {
+
+    this.apiCall.getAll().subscribe(res => {
+      this.groupsList = res
+      if (this.initTable == false) {
+        paggnation();
+        this.initTable = true;
       }
-      this.apiCall.restServiceCall(this.getAllTypeGroupReq).subscribe(res =>{ 
-        this.typeGroupsRes = res
-        this.typeGroupsList = this.typeGroupsRes.data
-        if(this.initTable== false){
-          paggnation();
-          this.initTable = true;
-        } 
-      })
+    })
   }
 
-  addTypeGroup(){
-    this.addTypeGroupReq={
-      "target":"type_group",
-      "action":"create",
-      "group_name_ar": this.typeGroupAr,
-      "group_name_en": this.typeGroupEn,
-      "user_id":sessionStorage.getItem('userId')
-      }
-      this.apiCall.restServiceCall(this.addTypeGroupReq).subscribe(res =>{ 
-      })
-      this.getAllTypeGroup()
+  addTypeGroup() {
+    this.apiCall.create(this.groupModel).subscribe(res => {
+      this.groupsList = [...this.groupsList, res];
+    })
   }
 
-  setTypeToEdite(type:any){
-    this.selectedType = type.group_code
-    this.arabicName= type.group_name_ar
-    this.englishName= type.group_name_en
+  delete(id: any) {
+    console.log(id);
+
+    this.apiCall.delete(id).subscribe(res => {
+      console.log({ res });
+
+      if (res.affected == 1) {
+        this.groupsList = this.groupsList.filter((item: any) => item.id != id);
+        console.log(this.groupsList);
+
+      }
+    })
   }
 
-  setAndDeleteType(type:any){
-    this.deleteTypeReq={
-      "target":"type_group",
-      "action":"delete",
-      "key":"group_code",
-      "value":type.group_code,
-      "user_id":sessionStorage.getItem("userId")
-      }
-      this.apiCall.restServiceCall(this.deleteTypeReq).subscribe(res =>{ 
-      })
-      this.getAllTypeGroup()
+  update(type: any) {
+
   }
 
-  editTypeGroup(){
-    this.editeTypeReq={
-      "target":"type_group",
-      
-      "action":"edit",
-      "unique_value":{
-          "group_code":this.selectedType
-      },
-      "group_name_ar": this.arabicName,
-      "group_name_en": this.englishName
-      }
-      this.apiCall.restServiceCall(this.editeTypeReq).subscribe(res =>{ 
-      })
-      this.getAllTypeGroup()
-  }
- 
+
 }

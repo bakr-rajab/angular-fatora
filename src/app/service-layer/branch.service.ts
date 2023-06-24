@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user/auth-user.model';
 import { environment } from '../../environments/environment';
 import { Role } from '../models/roles/roles.model';
+import { Branch } from '../models/branches/branch.model';
 
 const httpOptions = {
   headers: environment.headers
@@ -15,7 +16,7 @@ const httpOptions = {
 export class BranchService {
   constructor(private http: HttpClient) { }
 
-  create(data: Role): Observable<Role | any> {
+  create(data: Branch): Observable<Branch | any> {
     return this.http.post(environment.apiUrl + '/branches', JSON.stringify(data), httpOptions)
   }
 

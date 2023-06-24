@@ -26,7 +26,7 @@ import { RejectedInvoicesComponent } from './rejected-invoices/rejected-invoices
 import { AddSalesInvoiceComponent } from './add-sales-invoice/add-sales-invoice.component';
 import { SendInvoiceComponent } from './send-invoice/send-invoice.component';
 import { TaxTypesComponent } from './tax-types/tax-types.component';
-import { TypesComponent } from './types/types.component';
+import { ItemComponent } from './types/types.component';
 import { TypesGroupComponent } from './types-group/types-group.component';
 import { UnitsComponent } from './units/units.component';
 import { CommonModule, JsonPipe } from '@angular/common';
@@ -71,7 +71,7 @@ import { MatIconModule } from '@angular/material/icon';
     AddSalesInvoiceComponent,
     SendInvoiceComponent,
     TaxTypesComponent,
-    TypesComponent,
+    ItemComponent,
     TypesGroupComponent,
     UnitsComponent,
     SalesInvoicesComponent,

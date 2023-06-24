@@ -22,14 +22,6 @@
           </a>
         </li>
         <li class="nav-item" *ngIf="showAdminPriv">
-          <a class="nav-link active" [routerLink]="['/programs']">
-            <i class="fas fa-tasks"></i>
-            <span class="nav-link-text">
-              قائمة البرامج
-            </span>
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="showAdminPriv">
           <a class="nav-link active" [routerLink]="['/license']">
             <i class="fas fa-clipboard-check"></i>
             <span class="nav-link-text">
@@ -53,49 +45,56 @@
             </span>
           </a>
         </li>
+        <li class="nav-item" *ngIf="showAdminPriv">
+          <a class="nav-link active" [routerLink]="['/branches']">
+            <i class="fas fa-clipboard-check"></i>
+            <span class="nav-link-text">
+              الفروع
+            </span>
+          </a>
+        </li>
 
         <li class="nav-item" *ngIf="showClientPriv">
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3"
+          <a class="nav-link" href="#collapseLayouts3" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3"
             aria-expanded="false" aria-controls="collapseLayouts3">
             <i class="fas fa-border-all"></i>
             <span class="nav-link-text">الأكواد الأساسية</span>
             <i class="fas fa-angle-down"></i>
           </a>
-          <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion"
+          <div class=" collapse1" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion"
             *ngIf="showClientPriv">
             <nav class="sidenav-menu-nested">
-              <a class="nav-link" [routerLink]="['/branches']">
-                الفروع
-              </a>
-              <a class="nav-link" [routerLink]="['/units']">
+
+              <!-- <a class="nav-link" [routerLink]="['/units']">
                 الوحدات
-              </a>
-              <a class="nav-link" [routerLink]="['/taxTypes']">
+              </a> -->
+              <!-- <a class="nav-link" [routerLink]="['/taxTypes']">
                 أنواع الضرائب
-              </a>
-              <a class="nav-link" [routerLink]="['/typesGroup']">
+              </a> -->
+              <a class="nav-link" [routerLink]="['/groups']">
                 مجموعات الأصناف
               </a>
-              <a class="nav-link" [routerLink]="['/types']">
+              <a class="nav-link" [routerLink]="['/items']">
                 الأصناف
               </a>
               <a class="nav-link" [routerLink]="['/clients']">
                 العملاء
               </a>
-              <a class="nav-link" [routerLink]="['/country']">
+              <!-- <a class="nav-link" [routerLink]="['/country']">
                 الدول
-              </a>
+              </a> -->
             </nav>
           </div>
         </li>
         <li class="nav-item" *ngIf="showClientPriv">
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts4"
+          <a class="nav-link " href="#collapseLayouts4" data-bs-toggle="collapse" data-bs-target="#collapseLayouts4"
             aria-expanded="false" aria-controls="collapseLayouts4">
             <i class="fas fa-shopping-cart"></i>
             <span class="nav-link-text">المبيعات</span>
             <i class="fas fa-angle-down"></i>
           </a>
-          <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+          <div class="collapse2 multi-collapse" id="collapseLayouts4" aria-labelledby="headingOne"
+            data-bs-parent="#sidenavAccordion">
             <nav class="sidenav-menu-nested">
               <a class="nav-link" [routerLink]="['/salesInvoice']">
                 تسجيل فواتير بيع

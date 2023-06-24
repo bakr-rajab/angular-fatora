@@ -1,158 +1,152 @@
 <!--app-container-->
 <div class="app-container">
   <app-comman-header></app-comman-header>
-      <div class="app-main">
-        <app-common-side-nav></app-common-side-nav>
-          <div class="app-main_outer">
-             
-                      <div class="row">
-                          <div class="col-12">
-                              <div class="d-flex align-items-start justify-content-between">
-                                  <h1 class="page-title">
-                                       مجموعات الأصناف
-                                  </h1>
-                               
-                                  <button type="button" class="btn btn-success"
-                                  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                  إضافة مجموعة
-                                </button>
-                                <button type="button" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#uploadFileModal">
-                                  تحميل ملف
-                                </button>
-                              </div>
-                          </div>
-                      </div>
-                     <div class="row">
-                       <div class="col-12">
-                          <div class="main-table">
-                      
-      
-                            <table id="example" class="display table table-hover" style="width:100%">
-                              <thead>
-                                  <tr>
-                                      <th>#</th>
-                                      
-                                      <th>اسم المجموعة عربي</th>
-                                      <th>اسم المجموعة إنجليزي</th>
-                                      <th>الاجراءات</th>
-                                  </tr>
-                              </thead>
-                          <tbody>
-                            <tr *ngFor="let typeGroup of typeGroupsList; let i=index">
-                              <td>{{i+1}}</td>
-                              
-                              <td>{{typeGroup.group_name_ar}}</td>
-                              <td>{{typeGroup.group_name_en}}</td>
-                              <td>
-                                <ul>
-                                  <li> 
-                                   
-                                    <a (click)="setTypeToEdite(typeGroup)" href="" data-bs-toggle="modal" data-bs-target="#exampleModalTypeGroup">
-                                      <i class="far fa-edit"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a (click)="setAndDeleteType(typeGroup)" href="javascript:void(0);">
-                                      <i class="far fa-trash-alt"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </td>
-                          </tr>
-        
-  
-                          </tbody>
-                          </table>
-                          </div>
-                       </div>
-                     </div>
-                     
-                    </div>
-       
-      </div>
-  </div>
-  <!--/app-container-->
-  <!--Add user modal-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            إضافة مجموعة جديد
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="app-main">
+    <app-common-side-nav></app-common-side-nav>
+    <div class="app-main_outer">
+
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-start justify-content-between">
+            <h1 class="page-title">
+              مجموعات الأصناف
+            </h1>
+
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              إضافة مجموعة
+            </button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#uploadFileModal">
+              تحميل ملف
+            </button>
+          </div>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="typeGroupAr"  name ="typeGroupAr" type="text" class="form-control" 
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="main-table">
+
+
+            <table id="example" class="display table table-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>اسم المجموعة </th>
+                  <th>الاجراءات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let group of groupsList; let i=index">
+                  <td>{{group.id}}</td>
+                  <td>{{group.name}}</td>
+                  <td>
+                    <ul>
+                      <li>
+                        <a (click)="update(group.id)" href="" data-bs-toggle="modal"
+                          data-bs-target="#exampleModalTypeGroup">
+                          <i class="far fa-edit"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a (click)="delete(group.id)" href="javascript:void(0);">
+                          <i class="far fa-trash-alt"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!--/app-container-->
+<!--Add user modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          إضافة مجموعة جديد
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="groupModel.name" name="typeGroupAr" type="text" class="form-control"
                   id="floatingInputText" placeholder="أدخل الاسم بالعربي">
-                  <label for="floatingInput">اسم المجموعة عربي</label>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="typeGroupEn"  name ="typeGroupEn" type="text" class="form-control" 
-                  id="floatingInputText2" placeholder="أدخل الاسم بالانجليزى">
-                  <label for="floatingInput">اسم المجموعة انجليزى</label>
-                </div>
-              </div>
-             
-             
-              <div class="col-12 justify-content-end">
-                <div class="modal-buttons d-flex align-items-center justify-content-end">
-                  <button (click)="addTypeGroup()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة مجموعة</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-                </div>
+                <label for="floatingInput">اسم المجموعة </label>
               </div>
             </div>
-           </form>
-        </div>
-   
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="exampleModalTypeGroup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            تعديل مجموعه
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-              
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="arabicName"  name ="clientName" type="text" class="form-control" id="floatingText" placeholder="محمود حمدي">
-                  <label for="floatingText">الاسم العربى</label>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-12  mb-3">
-                <div class="form-floating">
-                  <input [(ngModel)]="englishName"  name ="email" type="email" class="form-control" id="floatingText" placeholder="mahmoud@gmail.com">
-                  <label for="floatingEmail">الاسم الانجليزى</label>
-                </div>
-              </div>
-
-              <div class="col-12 justify-content-end">
-                <div class="modal-buttons d-flex align-items-center justify-content-end">
-                  <button (click)="editTypeGroup()" type="submit" data-bs-dismiss="modal" class="btn btn-success">تعديل</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-                </div>
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="groupModel.code" name="typeGroupEn" type="text" class="form-control"
+                  id="floatingInputText2" placeholder="أدخل كود المجموعة">
+                <label for="floatingInput">كود المجموعه</label>
               </div>
             </div>
-           </form>
-        </div>
-   
+            <div class="col-12 justify-content-end">
+              <div class="modal-buttons d-flex align-items-center justify-content-end">
+                <button (click)="addTypeGroup()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
+                  مجموعة</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
+
     </div>
   </div>
+</div>
 
-  <app-file-upload></app-file-upload>
+<div class="modal fade" id="exampleModalTypeGroup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          تعديل مجموعه
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <!-- <input [(ngModel)]="arabicName" name="clientName" type="text" class="form-control" id="floatingText" -->
+                placeholder="محمود حمدي">
+                <label for="floatingText">اسم المجموعة</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12  mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="groupModel.code" name="email" type="email" class="form-control" id="floatingText"
+                  placeholder="mahmoud@gmail.com">
+                <label for="floatingEmail">كود المجموعه</label>
+              </div>
+            </div>
+
+            <div class="col-12 justify-content-end">
+              <div class="modal-buttons d-flex align-items-center justify-content-end">
+                <button (click)="update(7)" type="submit" data-bs-dismiss="modal" class="btn btn-success">تعديل</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-file-upload></app-file-upload>
