@@ -14,4 +14,5 @@ export class User {
   clientSecret2!: string;
   roleId!: string;
   companyId!: string;
+  company!: any;
 }

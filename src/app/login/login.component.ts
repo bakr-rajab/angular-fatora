@@ -36,8 +36,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('userId', this.response.id)
         sessionStorage.setItem('userName', this.response.name)
         sessionStorage.setItem('endDate', this.response?.license?.endDate)
-        if (this.response.role.name == 'superAdmin') {
-          console.log("object")
+        if (this.response.role.name === 'superAdmin' || this.response.role.name === 'admin') {
           this.router.navigate(['/user'])
         } else if (this.response.role.name == 'user') {
           this.router.navigate(['/analytics'])

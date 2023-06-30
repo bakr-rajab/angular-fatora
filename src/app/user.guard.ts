@@ -11,9 +11,11 @@ class PermissionsService {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     //your logic goes here
-    console.log("1111", new Date())
-    console.log("22222", sessionStorage.getItem('endDate'))
-    if (sessionStorage.getItem('userRole') == 'superAdmin') {
+    // console.log("1111", new Date())
+    const role = sessionStorage.getItem('userRole')
+    console.log({ role });
+
+    if (role === 'superAdmin' || role === 'admin') {
       return true;
     } else {
       this.router.navigate(['/login']);

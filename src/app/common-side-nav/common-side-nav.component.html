@@ -1,6 +1,5 @@
 <div class="app-sidebar" id="sidebar">
   <div class="sidenav accordion" id="sidenavAccordion">
-
     <div class="navbar-inner">
       <!-- Collapse -->
 
@@ -13,58 +12,58 @@
           </a>
         </li>
 
-        <li class="nav-item" *ngIf="showAdminPriv">
-          <a class="nav-link active" [routerLink]="['/user']">
-            <i class="far fa-user"></i>
-            <span class="nav-link-text">
-              قائمة المستخدمين
-            </span>
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="showAdminPriv">
-          <a class="nav-link active" [routerLink]="['/license']">
-            <i class="fas fa-clipboard-check"></i>
-            <span class="nav-link-text">
-              license
-            </span>
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="showAdminPriv">
-          <a class="nav-link active" [routerLink]="['/roles']">
-            <i class="fas fa-clipboard-check"></i>
-            <span class="nav-link-text">
-              الصلاحيات
-            </span>
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="showAdminPriv">
+        <li class="nav-item" *ngIf="showSuperAdminPriv">
           <a class="nav-link active" [routerLink]="['/company']">
             <i class="fas fa-clipboard-check"></i>
-            <span class="nav-link-text">
-              الشركات
-            </span>
+            <span class="nav-link-text"> الشركات </span>
           </a>
         </li>
-        <li class="nav-item" *ngIf="showAdminPriv">
+        <li class="nav-item" *ngIf="showAdminPriv || showSuperAdminPriv">
           <a class="nav-link active" [routerLink]="['/branches']">
             <i class="fas fa-clipboard-check"></i>
-            <span class="nav-link-text">
-              الفروع
-            </span>
+            <span class="nav-link-text"> الفروع </span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="showSuperAdminPriv">
+          <a class="nav-link active" [routerLink]="['/license']">
+            <i class="fas fa-clipboard-check"></i>
+            <span class="nav-link-text"> license </span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminPriv || showSuperAdminPriv">
+          <a class="nav-link active" [routerLink]="['/user']">
+            <i class="far fa-user"></i>
+            <span class="nav-link-text"> قائمة المستخدمين </span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="showSuperAdminPriv">
+          <a class="nav-link active" [routerLink]="['/roles']">
+            <i class="fas fa-clipboard-check"></i>
+            <span class="nav-link-text"> الصلاحيات </span>
           </a>
         </li>
 
-        <li class="nav-item" *ngIf="showClientPriv">
-          <a class="nav-link" href="#collapseLayouts3" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3"
-            aria-expanded="false" aria-controls="collapseLayouts3">
+        <li class="nav-item" *ngIf="showClientPriv || showAdminPriv">
+          <a
+            class="nav-link"
+            href="#collapseLayouts3"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseLayouts3"
+            aria-expanded="false"
+            aria-controls="collapseLayouts3"
+          >
             <i class="fas fa-border-all"></i>
             <span class="nav-link-text">الأكواد الأساسية</span>
             <i class="fas fa-angle-down"></i>
           </a>
-          <div class=" collapse1" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion"
-            *ngIf="showClientPriv">
+          <div
+            class="collapse1"
+            id="collapseLayouts3"
+            aria-labelledby="headingOne"
+            data-bs-parent="#sidenavAccordion"
+            *ngIf="showClientPriv"
+          >
             <nav class="sidenav-menu-nested">
-
               <!-- <a class="nav-link" [routerLink]="['/units']">
                 الوحدات
               </a> -->
@@ -74,27 +73,33 @@
               <a class="nav-link" [routerLink]="['/groups']">
                 مجموعات الأصناف
               </a>
-              <a class="nav-link" [routerLink]="['/items']">
-                الأصناف
-              </a>
-              <a class="nav-link" [routerLink]="['/clients']">
-                العملاء
-              </a>
+              <a class="nav-link" [routerLink]="['/items']"> الأصناف </a>
+              <a class="nav-link" [routerLink]="['/clients']"> العملاء </a>
               <!-- <a class="nav-link" [routerLink]="['/country']">
                 الدول
               </a> -->
             </nav>
           </div>
         </li>
-        <li class="nav-item" *ngIf="showClientPriv">
-          <a class="nav-link " href="#collapseLayouts4" data-bs-toggle="collapse" data-bs-target="#collapseLayouts4"
-            aria-expanded="false" aria-controls="collapseLayouts4">
+        <li class="nav-item" *ngIf="showClientPriv || showAdminPriv">
+          <a
+            class="nav-link"
+            href="#collapseLayouts4"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseLayouts4"
+            aria-expanded="false"
+            aria-controls="collapseLayouts4"
+          >
             <i class="fas fa-shopping-cart"></i>
             <span class="nav-link-text">المبيعات</span>
             <i class="fas fa-angle-down"></i>
           </a>
-          <div class="collapse2 multi-collapse" id="collapseLayouts4" aria-labelledby="headingOne"
-            data-bs-parent="#sidenavAccordion">
+          <div
+            class="collapse2 multi-collapse"
+            id="collapseLayouts4"
+            aria-labelledby="headingOne"
+            data-bs-parent="#sidenavAccordion"
+          >
             <nav class="sidenav-menu-nested">
               <a class="nav-link" [routerLink]="['/salesInvoice']">
                 تسجيل فواتير بيع
@@ -111,36 +116,39 @@
               <a class="nav-link" [routerLink]="['/types']">
                 الفواتير الواردة
               </a>
-
             </nav>
           </div>
         </li>
         <li class="nav-item" *ngIf="showClientPriv">
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts5"
-            aria-expanded="false" aria-controls="collapseLayouts5">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseLayouts5"
+            aria-expanded="false"
+            aria-controls="collapseLayouts5"
+          >
             <i class="far fa-list-alt"></i>
             <span class="nav-link-text">التقارير</span>
             <i class="fas fa-angle-down"></i>
           </a>
-          <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+          <div
+            class="collapse"
+            id="collapseLayouts5"
+            aria-labelledby="headingOne"
+            data-bs-parent="#sidenavAccordion"
+          >
             <nav class="sidenav-menu-nested">
-
               <a class="nav-link" [routerLink]="['/accepted-invoices']">
                 الفواتير المقبولة
               </a>
               <a class="nav-link" [routerLink]="['/rejectedInvoices']">
                 الفواتير المرفوضة
               </a>
-
             </nav>
           </div>
         </li>
-
-
       </ul>
-
-
     </div>
-
   </div>
 </div>

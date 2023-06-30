@@ -61,7 +61,8 @@ export class UserComponent implements OnInit {
   }
 
   createUser() {
-    console.log(this.user.roleId)
+    this.user.company = { id: this.user.companyId }
+    console.log(this.user)
     this.apiCall.createUser(this.user).subscribe(res => {
       console.log(res)
       // this.usersList = [...this.usersList, res]//sss
