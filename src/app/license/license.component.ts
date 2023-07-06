@@ -2,7 +2,7 @@ import { License } from './../models/license/license.model';
 import { Component, OnInit } from '@angular/core';
 import { GetPrograms } from '../models/programs/getPrograms';
 import { CompanyService } from '../service-layer/company.service';
-import { LicenseService } from '../service-layer/license.service.';
+import { LicenseService } from '../service-layer/license.service';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;

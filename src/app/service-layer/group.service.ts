@@ -19,6 +19,9 @@ export class GroupService {
     create(data: Group): Observable<Group | any> {
         return this.http.post(environment.apiUrl + '/group', JSON.stringify(data), httpOptions)
     }
+    update(id: string, data: Group): Observable<Group | any> {
+        return this.http.patch(environment.apiUrl + `/group/${id}`, JSON.stringify(data), httpOptions)
+    }
 
     getAll(): Observable<any> {
         return this.http.get(environment.apiUrl + '/group/all', { responseType: 'json' });

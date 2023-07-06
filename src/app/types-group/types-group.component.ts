@@ -12,25 +12,23 @@ declare function sidebarToggling(): any
   styleUrls: ['./types-group.component.css']
 })
 export class TypesGroupComponent implements OnInit {
-  groupsList: Group[] = [];
-  groupModel: Group = {
-    name: "",
-    code: ""
-  };
+  groupsList!: Group[];
+  groupModel: Group = new Group();
+  groupRes: any;
   initTable: boolean = false
 
   constructor(private apiCall: GroupService) { }
 
   ngOnInit(): void {
-
-    sidebarToggling();
     this.getAllTypeGroup()
+    sidebarToggling();
   }
 
   getAllTypeGroup() {
 
     this.apiCall.getAll().subscribe(res => {
-      this.groupsList = res
+      this.groupRes = res
+      this.groupsList = [...this.groupRes]
       if (this.initTable == false) {
         paggnation();
         this.initTable = true;
@@ -58,7 +56,19 @@ export class TypesGroupComponent implements OnInit {
     })
   }
 
-  update(type: any) {
+  setData(group: Group) {
+    this.groupModel = group;
+  }
+  update(id: any) {
+    console.log({ id });
+    console.log(this.groupModel);
+    this.apiCall.update(id, this.groupModel).subscribe(res => {
+      console.log({ res })
+      if (res.affected == 1) {
+        this.getAllTypeGroup()
+      }
+    }
+    )
 
   }
 

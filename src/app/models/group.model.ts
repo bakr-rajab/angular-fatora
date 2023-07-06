@@ -1,6 +1,6 @@
-export interface Group {
+export class Group {
     id?: string;
-    name: string;
-    code: string;
+    name!: string;
+    code!: string;
 
 }
