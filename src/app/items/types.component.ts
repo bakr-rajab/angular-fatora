@@ -121,15 +121,6 @@ export class ItemComponent implements OnInit {
     // })
   }
 
-  getAddTypesPre(action: any) {
-    this.getAllTypeGroup()
-    this.getUnits()
-    this.getTaxTypes()
-    console.log(this.optionVal)
-    if (action == 'reset') {
-      this.resetModal()
-    }
-  }
 
   createType() {
     this.createTypeReq = {
@@ -165,20 +156,8 @@ export class ItemComponent implements OnInit {
     console.log(this.taxType)
   }
 
-  setTypeToEdite(type: any) {
-    this.selectedType = type.group_code
-    this.typeCode = type.account_type_code
-    this.typeTaxCode = type.tax_code
-    this.typeName = type.type_name
-    this.price = type.price
-    this.taxPercent = type.tax_percentage
-    this.unit = type.unit_of_measurment
-    this.uni_typeCode = type.type_code
-
-    // this.initSybol = type.tax_code_type
-    // this.initTaxType = type.tax_code_type
-    // this.initTypeGroup = type.unit_of_measurment
-    this.getAddTypesPre('')
+  setItemToEdite(item: Item) {
+    this.itemModel=item   
   }
   resetModal() {
     this.typeCode = ""

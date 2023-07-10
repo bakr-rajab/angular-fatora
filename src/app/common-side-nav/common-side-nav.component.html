@@ -18,7 +18,7 @@
             <span class="nav-link-text"> الشركات </span>
           </a>
         </li>
-        <li class="nav-item" *ngIf="showAdminPriv || showSuperAdminPriv">
+        <li class="nav-item" *ngIf="showAdminPriv || showAdminPriv">
           <a class="nav-link active" [routerLink]="['/branches']">
             <i class="fas fa-clipboard-check"></i>
             <span class="nav-link-text"> الفروع </span>

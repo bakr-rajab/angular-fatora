@@ -12,7 +12,8 @@
               الشركات
             </h1>
 
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" (click)="getActiviteis()" class="btn btn-success" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
               إضافة شركه
             </button>
           </div>
@@ -26,6 +27,7 @@
                 <tr>
                   <th>رقم</th>
                   <th>اسم الشركه</th>
+                  <th>الرقم الضريبي </th>
                   <th>الشهاده</th>
                   <th>كود النشاط</th>
                   <th>الاجراءات</th>
@@ -37,12 +39,17 @@
                 <tr *ngFor="let comp of companyList">
                   <td>{{comp.id}}</td>
                   <td>{{comp.name}}</td>
+                  <td>{{comp.taxNumber}}</td>
                   <td>{{comp.certificate}}</td>
                   <td>{{comp.activity.code}}</td>
-
-
                   <td>
                     <ul>
+                      <li>
+                        <a (click)="setToEdit(comp)"
+                         data-bs-toggle="modal" data-bs-target="#exampleModalEditCompany">
+                          <i class="far fa-edit"></i>
+                        </a>
+                      </li>
                       <li>
                         <a (click)="deleteCompany(comp.id)">
                           <i class="far fa-trash-alt"></i>
@@ -51,9 +58,7 @@
                     </ul>
                   </td>
                 </tr>
-
               </tbody>
-
             </table>
           </div>
         </div>
@@ -85,23 +90,86 @@
                 <label for="floatingSelect">اسم الشركه</label>
               </div>
             </div>
-             <div class="col-lg-6 col-md-12 mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select
-                (click)="getActiviteis()"
-                [(ngModel)]="companyModel.activity" name="activity" class="form-select form-select-lg mb-3"
+                <input [(ngModel)]="companyModel.taxNumber" name="taxNumber" type="text" class="form-control" id="tax"
+                  placeholder="الرقم الضريبي">
+                <label for="floatingSelect">الرقم الضريبي</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select [(ngModel)]="companyModel.activity" name="activity" class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example">
-                  <option  *ngFor="let activity of activityList" [ngValue]="activity.id">{{activity.code}}</option>
-
+                  <option *ngFor="let activity of activityList" [ngValue]="activity.id">{{activity.code}}</option>
                 </select>
-                <label for="floatingSelect"> الصلاحية</label>
+                <label for="floatingSelect"> كود النشاط</label>
 
               </div>
             </div>
-             <div class="col-lg-6 col-md-12 mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="companyModel.certificate" name="roleName" type="text" class="form-control" id="roleName"
+                <input [(ngModel)]="companyModel.certificate" name="roleName" type="text" class="form-control"
+                  id="roleName" placeholder="اسم الشركه">
+                <label for="floatingSelect">شهادة الشركه</label>
+              </div>
+            </div>
+            <div class="col-12 justify-content-end">
+              <div class="modal-buttons d-flex align-items-center justify-content-end">
+                <button (click)="addCompany()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
+                  شركه </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- edit modal -->
+<div class="modal fade" id="exampleModalEditCompany" tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalEditLabel">
+          إضافة role
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="companyModel.name" name="roleName" type="text" class="form-control" id="roleName"
                   placeholder="اسم الشركه">
+                <label for="floatingSelect">اسم الشركه</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="companyModel.taxNumber" name="taxNumber" type="text" class="form-control" id="tax"
+                  placeholder="الرقم الضريبي">
+                <label for="floatingSelect">الرقم الضريبي</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select [(ngModel)]="companyModel.activity" name="activity" class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example">
+                  <option *ngFor="let activity of activityList" [ngValue]="activity.id">{{activity.code}}</option>
+                </select>
+                <label for="floatingSelect"> كود النشاط</label>
+
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input [(ngModel)]="companyModel.certificate" name="roleName" type="text" class="form-control"
+                  id="roleName" placeholder="اسم الشركه">
                 <label for="floatingSelect">شهادة الشركه</label>
               </div>
             </div>
