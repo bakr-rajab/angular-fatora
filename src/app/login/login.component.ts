@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.authModel.taxNumber = Number(this.authModel.taxNumber); // converting taxNmuber from string tom int
+    // this.authModel.taxNumber = Number(this.authModel.taxNumber); // converting taxNmuber from string tom int
 
     this.apiCall.login(this.authModel).subscribe(res => {
       this.response = res;

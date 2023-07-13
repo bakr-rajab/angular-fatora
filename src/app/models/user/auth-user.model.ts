@@ -1,9 +1,10 @@
 export class AuthUser {
-  taxNumber!: number;
+  email!: string;
   password!: string;
 }
 
 export class User {
+  id!: string;
   email!: string;
   password!: string;
   taxNumber!: string
@@ -15,4 +16,5 @@ export class User {
   roleId!: string;
   companyId!: string;
   company!: any;
+  role!: any;
 }

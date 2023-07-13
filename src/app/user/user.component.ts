@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
   public clientModel = new SelectClient();
   getUserModel: any
   usersRes: any
-  usersList!: any;
+  usersList!: User[];
   codesRequest: any;
   codesRes: any
   codeList!: any;

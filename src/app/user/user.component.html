@@ -4,16 +4,18 @@
   <div class="app-main">
     <app-common-side-nav></app-common-side-nav>
     <div class="app-main_outer">
-
       <div class="row">
         <div class="col-12">
           <div class="d-flex align-items-start justify-content-between">
-            <h1 class="page-title">
-              المستخدمين
-            </h1>
+            <h1 class="page-title">المستخدمين</h1>
 
-            <button (click)="resetAddModal(); getCompanys();getRoles()" type="button" class="btn btn-success"
-              data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button
+              (click)="resetAddModal(); getCompanys(); getRoles()"
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
               إضافة مستخدم
             </button>
           </div>
@@ -22,9 +24,11 @@
       <div class="row">
         <div class="col-12">
           <div class="main-table">
-
-
-            <table id="example" class="display table table-hover" style="width:100%">
+            <table
+              id="example"
+              class="display table table-hover"
+              style="width: 100%"
+            >
               <thead>
                 <tr>
                   <th>اسم المستخدم</th>
@@ -35,23 +39,26 @@
                   <th>الشركه</th>
                   <th>الصلاحية</th>
                   <th>الإجراءات</th>
-
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let user of usersList">
-                  <td>{{user.name}}</td>
-                  <td>{{user.email}}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
                   <!-- <td>{{user.activity.code}}</td> -->
-                  <td>{{user.phone}}</td>
-                  <td>{{user.taxNumber}}</td>
-                  <td>{{user.company.name}}</td>
-                  <td>{{user.role.name}}</td>
+                  <td>{{ user.phone }}</td>
+                  <td>{{ user.company.taxNumber }}</td>
+                  <td>{{ user.company.name }}</td>
+                  <td>{{ user.role.name }}</td>
                   <td>
                     <ul>
                       <li>
-                        <a (click)="setUserData(user)" href="" data-bs-toggle="modal"
-                          data-bs-target="#exampleModalEdit">
+                        <a
+                          (click)="setUserData(user)"
+                          href=""
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalEdit"
+                        >
                           <i class="far fa-edit"></i>
                         </a>
                       </li>
@@ -63,117 +70,175 @@
                     </ul>
                   </td>
                 </tr>
-
-
-
               </tbody>
-
             </table>
 
-            <div>
-            </div>
+            <div></div>
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </div>
 <!--/app-container-->
 <!--Add user modal-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          إضافة مستخدم جديد
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">إضافة مستخدم جديد</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="row">
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.name" name="userName" type="text" class="form-control" id="floatingText"
-                  placeholder="محمود حمدى فهمى">
+                <input
+                  [(ngModel)]="user.name"
+                  name="userName"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="محمود حمدى فهمى"
+                />
                 <label for="floatingText">اسم المستخدم</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.email" name="email" type="email" class="form-control" id="floatingInput"
-                  placeholder="name@example.com">
+                <input
+                  [(ngModel)]="user.email"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                />
                 <label for="floatingInput">الإيميل</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.password" name="secretNo" type="password" class="form-control"
-                  id="floatingPassword" placeholder="Password">
+                <input
+                  [(ngModel)]="user.password"
+                  name="secretNo"
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
                 <label for="floatingPassword">الرقم السري</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.taxNumber" name="taxNo" type="text" class="form-control" id="floatingText"
-                  placeholder="TU98745">
+                <input
+                  [(ngModel)]="user.taxNumber"
+                  name="taxNo"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="TU98745"
+                />
                 <label for="floatingText">الرقم الضريبي</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.phone" name="phoneNo" type="text" class="form-control" id="floatingInput"
-                  placeholder="name@example.com">
+                <input
+                  [(ngModel)]="user.phone"
+                  name="phoneNo"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                />
                 <label for="floatingInput">رقم التليفون</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.clientId" name="ipConnection" type="text" class="form-control"
-                  id="floatingInput">
+                <input
+                  [(ngModel)]="user.clientId"
+                  name="ipConnection"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                />
                 <label for="floatingInput">كود العميل</label>
               </div>
             </div>
 
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.clientSecret1" name="ipConnection" type="text" class="form-control"
-                  id="floatingInput">
+                <input
+                  [(ngModel)]="user.clientSecret1"
+                  name="ipConnection"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                />
                 <label for="floatingInput">client secret 1</label>
               </div>
             </div>
 
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.clientSecret2" name="ipConnection" type="text" class="form-control"
-                  id="floatingInput">
+                <input
+                  [(ngModel)]="user.clientSecret2"
+                  name="ipConnection"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                />
                 <label for="floatingInput">client secret 2</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select (select)="user.companyId" [(ngModel)]="user.companyId" name="company"
-                  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                  <option *ngFor="let company of companysList" [ngValue]="company.id" selected="selected">
-                    {{company.name}}</option>
-
+                <select
+                  (select)="(user.companyId)"
+                  [(ngModel)]="user.companyId"
+                  name="company"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option
+                    *ngFor="let company of companysList"
+                    [ngValue]="company.id"
+                    selected="selected"
+                  >
+                    {{ company.name }}
+                  </option>
                 </select>
                 <label for="floatingSelect"> الشركه</label>
-
               </div>
-
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="user.roleId" name="role" class="form-select form-select-lg mb-3"
-                  aria-label=".form-select-lg example">
-                  <option *ngFor="let role of roleList" [ngValue]="role.id">{{role.name}}</option>
-
+                <select
+                  [(ngModel)]="user.roleId"
+                  name="role"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option *ngFor="let role of roleList" [ngValue]="role.id">
+                    {{ role.name }}
+                  </option>
                 </select>
                 <label for="floatingSelect"> الصلاحية</label>
-
               </div>
             </div>
 
@@ -189,123 +254,218 @@
                </div>
              </div> -->
             <div class="col-12 justify-content-end">
-              <div class="modal-buttons d-flex align-items-center justify-content-end">
-                <button (click)="createUser()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
-                  مستخدم</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              <div
+                class="modal-buttons d-flex align-items-center justify-content-end"
+              >
+                <button
+                  (click)="createUser()"
+                  type="submit"
+                  data-bs-dismiss="modal"
+                  class="btn btn-success"
+                >
+                  إضافة مستخدم
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  إغلاق
+                </button>
               </div>
             </div>
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </div>
 <!--Add user modal-->
 <!--Add user modal-->
-<div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModalEdit"
+  tabindex="-1"
+  aria-labelledby="exampleModalEditLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalEditLabel">
-          {{user.name}}تعديل المستخدم ::
+          {{ user.name }}تعديل المستخدم ::
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="row">
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.name" name="userName" type="text" class="form-control" id="floatingText"
-                  placeholder="محمود حمدى فهمى">
+                <input
+                  [(ngModel)]="user.name"
+                  name="userName"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="محمود حمدى فهمى"
+                />
                 <label for="floatingText">اسم المستخدم</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.email" name="email" type="email" class="form-control" id="floatingInput"
-                  placeholder="name@example.com">
+                <input
+                  [(ngModel)]="user.email"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                />
                 <label for="floatingInput">الإيميل</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.password" name="secretNo" type="password" class="form-control"
-                  id="floatingPassword" placeholder="Password">
+                <input
+                  [(ngModel)]="user.password"
+                  name="secretNo"
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
                 <label for="floatingPassword">الرقم السري</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.taxNumber" name="taxNumber" type="text" class="form-control" id="floatingText"
-                  placeholder="TU98745">
+                <input
+                  [(ngModel)]="user.taxNumber"
+                  name="taxNumber"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="TU98745"
+                />
                 <label for="floatingText">الرقم الضريبي</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.phone" name="phoneNo" type="text" class="form-control" id="floatingInput"
-                  placeholder="name@example.com">
+                <input
+                  [(ngModel)]="user.phone"
+                  name="phoneNo"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                />
                 <label for="floatingInput">رقم التليفون</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.clientId" name="ipConnection" type="text" class="form-control"
-                  id="floatingInput">
+                <input
+                  [(ngModel)]="user.clientId"
+                  name="ipConnection"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                />
                 <label for="floatingInput">كود العميل</label>
               </div>
             </div>
 
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.clientSecret1" name="ipConnection" type="text" class="form-control"
-                  id="floatingInput">
+                <input
+                  [(ngModel)]="user.clientSecret1"
+                  name="ipConnection"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                />
                 <label for="floatingInput">client secret 1</label>
               </div>
             </div>
 
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="user.clientSecret2" name="ipConnection" type="text" class="form-control"
-                  id="floatingInput">
+                <input
+                  [(ngModel)]="user.clientSecret2"
+                  name="ipConnection"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                />
                 <label for="floatingInput">client secret 2</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select (click)="getCompanys()" [(ngModel)]="user.companyId" class="form-select form-select-lg mb-3"
-                  aria-label=".form-select-lg example">
+                <select
+                  (click)="getCompanys()"
+                  [(ngModel)]="user.companyId"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
                   <!-- <option value="qqq" selected="1111"></option> -->
-                  <option *ngFor="let company of companysList" selected="qqqqqqq">{{company.name}}</option>
-
+                  <option
+                    *ngFor="let company of companysList"
+                    selected="qqqqqqq"
+                  >
+                    {{ company.name }}
+                  </option>
                 </select>
               </div>
-
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select (click)="getRoles()" [(ngModel)]="user.roleId" name="role"
-                  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                  <option *ngFor="let role of roleList" [ngValue]="role.id">{{role.name}}</option>
+                <select
+                  (click)="getRoles()"
+                  [(ngModel)]="user.roleId"
+                  name="role"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option *ngFor="let role of roleList" [ngValue]="role.id">
+                    {{ role.name }}
+                  </option>
                 </select>
                 <label for="floatingSelect"> الصلاحية</label>
-
               </div>
             </div>
             <div class="col-12 justify-content-end">
-              <div class="modal-buttons d-flex align-items-center justify-content-end">
-                <button (click)="updateUser(id)" type="submit" data-bs-dismiss="modal"
-                  class="btn btn-success">تعديل</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              <div
+                class="modal-buttons d-flex align-items-center justify-content-end"
+              >
+                <button
+                  (click)="updateUser(id)"
+                  type="submit"
+                  data-bs-dismiss="modal"
+                  class="btn btn-success"
+                >
+                  تعديل
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  إغلاق
+                </button>
               </div>
             </div>
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </div>
