@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GenericService } from '../service-layer/generic.service';
 import { Address, Branch } from '../models/branches/branch.model';
 import { BranchService } from '../service-layer/branch.service';
+import { CompanyService } from '../service-layer/company.service';
+import { Company } from '../models/company/company.model';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -14,26 +16,12 @@ declare function sidebarToggling(): any;
 export class BranchesComponent implements OnInit {
 
   branchesList!: Branch[]
-  branchModel: Branch = {
-    name_ar: '',
-    name_en: '',
-    code: '',
-    invoiceSerial: 0,
-    address: {
-      country: '',
-      governate: '',
-      regionCity: '',
-      street: '',
-      buildingNumber: '',
-      postalCode: '',
-      floor: '',
-      landmark: '',
-      additionalInformation: '',
-    } as Address,
-  }
-
+  branchModel = new Branch();
+  addressModel = new Address();
+  selectCompany!: any;
+  companyList!: Company[];
   initTable: boolean = false
-  constructor(private apiCall: BranchService) { }
+  constructor(private apiCall: BranchService, private companySer: CompanyService) { }
 
   ngOnInit(): void {
     // paggnation();
@@ -41,11 +29,13 @@ export class BranchesComponent implements OnInit {
     this.getAllBranches()
   }
 
-  getAllBranches() {
+  getCompanies() {
+    this.companySer.getAll().subscribe(com => { this.companyList = com })
+  }
 
+  getAllBranches() {
     this.apiCall.getAll().subscribe(res => {
-      let ress = res
-      this.branchesList = ress
+      this.branchesList = res
       if (this.initTable == false) {
         paggnation();
         this.initTable = true;
@@ -54,47 +44,21 @@ export class BranchesComponent implements OnInit {
   }
 
   editeBranch() {
-    // this.editeReq = {
-    //   "target": "branch",
-    //   "action": "edite",
-    //   "unique_value": {
-    //     "branch_code": this.branchId
-    //   },
-    //   "branch_name_en": this.branchNameEn,
-    //   "brnach_name_ar": this.branchNameAr,
-    //   "user_id": sessionStorage.getItem('userId'),
-    //   "account_branch_code": this.branchCode
-    // }
-    // this.apiCall.restServiceCall(this.editeReq).subscribe(res => {
-
-    // })
-    // this.getAllBranches()
+    this.apiCall.update(this.branchModel).subscribe(res => {
+      console.log(res);
+    })
   }
 
-  setAndDeleteBranch(branch: any) {
-    // this.deleteBranchReq = {
-    //   "target": "branch",
-    //   "action": "delete",
-    //   "key": "branch_code",
-    //   "value": branch.branch_code,
-    //   "user_id": sessionStorage.getItem('userId')
-    // }
-    // this.apiCall.restServiceCall(this.deleteBranchReq).subscribe(res => {
 
-    // })
-    // this.getAllBranches()
-  }
   AddBranch() {
+    console.log(this.branchModel);
+    this.branchModel.address = this.addressModel
     this.apiCall.create(this.branchModel).subscribe(res => {
-
-      console.log("bbbb", res);
+      this.branchesList.push(res)
     })
 
   }
   setBranchToEdite(branch: any) {
-    // this.branchId = branch.branch_code
-    // this.branchNameAr = branch.brnach_name_ar
-    // this.branchNameEn = branch.branch_name_en
 
   }
 
