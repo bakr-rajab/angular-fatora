@@ -1,7 +1,8 @@
 export class Company {
-  id?: string;
+  id!: string;
   name!: string;
   certificate!: string | null;
-  activity!: string | null;
+  // activity?: any;
+  activity!: any;
   taxNumber!: string | null;
 }
