@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Company } from '../models/company/company.model';
 import { CompanyService } from '../service-layer/company.service';
-import { ActivityService } from '../service-layer/static.service';
+import { StaticService } from '../service-layer/static.service';
 
 declare function sidebarToggling(): any;
 declare function paggnation(): any;
@@ -19,7 +19,7 @@ export class CompanyComponent implements OnInit {
   companyList: any
   response: any
   initTable: boolean = false
-  constructor(private activitySer: ActivityService, private apiCall: CompanyService, private cd: ChangeDetectorRef) { }
+  constructor(private staticSer: StaticService, private apiCall: CompanyService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     sidebarToggling();
@@ -62,7 +62,7 @@ export class CompanyComponent implements OnInit {
     this.companyModel = company;
   }
   getActiviteis() {
-    this.activitySer.getActivity().subscribe(act => {
+    this.staticSer.getActivity().subscribe(act => {
       this.activityList = act
     })
   }

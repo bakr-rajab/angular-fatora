@@ -10,7 +10,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class ActivityService {
+export class StaticService {
   constructor(private http: HttpClient) { }
 
   getActivity(): Observable<any> {
@@ -19,5 +19,9 @@ export class ActivityService {
 
   getGpcCodes(name: string): Observable<any> {
     return this.http.get(environment.apiUrl + `/static/gpc?name=${name}`, { responseType: 'json' });
+  }
+
+  getUnits(): Observable<any> {
+    return this.http.get(environment.apiUrl + `/static/units`, { responseType: 'json' });
   }
 }

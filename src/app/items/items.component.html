@@ -12,7 +12,7 @@
               الأصناف
             </h1>
 
-            <button (click)="getGroups()" type="button" class="btn btn-success"
+            <button (click)="getGroups();getUnits()" type="button" class="btn btn-success"
               data-bs-toggle="modal" data-bs-target="#exampleModal">
               إضافة صنف
             </button>
@@ -25,8 +25,6 @@
       <div class="row">
         <div class="col-12">
           <div class="main-table">
-
-
             <table id="example" class="display table table-hover" style="width:100%">
               <thead>
                 <tr>
@@ -44,7 +42,7 @@
                   <td>{{item.id}}</td>
                   <td>{{item.code}}</td>
                   <td>{{item.name}}</td>
-                  <td>{{item.gpcCode}}</td>
+                  <td>{{item.taxCode}}</td>
                   <td>{{item.unit}}</td>
                   <td>{{item.price}}</td>
                   <td>
@@ -57,15 +55,13 @@
                         </a>
                       </li>
                       <li>
-                        <a (click)="setAndDeleteType(item)" href="javascript:void(0);">
+                        <a (click)="delete(item.id)" >
                           <i class="far fa-trash-alt"></i>
                         </a>
                       </li>
                     </ul>
                   </td>
                 </tr>
-
-
               </tbody>
             </table>
           </div>
@@ -123,7 +119,7 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="itemModel.groupId" name="typGroupName" class="form-select" id="floatingSelect"
+                <select [(ngModel)]="itemModel.group" name="typGroupName" class="form-select" id="floatingSelect"
                   aria-label="Floating label select example">
                   <option [ngValue]="group.id" *ngFor="let group of groupsList" selected>
                     <span>{{group.code}}: </span> {{group.name }}
@@ -134,9 +130,9 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="selectedUnit" name="unitName" (change)="setUnit()" class="form-select"
+                <select [(ngModel)]="itemModel.unit" name="unitName" class="form-select"
                   id="floatingSelect" aria-label="Floating label select example">
-                  <option [ngValue]="unit" *ngFor="let unit of unitData" selected>{{unit.desc_en}}</option>
+                  <option [ngValue]="unit.desc_en" *ngFor="let unit of unitList" selected>{{unit.desc_en}}</option>
                 </select>
                 <label for="floatingSelect">الوحدة</label>
               </div>
@@ -148,27 +144,9 @@
                 <label for="floatingNumber">السعر</label>
               </div>
             </div>
-            <!-- <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <select [(ngModel)]="selectedTaxType" name="tax" (change)="setTaxType()" class="form-select"
-                  id="floatingSelect" aria-label="Floating label select example">
-                  <option [ngValue]="tax" *ngFor="let tax of taxTypesData">{{tax.Desc_ar}}</option>
-
-                </select>
-                <label for="floatingSelect">نوع الضريبة</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12  mb-3">
-              <div class="form-floating">
-                <input [(ngModel)]="taxPercent" name="taxPercent" type="number" class="form-control" id="floatingNumber"
-                  placeholder="15000">
-                <label for="floatingNumber">نسبة الضريبة</label>
-              </div>
-            </div> -->
-
             <div class="col-12 justify-content-end">
               <div class="modal-buttons d-flex align-items-center justify-content-end">
-                <button (click)="createType()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
+                <button (click)="create()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
                   صنف</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
               </div>
@@ -201,20 +179,13 @@
                 <label for="floatingText">كود الصنف</label>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12  mb-3">
-              <div class="form-floating">
-                <input [(ngModel)]="itemModel.gpcCode" name="itemModel.gpcCode" type="text" class="form-control" id="floatingText"
-                  placeholder="TU98745">
-                <label for="floatingText">الكود الضريبي للصنف</label>
-              </div>
-            </div>
             <div class="col-lg-2 col-md-12  mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="typeSymbol" name="typeSymbol" (change)="setSymbol()" class="form-select"
+                <!-- <select [(ngModel)]="selectedSymbol" name="typeSymbol" class="form-select"
                   id="floatingSelect" aria-label="Floating label select example">
                   <option value="1" selected >ddd</option>
-                  <!-- <option [ngValue]="itemModel.type" *ngFor="let sym of symbols" >{{itemModel.type}}</option> -->
-                </select>
+                  <option [ngValue]="itemModel.type" *ngFor="let sym of symbols" >{{itemModel.type}}</option>
+                </select> -->
                 <label for="floatingSelect">التكويد</label>
               </div>
             </div>
@@ -227,56 +198,50 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="selectedTypeGroup" name="typGroupName" (change)="setTypeGroup()"
+                <!-- <select [(ngModel)]="selectedTypeGroup" name="typGroupName" (change)="setTypeGroup()"
                   class="form-select" id="floatingSelect" aria-label="Floating label select example">
                   <option value="def" selected disabled>{{initTypeGroup}}</option>
                   <option [ngValue]="typeGroup" *ngFor="let typeGroup of typeGroupsList" selected>
                     {{typeGroup.group_name_ar}}</option>
-                </select>
+                </select> -->
                 <label for="floatingSelect">المجموعة السلعية</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="selectedUnit" name="unitName" (change)="setUnit()" class="form-select"
+                <!-- <select [(ngModel)]="selectedUnit" name="unitName" (change)="setUnit()" class="form-select"
                   id="floatingSelect" aria-label="Floating label select example">
                   <option value="def" selected disabled>{{initUnit}}</option>
                   <option [ngValue]="unit" *ngFor="let unit of unitData" selected>{{unit.desc_en}}</option>
-                </select>
+                </select> -->
                 <label for="floatingSelect">الوحدة</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12  mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="price" name="price" type="number" class="form-control" id="floatingNumber"
+                <input [(ngModel)]="itemModel.price" name="price" type="number" class="form-control" id="floatingNumber"
                   placeholder="15000">
                 <label for="floatingNumber">السعر</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="selectedTaxType" name="tax" (change)="setTaxType()" class="form-select"
+                <!-- <select [(ngModel)]="selectedTaxType" name="tax" (change)="setTaxType()" class="form-select"
                   id="floatingSelect" aria-label="Floating label select example">
                   <option value="def" selected disabled>{{initTaxType}}</option>
                   <option [ngValue]="tax" *ngFor="let tax of taxTypesData">{{tax.Desc_ar}}</option>
 
-                </select>
+                </select> -->
                 <label for="floatingSelect">نوع الضريبة</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
-              <div class="form-floating">
-                <input [(ngModel)]="taxPercent" name="taxPercent" type="number" class="form-control" id="floatingNumber"
-                  placeholder="15000">
-                <label for="floatingNumber">نسبة الضريبة</label>
-              </div>
-            </div>
+            
 
             <div class="col-12 justify-content-end">
               <div class="modal-buttons d-flex align-items-center justify-content-end">
-                <button (click)="editType()" type="submit" data-bs-dismiss="modal"
+                <!-- <button (click)="update()" type="submit" data-bs-dismiss="modal"
                   class="btn btn-success">تعديل</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button> -->
               </div>
             </div>
           </div>

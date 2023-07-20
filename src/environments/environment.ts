@@ -8,7 +8,8 @@ import { HttpHeaders } from "@angular/common/http";
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000',
+  // apiUrl: 'http://localhost:4000',
+  apiUrl: 'https://bakr-rajab-super-duper-broccoli-jq9999g75wq3jwq-4001.preview.app.github.dev',
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
