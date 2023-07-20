@@ -1,5 +1,5 @@
 export class AuthUser {
-  taxNumber!: number;
+  email!: string;
   password!: string;
 }
 
