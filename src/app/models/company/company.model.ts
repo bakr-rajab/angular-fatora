@@ -1,6 +1,7 @@
-export interface Company {
-  id?: string;
-  name: string;
-  certificate: string | null;
-  activity: string | null;
+export class Company {
+  id!: string;
+  name!: string;
+  certificate!: string | null;
+  activity!: any;
+  taxNumber!: string | null;
 }

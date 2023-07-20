@@ -14,12 +14,8 @@ declare function paggnation(): any;
 export class CompanyComponent implements OnInit {
   activityList: any[] = [];
 
-  companyModel: Company = {
-    name: '',
-    certificate: '',
-    activity: ''
-  }
-
+  companyModel: Company = new Company()
+  activityId!: string;
   companyList: any
   response: any
   initTable: boolean = false
@@ -54,19 +50,32 @@ export class CompanyComponent implements OnInit {
   }
 
   addCompany() {
-    console.log(this.companyModel.name);
+    console.log(this.companyModel);
     this.apiCall.createCompany(this.companyModel).subscribe(res => {
-      console.log('====================================');
-      console.log(res);
-      console.log('====================================');
       if (res)
         this.companyList = [...this.companyList, res];
     })
   }
-
+  setToEdit(company: Company) {
+    this.activityId = company.activity?.id
+    console.log();
+    this.companyModel = company;
+  }
   getActiviteis() {
     this.activitySer.getActivity().subscribe(act => {
       this.activityList = act
     })
+  }
+  edit() {
+    this.companyModel.activity = this.activityId
+    console.log(this.companyModel);
+    const { id, certificate, taxNumber, activity, name } = this.companyModel
+    this.apiCall.edit(id, { name, activity, certificate, taxNumber, id }).subscribe(res => {
+      console.log(res);
+      if (res.affected == 1) {
+        this.getAll()
+      }
+    })
+
   }
 }

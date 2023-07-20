@@ -20,6 +20,10 @@ export class BranchService {
     return this.http.post(environment.apiUrl + '/branches', JSON.stringify(data), httpOptions)
   }
 
+  update(data: Branch): Observable<Branch | any> {
+    return this.http.patch(environment.apiUrl + `/branches/${data.id}`, JSON.stringify(data), httpOptions)
+  }
+
   getAll(): Observable<any> {
     return this.http.get(environment.apiUrl + '/branches/all', { responseType: 'json' });
   }

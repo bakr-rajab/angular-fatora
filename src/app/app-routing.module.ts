@@ -21,7 +21,7 @@ import { SalesInvoicesComponent } from './sales-invoices/sales-invoices.componen
 import { SendInvoiceComponent } from './send-invoice/send-invoice.component';
 import { TaxTypesComponent } from './tax-types/tax-types.component';
 import { TypesGroupComponent } from './types-group/types-group.component';
-import { ItemComponent } from './types/types.component';
+import { ItemComponent } from './items/types.component';
 import { UnitsComponent } from './units/units.component';
 import { UserGuard } from './user.guard';
 import { UserComponent } from './user/user.component';

@@ -13,6 +13,7 @@ const httpOptions = {
 })
 export class CompanyService {
 
+
   constructor(private http: HttpClient) { }
 
   createCompany(data: Company): Observable<Company | any> {
@@ -24,5 +25,9 @@ export class CompanyService {
   }
   deleteCompany(id: string): Observable<any> {
     return this.http.delete(environment.apiUrl + `/companys/${id} `, httpOptions);
+  }
+
+  edit(id: string, company: Company): Observable<any> {
+    return this.http.patch(environment.apiUrl + `/companys/${id} `, JSON.stringify(company), httpOptions);
   }
 }
