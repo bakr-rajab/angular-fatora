@@ -8,9 +8,8 @@
         <div class="col-12">
           <div class="d-flex align-items-start justify-content-between">
             <h1 class="page-title">المستخدمين</h1>
-
             <button
-              (click)="resetAddModal(); getCompanys(); getRoles()"
+              (click)="getCompanys(); getRoles(); getBranches()"
               type="button"
               class="btn btn-success"
               data-bs-toggle="modal"
@@ -110,10 +109,10 @@
                   name="userName"
                   type="text"
                   class="form-control"
-                  id="floatingText"
+                  id="floatingText1"
                   placeholder="محمود حمدى فهمى"
                 />
-                <label for="floatingText">اسم المستخدم</label>
+                <label for="userName">اسم المستخدم</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
@@ -142,19 +141,7 @@
                 <label for="floatingPassword">الرقم السري</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="user.taxNumber"
-                  name="taxNo"
-                  type="text"
-                  class="form-control"
-                  id="floatingText"
-                  placeholder="TU98745"
-                />
-                <label for="floatingText">الرقم الضريبي</label>
-              </div>
-            </div>
+
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <input
@@ -209,8 +196,7 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  (select)="(user.companyId)"
-                  [(ngModel)]="user.companyId"
+                  [(ngModel)]="user.company"
                   name="company"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
@@ -218,7 +204,6 @@
                   <option
                     *ngFor="let company of companysList"
                     [ngValue]="company.id"
-                    selected="selected"
                   >
                     {{ company.name }}
                   </option>
@@ -229,8 +214,8 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  [(ngModel)]="user.roleId"
-                  name="role"
+                  [(ngModel)]="user.role"
+                  name="role1"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
@@ -241,18 +226,24 @@
                 <label for="floatingSelect"> الصلاحية</label>
               </div>
             </div>
-
-            <!-- <div class="col-lg-6 col-md-12 mb-3">
-               <div class="form-floating">
-                 <select [(ngModel)]="selectedCode"  name="code" (change)="setcode()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                   <option [ngValue]="code" *ngFor="let code of codeList" selected>{{code.code}}/ {{code.Desc_ar}}</option>
-
-                 </select>
-                 <input [(ngModel)]="user.activity" name="code" type="text" class="form-control" id="floatingInput"> -->
-
-            <!-- <label for="floatingSelect"> 777777كود النشاط</label>
-               </div>
-             </div> -->
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select
+                  [(ngModel)]="user.branch"
+                  name="branch"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option
+                    *ngFor="let branch of branchList"
+                    [ngValue]="branch.id"
+                  >
+                    {{ branch.name_ar }}
+                  </option>
+                </select>
+                <label for="floatingSelect"> الفرع</label>
+              </div>
+            </div>
             <div class="col-12 justify-content-end">
               <div
                 class="modal-buttons d-flex align-items-center justify-content-end"
@@ -344,19 +335,7 @@
                 <label for="floatingPassword">الرقم السري</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="user.taxNumber"
-                  name="taxNumber"
-                  type="text"
-                  class="form-control"
-                  id="floatingText"
-                  placeholder="TU98745"
-                />
-                <label for="floatingText">الرقم الضريبي</label>
-              </div>
-            </div>
+
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <input
@@ -411,16 +390,11 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  (click)="getCompanys()"
-                  [(ngModel)]="user.companyId"
+                  [(ngModel)]="user.company"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
-                  <!-- <option value="qqq" selected="1111"></option> -->
-                  <option
-                    *ngFor="let company of companysList"
-                    selected="qqqqqqq"
-                  >
+                  <option *ngFor="let company of companysList">
                     {{ company.name }}
                   </option>
                 </select>
@@ -429,8 +403,7 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  (click)="getRoles()"
-                  [(ngModel)]="user.roleId"
+                  [(ngModel)]="user.role"
                   name="role"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
@@ -447,7 +420,7 @@
                 class="modal-buttons d-flex align-items-center justify-content-end"
               >
                 <button
-                  (click)="updateUser(id)"
+                  (click)="updateUser()"
                   type="submit"
                   data-bs-dismiss="modal"
                   class="btn btn-success"
