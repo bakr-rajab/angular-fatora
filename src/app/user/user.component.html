@@ -35,9 +35,9 @@
                   <th>الإيميل</th>
                   <!-- <th>كود النشاط</th> -->
                   <th>رقم التليفون</th>
+                  <th>الصلاحية</th>
                   <th>الرقم الضريبى</th>
                   <th>الشركه</th>
-                  <th>الصلاحية</th>
                   <th>الإجراءات</th>
                 </tr>
               </thead>
@@ -47,9 +47,9 @@
                   <td>{{ user.email }}</td>
                   <!-- <td>{{user.activity.code}}</td> -->
                   <td>{{ user.phone }}</td>
+                  <td>{{ user.role.name }}</td>
                   <td>{{ user.company.taxNumber }}</td>
                   <td>{{ user.company.name }}</td>
-                  <td>{{ user.role.name }}</td>
                   <td>
                     <ul>
                       <li>
