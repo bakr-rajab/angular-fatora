@@ -61,5 +61,10 @@ export class BranchesComponent implements OnInit {
   setBranchToEdite(branch: any) {
 
   }
+  delete(id: string) {
+    this.apiCall.delete(id).subscribe(res => {
+      if (res.affected === 1) this.branchesList = this.branchesList.filter(br => br.id != id)
+    })
+  }
 
 }
