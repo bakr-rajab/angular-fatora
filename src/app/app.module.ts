@@ -45,6 +45,9 @@ import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './auth.interceptor';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -94,7 +97,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatSelectModule
   ],
   // providers: [GenericService],
   providers: [

@@ -15,73 +15,107 @@
         <div class="col-12">
           <div class="main-form">
             <form>
-              <div class="row">
-                <div class="col-lg-6 col-md-12 mb-3">
-                  <div class="form-floating">
-                    <select
-                      [(ngModel)]="envoiceModel.docymentType"
-                      name="envoicetype"
-                      class="form-select"
-                      id="floatingSelect"
-                      aria-label="Floating label select example"
+              <div class="col-12 col-md-8">
+                <div class="row col-12">
+                  <mat-form-field class="col-lg-6 col-md-6">
+                    <mat-label>اختر نوع الفاتوره</mat-label>
+                    <mat-select
+                      name="documentType"
+                      [(ngModel)]="envoiceModel.documentType"
                     >
-                      <option
-                        [ngValue]="type"
-                        *ngFor="let type of envoiceTypes"
-                        selected
+                      <mat-option
+                        *ngFor="let type of documentTypes"
+                        [value]="type"
                       >
                         {{ type }}
-                      </option>
-                    </select>
-                    <label for="floatingSelect">نوع الفاتوره</label>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-12 mb-3">
-                  <div class="form-floating">
-                    <select
-                      [(ngModel)]="envoiceModel.client"
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-lg-6 col-md-6">
+                    <mat-label>اختر العميل</mat-label>
+                    <mat-select
                       name="client"
-                      class="form-select"
-                      id="floatingSelect"
-                      aria-label="Floating label select example"
+                      [(ngModel)]="envoiceModel.documentType"
                     >
-                      <option
-                        [ngValue]="client"
-                        *ngFor="let client of clientsList"
-                        selected
+                      <mat-option
+                        *ngFor="let type of documentTypes"
+                        [value]="type"
                       >
-                        {{ client.name }}
-                      </option>
-                    </select>
-                    <label for="floatingSelect">العميل</label>
-                  </div>
-                </div>
-
-                <div class="col-lg-6 col-md-12 mb-3">
-                  <div class="form-floating">
+                        {{ type }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>الاصدار </mat-label>
                     <input
-                      [(ngModel)]="envoiceModel.internalId"
+                      matInput
+                      name="version"
+                      [(ngModel)]="envoiceModel.version"
+                      placeholder="1.0"
+                      value="1.0"
+                    />
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>الرقم الداخلي </mat-label>
+                    <input
+                      matInput
                       name="internalId"
-                      type="text"
-                      class="form-control"
-                      id="floatingText"
-                      placeholder="internal Id"
+                      [(ngModel)]="envoiceModel.internalId"
                     />
-                    <label for="floatingText">internalId</label>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-12 mb-3">
-                  <div class="form-floating">
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>purchaseOrderReference </mat-label>
                     <input
-                      [(ngModel)]="envoiceModel.comment"
-                      name="comment"
-                      type="text"
-                      class="form-control"
-                      id="floatingText"
-                      placeholder="ملاحظه"
+                      matInput
+                      name="purchaseOrderReference"
+                      [(ngModel)]="envoiceModel.purchaseOrderReference"
                     />
-                    <label for="floatingText">ملاحظه</label>
-                  </div>
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>purchaseOrderDescription </mat-label>
+                    <input
+                      matInput
+                      name="purchaseOrderDescription"
+                      [(ngModel)]="envoiceModel.purchaseOrderDescription"
+                    />
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>salesOrderReference </mat-label>
+                    <input
+                      name="salesOrderReference"
+                      matInput
+                      [(ngModel)]="envoiceModel.salesOrderReference"
+                    />
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>salesOrderDescription </mat-label>
+                    <input
+                      name="salesOrderDescription"
+                      matInput
+                      [(ngModel)]="envoiceModel.salesOrderDescription"
+                      placeholder="salesOrderDescription"
+                    />
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>proformaInvoiceNumber </mat-label>
+                    <input
+                      matInput
+                      name="proformaInvoiceNumber"
+                      [(ngModel)]="envoiceModel.proformaInvoiceNumber"
+                      placeholder="proformaInvoiceNumber"
+                      [(ngModel)]="envoiceModel.proformaInvoiceNumber"
+                    />
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>comment </mat-label>
+                    <input
+                      matInput
+                      name="comment"
+                      [(ngModel)]="envoiceModel.comment"
+                      placeholder="proformaInvoiceNumber"
+                      [(ngModel)]="envoiceModel.comment"
+                    />
+                  </mat-form-field>
                 </div>
               </div>
             </form>
@@ -93,14 +127,92 @@
           <div class="main-table inner-table">
             <div class="table-actions">
               <button
-                (click)="resetTypesModal()"
                 type="button"
-                class="btn btn-success"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                (click)="addPanel()"
+                mat-raised-button
+                color="primary"
               >
+                <mat-icon></mat-icon>
                 إضافة صنف
               </button>
+            </div>
+            <div *ngIf="lines.length > 0">
+              <mat-accordion multi>
+                <mat-expansion-panel
+                  *ngFor="let line of lines; let i = index"
+                  [expanded]="true"
+                  #expansionPanel
+                >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div>Iten-{{ i + 1 }}</div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <mat-panel-description class="row">
+                    <!-- <mat-form-field>
+                      <mat-label>الصنف </mat-label>
+                      <input matInput [(ngModel)]="lines[i].itemId" />
+                    </mat-form-field> -->
+                    <mat-form-field class="col-3">
+                      <mat-label>اختر الصنف</mat-label>
+                      <mat-select name="item" [(ngModel)]="lines[i].itemId">
+                        <mat-option
+                          *ngFor="let item of itemsList"
+                          [value]="item.id"
+                        >
+                          {{ item.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-3">
+                      <mat-label>اختر العمله</mat-label>
+                      <mat-select
+                        name="currency"
+                        [(ngModel)]="lines[i].currency"
+                      >
+                        <mat-option
+                          *ngFor="let currency of currencyList"
+                          [value]="currency.id"
+                        >
+                          {{ currency.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-3">
+                      <mat-label>الكمية</mat-label>
+                      <input
+                        matInput
+                        name="quantity"
+                        type="number"
+                        min="1"
+                        [(ngModel)]="lines[i].quantity"
+                      />
+                    </mat-form-field>
+                    <mat-form-field class="col-3">
+                      <mat-label>rate</mat-label>
+                      <input
+                        matInput
+                        name="rate"
+                        type="number"
+                        min="1"
+                        [(ngModel)]="lines[i].rate"
+                      />
+                    </mat-form-field>
+                  </mat-panel-description>
+                  <mat-action-row>
+                    <button
+                      mat-button
+                      color="primary"
+                      (click)="saveItem(expansionPanel)"
+                    >
+                      Save
+                    </button>
+                    <button mat-button color="warn" (click)="deleteItem(i)">
+                      Delete
+                    </button>
+                  </mat-action-row>
+                </mat-expansion-panel>
+              </mat-accordion>
             </div>
 
             <table

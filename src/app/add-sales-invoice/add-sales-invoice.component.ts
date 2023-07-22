@@ -1,34 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TypesAddedModel } from '../models/invoice/TypesAddedModel';
-import { GenericService } from '../service-layer/generic.service';
 import { Client } from '../models/client.model';
-import { Envoice } from '../models/envoice.model';
+import { Envoice, Line } from '../models/envoice.model';
 import { EnvoiceService } from '../service-layer/envoice.service';
+import { MatExpansionPanel } from '@angular/material/expansion';
+import { Item } from '../models/item.model';
 
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any
+
 @Component({
   selector: 'app-add-sales-invoice',
   templateUrl: './add-sales-invoice.component.html',
-  styleUrls: ['./add-sales-invoice.component.css']
+  styleUrls: ['./add-sales-invoice.component.css'],
 })
 export class AddSalesInvoiceComponent implements OnInit {
   addedTypesList = []
-
-  envoiceTypes = ["I", "C", "D"]
+  documentTypes = ["I", "C", "D"]
   envoiceModel: Envoice = new Envoice();
   envoicesList: Array<Envoice> = [];
   clientsList: Array<Client> = [];
+  lines: Array<Line> = [];
+  itemsList: Array<Item> = [];
+  currencyList: Array<any> = [{ id: "1", name: "USD" }, { id: "2", name: "EG" }]
+
   constructor(private apiCall: EnvoiceService, public router: Router) { }
 
   ngOnInit(): void {
-    // this.getAllBranches()
-    // this.getAllTypes()
-    // this.getAllUser()
-    // this.getCountries() 
     sidebarToggling();
+    const saved = sessionStorage.getItem('lines')
+    if (saved) {
+      this.lines = JSON.parse(saved);
+    }
+  }
+
+  addPanel() {
+    console.log("after adding", this.lines);
+    this.lines.push(new Line())
+  }
+
+  saveItem(panel: MatExpansionPanel) {
+    console.log("Saved itemsss", this.lines);
+    sessionStorage.setItem("items", JSON.stringify(this.lines))
+    panel.close()
+  }
+
+  deleteItem(index: number) {
+    this.lines.splice(index, 1);
+    sessionStorage.setItem("items", JSON.stringify(this.lines))
   }
 
   getAllBranches() {
