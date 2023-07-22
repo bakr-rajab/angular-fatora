@@ -17,7 +17,7 @@ declare function sidebarToggling(): any
 export class AddSalesInvoiceComponent implements OnInit {
   addedTypesList = []
 
-  envoiceTypes = ["I"]
+  envoiceTypes = ["I", "C", "D"]
   envoiceModel: Envoice = new Envoice();
   envoicesList: Array<Envoice> = [];
   clientsList: Array<Client> = [];

@@ -52,9 +52,9 @@ export class BranchesComponent implements OnInit {
 
 
   AddBranch() {
-    console.log(this.branchModel);
-    this.branchModel.address.branchId = this.branchModel.id;
+    this.addressModel.branchId = this.branchModel.id;
     this.branchModel.address = this.addressModel
+    console.log(this.branchModel);
     this.apiCall.create(this.branchModel).subscribe(res => {
       this.branchesList.push(res)
     })
