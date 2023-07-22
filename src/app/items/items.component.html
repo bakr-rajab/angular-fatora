@@ -4,19 +4,26 @@
   <div class="app-main">
     <app-common-side-nav></app-common-side-nav>
     <div class="app-main_outer">
-
       <div class="row">
         <div class="col-12">
           <div class="d-flex align-items-start justify-content-between">
-            <h1 class="page-title">
-              الأصناف
-            </h1>
+            <h1 class="page-title">الأصناف</h1>
 
-            <button (click)="getGroups();getUnits()" type="button" class="btn btn-success"
-              data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button
+              (click)="getGroups(); getUnits()"
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
               إضافة صنف
             </button>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#uploadFileModal">
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#uploadFileModal"
+            >
               تحميل ملف
             </button>
           </div>
@@ -25,7 +32,11 @@
       <div class="row">
         <div class="col-12">
           <div class="main-table">
-            <table id="example" class="display table table-hover" style="width:100%">
+            <table
+              id="example"
+              class="display table table-hover"
+              style="width: 100%"
+            >
               <thead>
                 <tr>
                   <th>#</th>
@@ -39,23 +50,26 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of itemList">
-                  <td>{{item.id}}</td>
-                  <td>{{item.code}}</td>
-                  <td>{{item.name}}</td>
-                  <td>{{item.taxCode}}</td>
-                  <td>{{item.unit}}</td>
-                  <td>{{item.price}}</td>
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.code }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.taxCode }}</td>
+                  <td>{{ item.unit }}</td>
+                  <td>{{ item.price }}</td>
                   <td>
                     <ul>
                       <li>
-
-                        <a (click)="setItemToEdite(item)" href="" data-bs-toggle="modal"
-                          data-bs-target="#exampleModalEditeType">
+                        <a
+                          (click)="setItemToEdite(item)"
+                          href=""
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalEditeType"
+                        >
                           <i class="far fa-edit"></i>
                         </a>
                       </li>
                       <li>
-                        <a (click)="delete(item.id)" >
+                        <a (click)="delete(item.id)">
                           <i class="far fa-trash-alt"></i>
                         </a>
                       </li>
@@ -67,62 +81,102 @@
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </div>
 <!--/app-container-->
 <!--Add user modal-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          إضافة صنف جديد
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">إضافة صنف جديد</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="row">
-
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="itemModel.code" name="typeCode" type="text" class="form-control" id="floatingText"
-                  placeholder="TU98745">
+                <input
+                  [(ngModel)]="itemModel.code"
+                  name="typeCode"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="TU98745"
+                />
                 <label for="floatingText">كود الصنف</label>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12  mb-3">
+            <div class="col-lg-4 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="itemModel.taxCode" name="typeTaxCode" type="text" class="form-control"
-                  id="floatingText" placeholder="TU98745">
+                <input
+                  [(ngModel)]="itemModel.taxCode"
+                  name="typeTaxCode"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="TU98745"
+                />
                 <label for="floatingText">الكود الضريبي للصنف</label>
               </div>
             </div>
-            <div class="col-lg-2 col-md-12  mb-3">
+            <div class="col-lg-2 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="itemModel.type" name="typeSymbol" class="form-select" id="floatingSelect"
-                  aria-label="Floating label select example">
-                  <option [ngValue]="sym" *ngFor="let sym of symbols" selected>{{sym}}</option>
+                <select
+                  [(ngModel)]="itemModel.type"
+                  name="typeSymbol"
+                  class="form-select"
+                  id="floatingSelect"
+                  aria-label="Floating label select example"
+                >
+                  <option [ngValue]="sym" *ngFor="let sym of symbols" selected>
+                    {{ sym }}
+                  </option>
                 </select>
                 <label for="floatingSelect">التكويد</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="itemModel.name" name="typeName" type="text" class="form-control" id="floatingText"
-                  placeholder="TU98745">
+                <input
+                  [(ngModel)]="itemModel.name"
+                  name="typeName"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="TU98745"
+                />
                 <label for="floatingText">اسم الصنف</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="itemModel.group" name="typGroupName" class="form-select" id="floatingSelect"
-                  aria-label="Floating label select example">
-                  <option [ngValue]="group.id" *ngFor="let group of groupsList" selected>
-                    <span>{{group.code}}: </span> {{group.name }}
+                <select
+                  [(ngModel)]="itemModel.group"
+                  name="typGroupName"
+                  class="form-select"
+                  id="floatingSelect"
+                  aria-label="Floating label select example"
+                >
+                  <option
+                    [ngValue]="group.id"
+                    *ngFor="let group of groupsList"
+                    selected
+                  >
+                    <span>{{ group.code }}: </span> {{ group.name }}
                   </option>
                 </select>
                 <label for="floatingSelect">المجموعة السلعية</label>
@@ -130,56 +184,100 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <select [(ngModel)]="itemModel.unit" name="unitName" class="form-select"
-                  id="floatingSelect" aria-label="Floating label select example">
-                  <option [ngValue]="unit.desc_en" *ngFor="let unit of unitList" selected>{{unit.desc_en}}</option>
+                <select
+                  [(ngModel)]="itemModel.unit"
+                  name="unitName"
+                  class="form-select"
+                  id="floatingSelect"
+                  aria-label="Floating label select example"
+                >
+                  <option
+                    [ngValue]="unit.desc_en"
+                    *ngFor="let unit of unitList"
+                    selected
+                  >
+                    {{ unit.desc_en }}
+                  </option>
                 </select>
                 <label for="floatingSelect">الوحدة</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="itemModel.price" name="price" type="number" class="form-control" id="floatingNumber"
-                  placeholder="15000">
+                <input
+                  [(ngModel)]="itemModel.price"
+                  name="price"
+                  type="number"
+                  class="form-control"
+                  id="floatingNumber"
+                  placeholder="15000"
+                />
                 <label for="floatingNumber">السعر</label>
               </div>
             </div>
             <div class="col-12 justify-content-end">
-              <div class="modal-buttons d-flex align-items-center justify-content-end">
-                <button (click)="create()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة
-                  صنف</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              <div
+                class="modal-buttons d-flex align-items-center justify-content-end"
+              >
+                <button
+                  (click)="create()"
+                  type="submit"
+                  data-bs-dismiss="modal"
+                  class="btn btn-success"
+                >
+                  إضافة صنف
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  إغلاق
+                </button>
               </div>
             </div>
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="exampleModalEditeType" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModalEditeType"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          تعديل صنف
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">تعديل صنف</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="row">
-
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="itemModel.code" name="code" type="text" class="form-control" id="floatingText"
-                  placeholder="TU98745">
+                <input
+                  [(ngModel)]="itemModel.code"
+                  name="code"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="TU98745"
+                />
                 <label for="floatingText">كود الصنف</label>
               </div>
             </div>
-            <div class="col-lg-2 col-md-12  mb-3">
+            <div class="col-lg-2 col-md-12 mb-3">
               <div class="form-floating">
                 <!-- <select [(ngModel)]="selectedSymbol" name="typeSymbol" class="form-select"
                   id="floatingSelect" aria-label="Floating label select example">
@@ -189,10 +287,16 @@
                 <label for="floatingSelect">التكويد</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="itemModel.name" name="name" type="text" class="form-control" id="floatingText"
-                  placeholder="TU98745">
+                <input
+                  [(ngModel)]="itemModel.name"
+                  name="name"
+                  type="text"
+                  class="form-control"
+                  id="floatingText"
+                  placeholder="TU98745"
+                />
                 <label for="floatingText">اسم الصنف</label>
               </div>
             </div>
@@ -217,10 +321,16 @@
                 <label for="floatingSelect">الوحدة</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12  mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="itemModel.price" name="price" type="number" class="form-control" id="floatingNumber"
-                  placeholder="15000">
+                <input
+                  [(ngModel)]="itemModel.price"
+                  name="price"
+                  type="number"
+                  class="form-control"
+                  id="floatingNumber"
+                  placeholder="15000"
+                />
                 <label for="floatingNumber">السعر</label>
               </div>
             </div>
@@ -235,10 +345,11 @@
                 <label for="floatingSelect">نوع الضريبة</label>
               </div>
             </div>
-            
 
             <div class="col-12 justify-content-end">
-              <div class="modal-buttons d-flex align-items-center justify-content-end">
+              <div
+                class="modal-buttons d-flex align-items-center justify-content-end"
+              >
                 <!-- <button (click)="update()" type="submit" data-bs-dismiss="modal"
                   class="btn btn-success">تعديل</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button> -->
@@ -247,7 +358,6 @@
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </div>

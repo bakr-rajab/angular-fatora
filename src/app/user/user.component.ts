@@ -1,6 +1,4 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { SelectClient } from '../models/client/select-client.model';
-import { GenericService } from '../service-layer/generic.service';
 import { UserService } from '../service-layer/users.service';
 import { User } from '../models/user/auth-user.model';
 import { ActivatedRoute, Router } from '@angular/router';

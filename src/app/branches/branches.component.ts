@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from '../service-layer/generic.service';
-import { Address, Branch } from '../models/branches/branch.model';
+import { Branch } from '../models/branches/branch.model';
 import { BranchService } from '../service-layer/branch.service';
 import { CompanyService } from '../service-layer/company.service';
 import { Company } from '../models/company/company.model';
+import { Address } from '../models/address.model';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -52,6 +53,7 @@ export class BranchesComponent implements OnInit {
 
   AddBranch() {
     console.log(this.branchModel);
+    this.branchModel.address.branchId = this.branchModel.id;
     this.branchModel.address = this.addressModel
     this.apiCall.create(this.branchModel).subscribe(res => {
       this.branchesList.push(res)
