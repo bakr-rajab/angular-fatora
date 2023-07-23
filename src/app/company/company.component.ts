@@ -69,8 +69,8 @@ export class CompanyComponent implements OnInit {
   edit() {
     this.companyModel.activity = this.activityId
     console.log(this.companyModel);
-    const { id, certificate, taxNumber, activity, name } = this.companyModel
-    this.apiCall.edit(id, { name, activity, certificate, taxNumber, id }).subscribe(res => {
+    const { id, ...reset } = this.companyModel
+    this.apiCall.edit(id, reset).subscribe(res => {
       console.log(res);
       if (res.affected == 1) {
         this.getAll()

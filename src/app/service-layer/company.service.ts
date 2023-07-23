@@ -27,7 +27,7 @@ export class CompanyService {
     return this.http.delete(environment.apiUrl + `/companys/${id} `, httpOptions);
   }
 
-  edit(id: string, company: Company): Observable<any> {
+  edit(id: string, company: any): Observable<any> {
     return this.http.patch(environment.apiUrl + `/companys/${id} `, JSON.stringify(company), httpOptions);
   }
 }

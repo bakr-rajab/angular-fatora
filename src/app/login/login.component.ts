@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.authModel.email = this.authModel.email; // converting taxNmuber from string tom int
 
     console.log(this.authModel);
-    
+
     this.apiCall.login(this.authModel).subscribe(res => {
       this.response = res;
       if (this.response.status == true) {
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/user'])
         } else if (this.response.role.name == 'user') {
           this.router.navigate(['/analytics'])
-          if (this.response.license.endDate < Date.now()) {
+          if (this.response?.license?.endDate < Date.now()) {
             this.showExpiryError = true
           }
         }

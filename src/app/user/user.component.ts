@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
   selectedRole!: any;
   selectedCompany!: any;
   selectedBranch!: any;
-  companysList!: Company[];
+  companysList!: Array<Company>;
   branchList!: Branch[];
   usersRes: any
   usersList!: User[];
@@ -66,6 +66,10 @@ export class UserComponent implements OnInit {
   }
 
   updateUser() {
+    this.user.branch = this.selectedBranch;
+    this.user.company = this.selectedCompany;
+    this.user.role = this.selectedRole;
+    console.log("44", this.user);
     return this.apiCall.updateUser(this.user.id, this.user).subscribe(res => {
       console.log(res)
       if (res.affected == 1) {
@@ -86,13 +90,12 @@ export class UserComponent implements OnInit {
     this.cd.detectChanges()
   }
 
-  editeUser() {
-  }
 
-
-  setUserData(user: any) {
-    console.log({ user })
+  setUserData(user: User) {
     this.user = user
+    this.selectedCompany = user.company.id;
+    this.selectedBranch = user.branch.id;
+    this.selectedRole = user.role.id;
   }
   getRoles() {
     this.roleService.getRoles().subscribe(roles => {
@@ -102,6 +105,8 @@ export class UserComponent implements OnInit {
 
   getCompanys() {
     this.companyService.getAll().subscribe(comp => {
+      console.log(comp);
+
       this.companysList = comp
     })
   }

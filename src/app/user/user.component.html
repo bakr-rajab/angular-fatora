@@ -53,8 +53,12 @@
                     <ul>
                       <li>
                         <a
-                          (click)="setUserData(user)"
-                          href=""
+                          (click)="
+                            setUserData(user);
+                            getCompanys();
+                            getRoles();
+                            getBranches()
+                          "
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModalEdit"
                         >
@@ -155,49 +159,12 @@
                 <label for="floatingInput">رقم التليفون</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="user.clientId"
-                  name="ipConnection"
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                />
-                <label for="floatingInput">كود العميل</label>
-              </div>
-            </div>
 
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="user.clientSecret1"
-                  name="ipConnection"
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                />
-                <label for="floatingInput">client secret 1</label>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="user.clientSecret2"
-                  name="ipConnection"
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                />
-                <label for="floatingInput">client secret 2</label>
-              </div>
-            </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  [(ngModel)]="user.company"
                   name="company"
+                  [(ngModel)]="user.company"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
@@ -214,8 +181,8 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  [(ngModel)]="user.role"
                   name="role1"
+                  [(ngModel)]="user.role"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
@@ -229,8 +196,8 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  [(ngModel)]="user.branch"
                   name="branch"
+                  [(ngModel)]="user.branch"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
@@ -299,8 +266,8 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <input
-                  [(ngModel)]="user.name"
                   name="userName"
+                  [(ngModel)]="user.name"
                   type="text"
                   class="form-control"
                   id="floatingText"
@@ -312,8 +279,8 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <input
-                  [(ngModel)]="user.email"
                   name="email"
+                  [(ngModel)]="user.email"
                   type="email"
                   class="form-control"
                   id="floatingInput"
@@ -325,8 +292,8 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <input
-                  [(ngModel)]="user.password"
                   name="secretNo"
+                  [(ngModel)]="user.password"
                   type="password"
                   class="form-control"
                   id="floatingPassword"
@@ -339,8 +306,8 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <input
-                  [(ngModel)]="user.phone"
                   name="phoneNo"
+                  [(ngModel)]="user.phone"
                   type="text"
                   class="form-control"
                   id="floatingInput"
@@ -351,60 +318,27 @@
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input
-                  [(ngModel)]="user.clientId"
-                  name="ipConnection"
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                />
-                <label for="floatingInput">كود العميل</label>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="user.clientSecret1"
-                  name="ipConnection"
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                />
-                <label for="floatingInput">client secret 1</label>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="user.clientSecret2"
-                  name="ipConnection"
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                />
-                <label for="floatingInput">client secret 2</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
                 <select
-                  [(ngModel)]="user.company"
+                  name="compantname"
+                  [(ngModel)]="selectedCompany"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
-                  <option *ngFor="let company of companysList">
+                  <option
+                    *ngFor="let company of companysList"
+                    [ngValue]="company.id"
+                  >
                     {{ company.name }}
                   </option>
                 </select>
+                <label for="compantname">company</label>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  [(ngModel)]="user.role"
                   name="role"
+                  [(ngModel)]="selectedRole"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
@@ -413,6 +347,24 @@
                   </option>
                 </select>
                 <label for="floatingSelect"> الصلاحية</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select
+                  name="branch"
+                  [(ngModel)]="selectedBranch"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option
+                    *ngFor="let branch of branchList"
+                    [ngValue]="branch.id"
+                  >
+                    {{ branch.name_ar }}
+                  </option>
+                </select>
+                <label for="floatingSelect"> الفرع </label>
               </div>
             </div>
             <div class="col-12 justify-content-end">

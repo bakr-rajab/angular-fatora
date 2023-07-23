@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from '../models/client.model';
-import { Envoice, Line } from '../models/envoice.model';
+import { Envoice, Line, TaxableItem } from '../models/envoice.model';
 import { EnvoiceService } from '../service-layer/envoice.service';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Item } from '../models/item.model';
+import { ClientService } from '../service-layer/client.service';
+import { ItemService } from '../service-layer/item.service';
+import { StaticService } from '../service-layer/static.service';
 
 
 declare function paggnation(): any;
@@ -22,33 +25,74 @@ export class AddSalesInvoiceComponent implements OnInit {
   envoicesList: Array<Envoice> = [];
   clientsList: Array<Client> = [];
   lines: Array<Line> = [];
+  taxsList: Array<{ id: string, code: string }> = [];
+  taxableItems: Array<TaxableItem> = [];
   itemsList: Array<Item> = [];
   currencyList: Array<any> = [{ id: "1", name: "USD" }, { id: "2", name: "EG" }]
 
-  constructor(private apiCall: EnvoiceService, public router: Router) { }
+  constructor(private apiCall: EnvoiceService,
+    private clientSer: ClientService,
+    private itemSer: ItemService,
+    private staticSer: StaticService,
+    public router: Router) { }
 
   ngOnInit(): void {
+    this.getClients()
     sidebarToggling();
-    const saved = sessionStorage.getItem('lines')
-    if (saved) {
-      this.lines = JSON.parse(saved);
+    const savedLines = sessionStorage.getItem('lines')
+    if (savedLines) {
+      this.lines = JSON.parse(savedLines);
     }
   }
 
   addPanel() {
     console.log("after adding", this.lines);
+    let line = new Line()
+    // line.taxableItems = new TaxableItem()
     this.lines.push(new Line())
   }
+  addTax(i: number) {
+    console.log(i);
+    this.taxableItems.push(new TaxableItem())
+  }
 
-  saveItem(panel: MatExpansionPanel) {
+
+  saveItem(line: any, panel: MatExpansionPanel) {
+    console.log(">>>>>>", line);
+
     console.log("Saved itemsss", this.lines);
-    sessionStorage.setItem("items", JSON.stringify(this.lines))
+    console.log("taxable items", this.taxableItems);
+
+    line.taxableItem = this.taxableItems
+    if (this.lines.length === 1) {
+      // this.lines[0].taxableItem = this.taxableItems
+    }
+    // this.lines.push
+    sessionStorage.setItem("lines", JSON.stringify(this.lines))
+    this.taxableItems = []
     panel.close()
   }
 
   deleteItem(index: number) {
     this.lines.splice(index, 1);
-    sessionStorage.setItem("items", JSON.stringify(this.lines))
+    sessionStorage.setItem("lines", JSON.stringify(this.lines))
+  }
+  getClients() {
+    this.clientSer.getAll().subscribe((res: any) => {
+      this.clientsList = res;
+    })
+  }
+
+  getItems() {
+    this.itemSer.getAll().subscribe((res: any) => {
+      this.itemsList = res;
+    })
+  }
+
+  getTaxs() {
+    this.staticSer.getTaxs().subscribe((res: any) => {
+      this.taxsList = res;
+    })
   }
 
   getAllBranches() {

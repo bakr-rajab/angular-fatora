@@ -10,18 +10,19 @@ export class Envoice {
     salesOrderReference!: string;
     salesOrderDescription!: string;
     proformaInvoiceNumber!: string;
+    currency!: string;
     lines!: Line;
 }
 export class Line {
+    id!: string;
     itemId!: string;
     quantity!: number;
-    currency!: string;
-    rate!: number;
-    taxableItems!: TaxableItem;
+    discoundRate!: number;
+    taxableItems!: Array<TaxableItem>;
 }
 
 export class TaxableItem {
     taxType!: string;
     subType!: string;
-    rate!: number;
+    taxRate!: number;
 }

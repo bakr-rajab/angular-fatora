@@ -9,9 +9,6 @@ export class User {
   password!: string;
   phone!: string;
   name!: string;
-  clientId!: string;
-  clientSecret1!: string;
-  clientSecret2!: string;
   company!: any;
   role!: any;
   branch!: any;

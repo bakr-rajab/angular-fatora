@@ -8,7 +8,6 @@
         <div class="col-12">
           <div class="d-flex align-items-start justify-content-between">
             <h1 class="page-title">الشركات</h1>
-
             <button
               type="button"
               (click)="getActiviteis()"
@@ -150,6 +149,30 @@
                 <label for="floatingSelect">شهادة الشركه</label>
               </div>
             </div>
+            <mat-form-field class="col-6">
+              <mat-label>clientId </mat-label>
+              <input
+                name="clientId"
+                matInput
+                [(ngModel)]="companyModel.clientId"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-6">
+              <mat-label>client Secret 1</mat-label>
+              <input
+                name="clientSecret1"
+                matInput
+                [(ngModel)]="companyModel.clientSecret1"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-6">
+              <mat-label>client Secret 2</mat-label>
+              <input
+                name="clientSecret2"
+                matInput
+                [(ngModel)]="companyModel.clientSecret2"
+              />
+            </mat-form-field>
             <div class="col-12 justify-content-end">
               <div
                 class="modal-buttons d-flex align-items-center justify-content-end"

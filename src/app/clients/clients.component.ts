@@ -34,7 +34,10 @@ export class ClientsComponent implements OnInit {
   }
 
   addClient() {
+    this.addressModel.branchId = "0"
     this.clientModel.address = this.addressModel;
+    console.log(this.clientModel);
+
     this.restCall.create(this.clientModel).subscribe(res => {
       this.clientsList = [...this.clientsList, res]
     })

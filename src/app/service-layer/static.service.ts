@@ -24,4 +24,7 @@ export class StaticService {
   getUnits(): Observable<any> {
     return this.http.get(environment.apiUrl + `/static/units`, { responseType: 'json' });
   }
+  getTaxs(): Observable<any> {
+    return this.http.get(environment.apiUrl + `/static/taxes`, { responseType: 'json' });
+  }
 }
