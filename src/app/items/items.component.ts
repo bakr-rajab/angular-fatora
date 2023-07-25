@@ -33,13 +33,16 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
     sidebarToggling();
+    // this.initTable=true
     this.getAllItems();
   }
 
   getAllItems() {
     this.restCall.getAll().subscribe((res) => {
       this.itemList = res;
-      if (this.initTable == false) {
+      if (this.initTable === false) {
+        console.log("4444");
+        
         paggnation();
         this.initTable = true;
       }

@@ -192,54 +192,18 @@
                       />
                     </mat-form-field>
                     <mat-action-row class="col-3">
-                      <button mat-button (click)="addTax(i)" color="primary">
-                        Add Tax
+                      <button mat-button  color="primary">
+                        <a
+                        href=""
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModalAddTax"
+                      >
+                        <i class="far fa-edit"></i>
+                      </a>
                       </button>
                     </mat-action-row>
                     <!-- add taxxxxxx -->
-                    <div *ngIf="taxableItems.length > 0">
-                      <mat-accordion multi>
-                        <mat-expansion-panel
-                          *ngFor="
-                            let taxableItem of taxableItems;
-                            let y = index
-                          "
-                          [expanded]="true"
-                        >
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                              <div>tax-{{ y + 1 }}</div>
-                            </mat-panel-title>
-                          </mat-expansion-panel-header>
-                          <mat-panel-description class="row">
-                            <mat-form-field class="col-3">
-                              <mat-label>اختر الصنف</mat-label>
-                              <mat-select
-                                name="item"
-                                [(ngModel)]="taxableItems[y].taxType"
-                              >
-                                <mat-option
-                                  *ngFor="let tax of taxsList"
-                                  [value]="tax.id"
-                                >
-                                  {{ tax.code }}
-                                </mat-option>
-                              </mat-select>
-                            </mat-form-field>
-                            <mat-form-field class="col-3">
-                              <mat-label>الكمية</mat-label>
-                              <input
-                                matInput
-                                name="quantity"
-                                type="number"
-                                min="1"
-                                [(ngModel)]="taxableItems[y].taxRate"
-                              />
-                            </mat-form-field>
-                          </mat-panel-description>
-                        </mat-expansion-panel>
-                      </mat-accordion>
-                    </div>
+                                       
                     <!-- end tax -->
                   </mat-panel-description>
                   <mat-action-row>
@@ -404,12 +368,12 @@
 <!--Add user modal-->
 <div
   class="modal fade"
-  id="exampleModal"
+  id="exampleModalAddTax"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-dialog modal-dialog-centered modal-lg col-6 taxDialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">أصناف الفاتورة</h5>
@@ -421,111 +385,27 @@
         ></button>
       </div>
       <div class="modal-body">
-        <!-- <form>
-          <div class="row">
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <select
-                  [(ngModel)]="selectedType"
-                  name="typeName"
-                  (change)="setType()"
-                  class="form-select"
-                  id="floatingSelect"
-                  aria-label="Floating label select example"
-                >
-                  <option
-                    [ngValue]="type"
-                    *ngFor="let type of typesList"
-                    selected
-                  >
-                    {{ type.type_name }}
-                  </option>
-                </select>
-                <label for="floatingSelect">الصنف</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="amount"
-                  name="amount"
-                  type="text"
-                  (keyup)="calculatePriceAndTotalPrice()"
-                  class="form-control"
-                  id="floatingText"
-                  placeholder="100"
-                />
-                <label for="floatingText">الكمية</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="typePrice"
-                  name="price"
-                  type="text"
-                  (keyup)="changeTypePriceOnPurpose()"
-                  class="form-control"
-                  id="floatingText"
-                  placeholder="100"
-                />
-                <label for="floatingText">السعر</label>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="typeCommDisc"
-                  name="amount"
-                  type="text"
-                  (keyup)="calculatePriceAndTotalPrice()"
-                  class="form-control"
-                  id="floatingText"
-                  placeholder="100"
-                />
-                <label for="floatingText">الخصم التجارى</label>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="totalPrice"
-                  name="totalPrice"
-                  type="number"
-                  class="form-control"
-                  id="floatingNumber"
-                  placeholder="800"
-                />
-                <label for="floatingNumber">الإجمالي</label>
-              </div>
-            </div>
-
-            <div class="col-12 justify-content-end">
-              <div
-                class="modal-buttons d-flex align-items-center justify-content-end"
-              >
-                <button type="submit" class="btn btn-success">حفظ</button> 
-                <button
-                  (click)="createInvocieType()"
-                  data-bs-dismiss="modal"
-                  type="submit"
-                  class="btn btn-outline-success"
-                >
-                  حفظ
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  إغلاق
-                </button>
-              </div>
-            </div>
-          </div>
-        </form> -->
+        <mat-form-field >
+          <mat-label>اختر الصنف</mat-label>
+          <mat-select name="item" [(ngModel)]="lines">
+            <mat-option
+              *ngFor="let item of itemsList"
+              [value]="item.id"
+            >
+              {{ item.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>الكمية</mat-label>
+          <input
+            matInput
+            name="quantity"
+            type="number"
+            min="1"
+            [(ngModel)]="lines"
+          />
+        </mat-form-field>
       </div>
     </div>
   </div>

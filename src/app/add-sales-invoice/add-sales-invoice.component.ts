@@ -29,7 +29,7 @@ export class AddSalesInvoiceComponent implements OnInit {
   taxableItems: Array<TaxableItem> = [];
   itemsList: Array<Item> = [];
   currencyList: Array<any> = [{ id: "1", name: "USD" }, { id: "2", name: "EG" }]
-
+  
   constructor(private apiCall: EnvoiceService,
     private clientSer: ClientService,
     private itemSer: ItemService,
@@ -45,6 +45,7 @@ export class AddSalesInvoiceComponent implements OnInit {
     }
   }
 
+  
   addPanel() {
     console.log("after adding", this.lines);
     let line = new Line()
