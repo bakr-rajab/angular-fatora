@@ -25,11 +25,23 @@ export class AddSalesInvoiceComponent implements OnInit {
   envoicesList: Array<Envoice> = [];
   clientsList: Array<Client> = [];
   lines: Array<Line> = [];
-  taxsList: Array<{ id: string, code: string }> = [];
+
+  taxs:Array<any>=[]
+
+  taxTypes: Array<{ id: string, code: string }> = [];
+
+  subTypes: Array<{ id: string, code: string }> = [];
+
   taxableItems: Array<TaxableItem> = [];
   itemsList: Array<Item> = [];
   currencyList: Array<any> = [{ id: "1", name: "USD" }, { id: "2", name: "EG" }]
-  
+  itemPrice!:number
+  salesTotal:number=0;
+  itemsDiscount:number=0;
+  netTotal:number=0
+
+
+
   constructor(private apiCall: EnvoiceService,
     private clientSer: ClientService,
     private itemSer: ItemService,
@@ -52,17 +64,13 @@ export class AddSalesInvoiceComponent implements OnInit {
     // line.taxableItems = new TaxableItem()
     this.lines.push(new Line())
   }
-  addTax(i: number) {
-    console.log(i);
-    this.taxableItems.push(new TaxableItem())
+
+  addTax() {
+    this.taxs.push({taxId:1,subId:1,rate:1})
   }
 
 
   saveItem(line: any, panel: MatExpansionPanel) {
-    console.log(">>>>>>", line);
-
-    console.log("Saved itemsss", this.lines);
-    console.log("taxable items", this.taxableItems);
 
     line.taxableItem = this.taxableItems
     if (this.lines.length === 1) {
@@ -86,14 +94,23 @@ export class AddSalesInvoiceComponent implements OnInit {
 
   getItems() {
     this.itemSer.getAll().subscribe((res: any) => {
+      console.log("eee",res);
       this.itemsList = res;
     })
   }
 
+  setItemValue(i:any){
+    this.itemPrice=i.price 
+  }
+
   getTaxs() {
     this.staticSer.getTaxs().subscribe((res: any) => {
-      this.taxsList = res;
+      this.taxTypes = res;
     })
+  }
+
+  getSubTypes(sub:number){
+    
   }
 
   getAllBranches() {
