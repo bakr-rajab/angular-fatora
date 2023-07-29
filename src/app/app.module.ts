@@ -43,12 +43,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './auth.interceptor';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    
   ],
   // providers: [GenericService],
   providers: [

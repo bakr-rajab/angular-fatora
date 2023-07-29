@@ -2,9 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TypesAddedModel } from '../models/invoice/TypesAddedModel';
 import { GenericService } from '../service-layer/generic.service';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 
 declare function paggnation():any;
 declare function sidebarToggling(): any;
+export interface myModel{
+  title?:string;
+  description?:string;
+}
+
+
+
 @Component({
   selector: 'app-add-notice',
   templateUrl: './add-notice.component.html',
@@ -70,14 +78,92 @@ export class AddNoticeComponent implements OnInit {
   countriesData:any
   selectedCountry:any
   accountTypeCode:any
-  constructor(private apiCall: GenericService,public router:Router) { }
+  items: {
+    title: string;
+    description: string;
+    form: FormGroup;
+    expanded: boolean;
+    children: { form: FormGroup }[];
+  }[] = [];
+  countries: string[] = ['Egypt', 'United States', 'Germany', 'India', 'Others'];
+  genders: string[] = ['Male', 'Female', 'Other'];
+
+  constructor(private formBuilder: FormBuilder,private apiCall: GenericService,public router:Router) { 
+   
+  }
 
   ngOnInit(): void {
+    this.addItem();
     this.getAllBranches()
     this.getAllTypes()
     this.getAllUser()
     this.getCountries() 
     sidebarToggling();
+  }
+ 
+  addItem(): void {
+    const newItemForm = this.formBuilder.group({
+      name: '',
+      email: '',
+      country:''
+    });
+
+    this.items.push({
+      title: 'New Item',
+      description: 'Enter details here',
+      form: newItemForm,
+      expanded: true,
+      children: [],
+    });
+  }
+
+  addChild(item: any): void {
+    const newChildForm = this.formBuilder.group({
+      name: '',
+      age: '',
+      gender: '',
+    });
+
+    item.children.push({ form: newChildForm });
+  }
+
+  removeChild(item: any, child: any): void {
+    const childIndex = item.children.indexOf(child);
+    if (childIndex !== -1) {
+      item.children.splice(childIndex, 1);
+    }
+  }
+
+  removeItem(item: any): void {
+    const itemIndex = this.items.indexOf(item);
+    if (itemIndex !== -1) {
+      this.items.splice(itemIndex, 1);
+    }
+  }
+
+  saveInvoice(): void {
+    console.log("============================>>");
+    
+
+    console.log("items",this.items);
+    this.items.map(it=>{
+      console.log("iii",it.form.value);
+      it.children.map(ch=>{
+        console.log(ch.form.value);
+        
+      })
+      
+    })
+    
+    // Assuming you have the 'items' array representing the data to send
+    // this.invoiceService.createInvoice(this.items).subscribe(
+    //   (response) => {
+    //     console.log('Invoice data submitted successfully:', response);
+    //   },
+    //   (error) => {
+    //     console.error('Error submitting invoice data:', error);
+    //   }
+    // );
   }
 
   getAllBranches(){
@@ -290,4 +376,5 @@ export class AddNoticeComponent implements OnInit {
     setCountry(){
       console.log(this.selectedCountry.Desc_ar)
     }
+
 }
