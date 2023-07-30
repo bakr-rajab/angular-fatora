@@ -139,7 +139,7 @@
             <div class="table-actions">
               <button
                 type="button"
-                (click)="addPanel(); getItems(); getTaxs()"
+                (click)="addLine(); getItems(); getTaxs()"
                 mat-raised-button
                 color="primary"
               >
@@ -149,116 +149,156 @@
             </div>
             <div *ngIf="lines.length > 0">
               <mat-accordion multi>
-                <mat-expansion-panel
-                  *ngFor="let line of lines; let i = index"
-                  [expanded]="true"
-                  #expansionPanel
-                >
-                  <mat-expansion-panel-header class="panel-title">
-                    <mat-panel-title >
-                      <br>
-                      <div>Iten-{{ i + 1 }}</div>
-                      <mat-form-field class="col-3">
-                        <mat-label>القيمة</mat-label>
-                        <input
-                          matInput
-                          name="salesTotal"
-                          [value]="salesTotal"
-                          disabled
-                        />
+                <mat-accordion>
+                  <mat-expansion-panel
+                    *ngFor="let line of lines; let i = index"
+                    [expanded]="line.expanded"
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        line-{{ i + 1 }}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        <mat-form-field class="col-3">
+                          <mat-label>القيمة</mat-label>
+                          <input
+                            matInput
+                            name="salesTotal"
+                            [value]="salesTotal"
+                            disabled
+                          />
+                        </mat-form-field>
+                        <mat-form-field class="col-3">
+                          <mat-label>قيمة الخصم التجارى </mat-label>
+                          <input
+                            matInput
+                            name="itemsDiscount"
+                            [value]="itemsDiscount"
+                            disabled
+                          />
+                        </mat-form-field>
+                        <mat-form-field class="col-3">
+                          <mat-label>صافى القيمة بغد الخصم </mat-label>
+                          <input
+                            matInput
+                            name="netTotal"
+                            [value]="netTotal"
+                            disabled
+                          />
+                        </mat-form-field>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <!-- Your form content for the main item -->
+                    <form [formGroup]="line.form">
+
+                      <mat-form-field appearance="fill">
+                        <mat-label>اختر الصنف </mat-label>
+                        <mat-select formControlName="itemId">
+                          <mat-option
+                            *ngFor="let item of itemsList"
+                            [value]="item.id"
+                          >
+                            {{ item.name }}--{{item.taxCode}}
+                          </mat-option>
+                        </mat-select>
                       </mat-form-field>
-                      <mat-form-field class="col-3">
-                        <mat-label>قيمة الخصم التجارى </mat-label>
-                        <input
-                          matInput
-                          name="itemsDiscount"
-                          [value]="itemsDiscount"
-                          disabled
-                        />
+
+                      <mat-form-field appearance="fill">
+                        <mat-label>الكمية</mat-label>
+                        <input matInput type="number" formControlName="quantity" min="1"/>
                       </mat-form-field>
-                      <mat-form-field class="col-3">
-                        <mat-label>صافى القيمة بغد الخصم </mat-label>
-                        <input
-                          matInput
-                          name="netTotal"
-                          [value]="netTotal"
-                          disabled
-                        />
+
+                      <mat-form-field appearance="fill">
+                        <mat-label>السعر</mat-label>
+                        <input matInput type="number" formControlName="price" min="1"/>
                       </mat-form-field>
-                    </mat-panel-title>
-                    <mat-action-row class="col-3">
-                      <button mat-button  color="primary">
-                        <a
-                        href=""
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModalAddTax"
+
+
+                      <mat-form-field appearance="fill">
+                        <mat-label>Discound Rate</mat-label>
+                        <input matInput type="number" formControlName="discoundRate" min="0"/>
+                      </mat-form-field>
+
+                      <!-- Child Panels -->
+                      <button
+                        type="button"
+                        mat-raised-button
+                        color="primary"
+                        (click)="addTax(line);getTaxs()"
                       >
-                        <i class="far fa-edit"></i>
-                        add tax
-                      </a>
+                        <mat-icon>add</mat-icon> اصافه ضريبة
                       </button>
-                    </mat-action-row>
-                  </mat-expansion-panel-header>
-                  <mat-panel-description class="row">
-                    <mat-form-field class="col-3">
-                      <mat-label>اختر الصنف</mat-label>
-                      <mat-select name="item" [(ngModel)]="lines[i].itemId" (selectionChange)="setItemValue(lines[i].itemId)">
-                        <mat-option
-                          *ngFor="let item of itemsList"
-                          [value]="item"
-                        >
-                          {{item.name}}--{{item.taxCode}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                    <mat-form-field class="col-3">
-                      <mat-label>الكمية</mat-label>
-                      <input
-                        matInput
-                        name="quantity"
-                        type="number"
-                        min="1"
-                        [(ngModel)]="lines[i].quantity"
-                      />
-                    </mat-form-field>
-                    <mat-form-field class="col-3">
-                      <mat-label>السعر</mat-label>
-                      <input
-                        matInput
-                        name="price"
-                        type="number"
-                        min="1"
-                        [(ngModel)]="itemPrice"
-                      />
-                    </mat-form-field>
-                    <mat-form-field class="col-3">
-                      <mat-label>Discound Rate</mat-label>
-                      <input
-                        matInput
-                        name="discountrate"
-                        type="number"
-                        min="1"
-                        [(ngModel)]="lines[i].discoundRate"
-                      />
-                    </mat-form-field>
-                    
-                    <!-- add taxxxxxx -->
-                                       
-                    <!-- end tax -->
-                  </mat-panel-description>
-                <mat-action-row>
+
+                      <ng-container *ngFor="let tax of line.taxs ;let y=index">
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              tax-{{y+1}}
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+
+                          <!-- Your form content for the child item -->
+                          <form [formGroup]="tax.form">
+                            
+
+                            <mat-form-field appearance="fill">
+                              <mat-label>اختر النوع</mat-label>
+                              <mat-select formControlName="taxId">
+                                <mat-option
+                                  *ngFor="let taxType of taxTypes"
+                                  [value]="taxType.id"
+                                >
+                                  {{ taxType.code }}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                              <mat-label>اختر sub</mat-label>
+                              <mat-select formControlName="subTaxId">
+                                <mat-option
+                                  *ngFor="let taxType of taxTypes"
+                                  [value]="taxType.id"
+                                >
+                                  {{ taxType.code }}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+
+
+                            <mat-form-field appearance="fill">
+                              <mat-label>تسبه الضريبه</mat-label>
+                              <input
+                                matInput
+                                formControlName="rate"
+                                type="number"
+                              />
+                            </mat-form-field>
+
+                            <button
+                              type="button"
+                              mat-raised-button
+                              color="warn"
+                              (click)="removeTax(line, tax)"
+                            >
+                              <mat-icon>delete</mat-icon> Remove tax
+                            </button>
+                          </form>
+                        </mat-expansion-panel>
+                      </ng-container>
+                    </form>
+
                     <button
-                      mat-button
-                      color="primary"
-                      (click)="saveItem(line, expansionPanel)"
+                      type="button"
+                      mat-raised-button
+                      color="warn"
+                      (click)="removeLine(line)"
                     >
-                      Save
+                      <mat-icon>delete</mat-icon> Remove line
                     </button>
-                    <button mat-button color="warn" (click)="deleteItem(i)">
-                      Delete
-                    </button>
-                  </mat-action-row>
-                </mat-expansion-panel>
+                  </mat-expansion-panel>
+                </mat-accordion>
               </mat-accordion>
             </div>
 
@@ -389,7 +429,7 @@
           </form>
         </div>
         <div class="main-buttons">
-          <button (click)="createEnvoice()" type="submit" class="btn btn-save">
+          <button (click)="createEnvoice() ;saveInvoice()" type="submit" class="btn btn-save">
             حفظ
           </button>
           <button
@@ -416,7 +456,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg col-6 taxDialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">اضاقه ضريبة </h5>
+        <h5 class="modal-title" id="exampleModalLabel">اضاقه ضريبة</h5>
         <button
           type="button"
           class="btn-close"
@@ -425,113 +465,7 @@
         ></button>
       </div>
       <div class="modal-body">
-
-        <div class="row">
-          <div class="col-12">
-            <div class="main-table inner-table">
-              <div class="table-actions">
-                <button
-                  type="button"
-                  (click)="getTaxs(); addTax()"
-                  mat-raised-button
-                  color="primary"
-                >
-                  <mat-icon></mat-icon>
-                اضاقه ضريبة
-                </button>
-              </div>
-              <div *ngIf="taxs.length > 0">
-                <mat-accordion multi>
-                  <mat-expansion-panel
-                    *ngFor="let tax of taxs; let i = index"
-                    [expanded]="true"
-                    #expansionPanel
-                  >
-                    <mat-expansion-panel-header class="panel-title">
-                      <mat-panel-title >
-                        <br>
-                        <div>tax-{{ i + 1 }}</div>
-                      </mat-panel-title>
-                      <mat-action-row class="col-3">
-                        <button mat-button  color="primary">
-                          <a
-                          href=""
-                        >
-                          <i class="far fa-edit"></i>
-                          add tax
-                        </a>
-                        </button>
-                      </mat-action-row>
-                    </mat-expansion-panel-header>
-                    <mat-panel-description class="row">
-                      <mat-form-field class="col-3">
-                        <mat-label>اختر النوع</mat-label>
-                        <mat-select name="types" [(ngModel)]="taxs[i].taxId">
-                          <mat-option
-                            *ngFor="let taxType of taxTypes"
-                            [value]="taxType.id"
-                          >
-                            {{taxType.code}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                      <mat-form-field class="col-3">
-                        <mat-label>اختر النوع</mat-label>
-                        <mat-select name="subType" [(ngModel)]="taxs[i].taxId">
-                          <mat-option
-                            *ngFor="let subType of subTypes"
-                            [value]="subType.id"
-                          >
-                            {{subType.id}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                      <mat-form-field class="col-3">
-                        <mat-label>نسبة الضريبه</mat-label>
-                        <input
-                          matInput
-                          name="quantity"
-                          type="number"
-                          min="1"
-                          [(ngModel)]="taxs[i].rate"
-                        />
-                      </mat-form-field>
-                     
-                      <mat-form-field class="col-3">
-                        <mat-label>قيمة الضريبه</mat-label>
-                        <input
-                          matInput
-                          name="discountrate"
-                          type="number"
-                          min="1"
-                          [(ngModel)]="taxs[i].discoundRate"
-                        />
-                      </mat-form-field>
-                      
-                      <!-- add taxxxxxx -->
-                                         
-                      <!-- end tax -->
-                    </mat-panel-description>
-                  <mat-action-row>
-                      <button
-                        mat-button
-                        color="primary"
-                        (click)="saveItem(tax, expansionPanel)"
-                      >
-                        Save
-                      </button>
-                      <button mat-button color="warn" (click)="deleteItem(i)">
-                        Delete
-                      </button>
-                    </mat-action-row>
-                  </mat-expansion-panel>
-                </mat-accordion>
-              </div>
-  
-              
-            </div>
-          </div>
-        </div>
+       
         <!-- 77777 -->
       </div>
     </div>

@@ -8,6 +8,7 @@ import { Item } from '../models/item.model';
 import { ClientService } from '../service-layer/client.service';
 import { ItemService } from '../service-layer/item.service';
 import { StaticService } from '../service-layer/static.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 declare function paggnation(): any;
@@ -24,9 +25,9 @@ export class AddSalesInvoiceComponent implements OnInit {
   envoiceModel: Envoice = new Envoice();
   envoicesList: Array<Envoice> = [];
   clientsList: Array<Client> = [];
-  lines: Array<Line> = [];
+  // lines: Array<Line> = [];
 
-  taxs:Array<any>=[]
+  // taxs:Array<any>=[]
 
   taxTypes: Array<{ id: string, code: string }> = [];
 
@@ -40,16 +41,23 @@ export class AddSalesInvoiceComponent implements OnInit {
   itemsDiscount:number=0;
   netTotal:number=0
 
-
+  lines: {
+    form: FormGroup;
+    expanded: boolean;
+    taxs: { form: FormGroup }[];
+  }[] = [];
 
   constructor(private apiCall: EnvoiceService,
     private clientSer: ClientService,
     private itemSer: ItemService,
     private staticSer: StaticService,
+    private formBuilder: FormBuilder,
     public router: Router) { }
 
   ngOnInit(): void {
     this.getClients()
+    this.getItems()
+    this.addLine();
     sidebarToggling();
     const savedLines = sessionStorage.getItem('lines')
     if (savedLines) {
@@ -58,34 +66,65 @@ export class AddSalesInvoiceComponent implements OnInit {
   }
 
   
-  addPanel() {
-    console.log("after adding", this.lines);
-    let line = new Line()
-    // line.taxableItems = new TaxableItem()
-    this.lines.push(new Line())
+  addLine(): void {
+    const newLineForm = this.formBuilder.group({
+      itemId: '',
+      discoundRate: '',
+      quantity:0,
+      price:0
+    });
+
+    this.lines.push({
+      form: newLineForm,
+      expanded: true,
+      taxs: [],
+    });
   }
 
-  addTax() {
-    this.taxs.push({taxId:1,subId:1,rate:1})
+  addTax(line: any): void {
+    const newTaxForm = this.formBuilder.group({
+      taxId: '',
+      subTaxId: '',
+      rate: '',
+    });
+
+    line.taxs.push({ form: newTaxForm });
   }
 
-
-  saveItem(line: any, panel: MatExpansionPanel) {
-
-    line.taxableItem = this.taxableItems
-    if (this.lines.length === 1) {
-      // this.lines[0].taxableItem = this.taxableItems
+  removeTax(line: any, tax: any): void {
+    const childIndex = line.taxs.indexOf(tax);
+    if (childIndex !== -1) {
+      line.taxs.splice(childIndex, 1);
     }
-    // this.lines.push
-    sessionStorage.setItem("lines", JSON.stringify(this.lines))
-    this.taxableItems = []
-    panel.close()
   }
 
-  deleteItem(index: number) {
-    this.lines.splice(index, 1);
-    sessionStorage.setItem("lines", JSON.stringify(this.lines))
+  removeLine(item: any): void {
+    const itemIndex = this.lines.indexOf(item);
+    if (itemIndex !== -1) {
+      this.lines.splice(itemIndex, 1);
+    }
   }
+
+  saveInvoice(): void {
+    console.log("============================>>");
+    
+    const itemss:any=[]
+    const taxss:any=[]
+    console.log("items",this.lines);
+    const iii=this.lines.map(it=>{
+      console.log("iii",it.form.value);
+      itemss.push(it.form.value)
+      
+      return it.taxs.map((ch)=>{
+        console.log(ch.form.value);
+        return [it.form.value,[ch.form.value]]
+      })
+      
+    })
+    console.log("11111111111111111111111111",iii);
+    
+  }
+
   getClients() {
     this.clientSer.getAll().subscribe((res: any) => {
       this.clientsList = res;
