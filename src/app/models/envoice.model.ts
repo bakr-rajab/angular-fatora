@@ -11,7 +11,7 @@ export class Envoice {
     salesOrderDescription!: string;
     proformaInvoiceNumber!: string;
     currency!: string;
-    lines!: Line;
+    lines!: Array<Line>;
 }
 export class Line {
     id!: string;

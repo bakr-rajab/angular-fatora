@@ -231,7 +231,7 @@
                       </button>
 
                       <ng-container *ngFor="let tax of line.taxs ;let y=index">
-                        <mat-expansion-panel>
+                        <mat-expansion-panel [expanded]="true">
                           <mat-expansion-panel-header>
                             <mat-panel-title>
                               tax-{{y+1}}
@@ -244,7 +244,7 @@
 
                             <mat-form-field appearance="fill">
                               <mat-label>اختر النوع</mat-label>
-                              <mat-select formControlName="taxId">
+                              <mat-select formControlName="taxId" (selectionChange)="getSubTypes($event.value)"> 
                                 <mat-option
                                   *ngFor="let taxType of taxTypes"
                                   [value]="taxType.id"
@@ -258,7 +258,7 @@
                               <mat-label>اختر sub</mat-label>
                               <mat-select formControlName="subTaxId">
                                 <mat-option
-                                  *ngFor="let taxType of taxTypes"
+                                  *ngFor="let taxType of subTypes"
                                   [value]="taxType.id"
                                 >
                                   {{ taxType.code }}
@@ -289,7 +289,8 @@
                       </ng-container>
                     </form>
 
-                    <button
+                    <div class="table-actions">
+                      <button
                       type="button"
                       mat-raised-button
                       color="warn"
@@ -297,6 +298,7 @@
                     >
                       <mat-icon>delete</mat-icon> Remove line
                     </button>
+                    </div>
                   </mat-expansion-panel>
                 </mat-accordion>
               </mat-accordion>
