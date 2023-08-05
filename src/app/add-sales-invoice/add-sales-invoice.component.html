@@ -159,7 +159,7 @@
                         line-{{ i + 1 }}
                       </mat-panel-title>
                       <mat-panel-description>
-                        <mat-form-field class="col-3">
+                        <mat-form-field >
                           <mat-label>القيمة</mat-label>
                           <input
                             matInput
@@ -168,7 +168,7 @@
                             disabled
                           />
                         </mat-form-field>
-                        <mat-form-field class="col-3">
+                        <mat-form-field >
                           <mat-label>قيمة الخصم التجارى </mat-label>
                           <input
                             matInput
@@ -177,7 +177,7 @@
                             disabled
                           />
                         </mat-form-field>
-                        <mat-form-field class="col-3">
+                        <mat-form-field >
                           <mat-label>صافى القيمة بغد الخصم </mat-label>
                           <input
                             matInput
@@ -240,11 +240,11 @@
 
                           <!-- Your form content for the child item -->
                           <form [formGroup]="tax.form">
-                            
+
 
                             <mat-form-field appearance="fill">
                               <mat-label>اختر النوع</mat-label>
-                              <mat-select formControlName="taxId" (selectionChange)="getSubTypes($event.value)"> 
+                              <mat-select formControlName="taxId" (selectionChange)="getSubTypes($event.value)">
                                 <mat-option
                                   *ngFor="let taxType of taxTypes"
                                   [value]="taxType.id"
@@ -339,7 +339,7 @@
                       <!-- <li>
                                      <a href="./">
                                        <i class="far fa-edit"></i>
-  
+
                                      </a>
                                    </li> -->
                       <li>
@@ -467,7 +467,7 @@
         ></button>
       </div>
       <div class="modal-body">
-       
+
         <!-- 77777 -->
       </div>
     </div>
@@ -504,7 +504,7 @@
                   class="form-select"
                   id="floatingSelect"
                   aria-label="Floating label select example"
-                > 
+                >
                   <option
                     [ngValue]="type"
                     *ngFor="let type of typesList"
