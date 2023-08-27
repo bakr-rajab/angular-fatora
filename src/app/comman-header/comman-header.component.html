@@ -23,14 +23,14 @@
 
 <div class="user-info">
  <div class="dropdown">
-   <button class="btn  dropdown-toggle" type="button" id="" 
+   <button class="btn  dropdown-toggle" type="button" id=""
    data-bs-toggle="dropdown" aria-expanded="false">
-   
+
 <img src="../assets/img/userIcon.jfif" alt="user-icon" >
    مرحبا , {{userName}}
    </button>
    <ul class="dropdown-menu" aria-labelledby="">
-     <li *ngIf="userRole == 'user'"><a class="dropdown-item" [routerLink]="['/editeUser']">
+     <li *ngIf="userRole == 'User'"><a class="dropdown-item" [routerLink]="['/editeUser']">
        تعديل
      </a></li>
      <li><a href="javascript:void(0)" class="dropdown-item" (click)="onLogout()">

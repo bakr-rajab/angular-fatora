@@ -20,11 +20,10 @@ export class CommonSideNavComponent implements OnInit {
       this.showAdminPriv = true;
       this.showClientPriv = false;
       this.showSuperAdminPriv = false;
-    } else if (sessionStorage.getItem('userRole') == 'user') {
+    } else if (sessionStorage.getItem('userRole') == 'User') {
       this.showClientPriv = true;
       this.showSuperAdminPriv = false;
       this.showAdminPriv = false;
     }
   }
-
 }

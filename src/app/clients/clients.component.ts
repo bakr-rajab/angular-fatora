@@ -11,7 +11,6 @@ declare function sidebarToggling(): any;
   styleUrls: ['./clients.component.css']
 })
 export class ClientsComponent implements OnInit {
-
   constructor(private restCall: ClientService) { }
   initTable: boolean = false
   clientModel = new Client()
@@ -34,7 +33,6 @@ export class ClientsComponent implements OnInit {
   }
 
   addClient() {
-    this.addressModel.branchId = "0"
     this.clientModel.address = this.addressModel;
     console.log(this.clientModel);
 
@@ -56,6 +54,7 @@ export class ClientsComponent implements OnInit {
     })
     // this.getAll()
   }
+
   setClientToEdite(client: any) {
     this.clientModel = client;
     // this.addressModel

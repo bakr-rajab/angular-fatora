@@ -6,25 +6,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 class PermissionsService {
-
   constructor(private router: Router) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (sessionStorage.getItem('userRole') == 'user'
+    console.log("userRole", sessionStorage.getItem('userRole'))
+    if (sessionStorage.getItem('userRole') == 'User'
       // && sessionStorage.getItem('endDate') >= new Date()
     ) {
+      console.log('====================================');
+      console.log("user gyard");
+      console.log('====================================');
       return true;
     } else {
       this.router.navigate(['/login']);
       return false;
     }
-
   }
 }
 
 export const ClientsGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
   return inject(PermissionsService).canActivate(next, state);
 }
+
 // export class ClientsGuard {
 //   constructor(public router: Router) { }
 //   canActivate() {

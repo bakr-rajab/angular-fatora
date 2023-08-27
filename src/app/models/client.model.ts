@@ -7,6 +7,7 @@ export class Client {
     phone!: string;
     type!: ClientType;
     taxNumber!: string;
+    branchId:string='0';
     address!: Address
 }
 
