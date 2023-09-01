@@ -66,14 +66,7 @@
                       value="1.0"
                     />
                   </mat-form-field>
-                  <mat-form-field class="col-6">
-                    <mat-label>الرقم الداخلي </mat-label>
-                    <input
-                      matInput
-                      name="internalId"
-                      [(ngModel)]="envoiceModel.internalId"
-                    />
-                  </mat-form-field>
+                
                   <mat-form-field class="col-6">
                     <mat-label>purchaseOrderReference </mat-label>
                     <input
@@ -117,17 +110,8 @@
                       [(ngModel)]="envoiceModel.proformaInvoiceNumber"
                     />
                   </mat-form-field>
-                  <mat-form-field class="col-6">
-                    <mat-label>comment </mat-label>
-                    <input
-                      matInput
-                      name="comment"
-                      [(ngModel)]="envoiceModel.comment"
-                      placeholder="proformaInvoiceNumber"
-                      [(ngModel)]="envoiceModel.comment"
-                    />
-                  </mat-form-field>
-                </div>
+                 
+                </div> 
               </div>
             </form>
           </div>
@@ -164,7 +148,7 @@
                           <input
                             matInput
                             name="salesTotal"
-                            [value]="salesTotal"
+                            [value]="line.form.value.price * line.form.value.quantity"
                             disabled
                           />
                         </mat-form-field>
@@ -173,7 +157,7 @@
                           <input
                             matInput
                             name="itemsDiscount"
-                            [value]="itemsDiscount"
+                            [value]="line.form.value.discoundRate * (line.form.value.price * line.form.value.quantity)"
                             disabled
                           />
                         </mat-form-field>
@@ -182,7 +166,7 @@
                           <input
                             matInput
                             name="netTotal"
-                            [value]="netTotal"
+                            [value]="(line.form.value.price * line.form.value.quantity) - (line.form.value.discoundRate * (line.form.value.price * line.form.value.quantity)) "
                             disabled
                           />
                         </mat-form-field>
@@ -194,12 +178,12 @@
 
                       <mat-form-field appearance="fill">
                         <mat-label>اختر الصنف </mat-label>
-                        <mat-select formControlName="itemId">
+                <mat-select (selectionChange)="setItemPrice($event.value,line)" formControlName="itemId">
                           <mat-option
                             *ngFor="let item of itemsList"
                             [value]="item.id"
                           >
-                            {{ item.name }}--{{item.taxCode}}
+                            {{ item.name }} &spades;--{{item.taxCode}}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>

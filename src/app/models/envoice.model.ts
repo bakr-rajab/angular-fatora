@@ -3,8 +3,6 @@ export class Envoice {
     documentType!: string;
     client!: string;
     version: string = "1.0"
-    internalId!: string;
-    comment!: string;
     purchaseOrderReference!: string;
     purchaseOrderDescription!: string;
     salesOrderReference!: string;
@@ -17,6 +15,7 @@ export class Line {
     id!: string;
     itemId!: string;
     quantity!: number;
+    salesTotal: number=0;
     discoundRate!: number;
     taxableItems!: Array<TaxableItem>;
 }

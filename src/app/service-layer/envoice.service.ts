@@ -15,18 +15,18 @@ export class EnvoiceService {
     constructor(private http: HttpClient) { }
 
     create(data: Envoice): Observable<Envoice | any> {
-        return this.http.post(environment.apiUrl + '/envoice', JSON.stringify(data), httpOptions)
+        return this.http.post(environment.apiUrl + '/invoice', JSON.stringify(data), httpOptions)
     }
 
     update(data: Envoice): Observable<Envoice | any> {
-        return this.http.patch(environment.apiUrl + `/envoice/${data.id}`, JSON.stringify(data), httpOptions)
+        return this.http.patch(environment.apiUrl + `/invoice/${data.id}`, JSON.stringify(data), httpOptions)
     }
 
     getAll(): Observable<any> {
-        return this.http.get(environment.apiUrl + '/envoice/all', { responseType: 'json' });
+        return this.http.get(environment.apiUrl + '/invoice/all', { responseType: 'json' });
     }
 
     delete(id: string): Observable<any> {
-        return this.http.delete(environment.apiUrl + `/envoice/${id}`, httpOptions);
+        return this.http.delete(environment.apiUrl + `/invoice/${id}`, httpOptions);
     }
 }
