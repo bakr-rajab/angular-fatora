@@ -23,7 +23,7 @@ export class EnvoiceService {
     }
 
     getAll(): Observable<any> {
-        return this.http.get(environment.apiUrl + '/invoice/all', { responseType: 'json' });
+        return this.http.get(environment.apiUrl + '/invoice', { responseType: 'json' });
     }
 
     delete(id: string): Observable<any> {

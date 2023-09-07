@@ -10,6 +10,7 @@ export class Envoice {
     proformaInvoiceNumber!: string;
     currency!: string;
     lines!: Array<Line>;
+    createdAt!:string
 }
 export class Line {
     id!: string;
