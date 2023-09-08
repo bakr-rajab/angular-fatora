@@ -49,18 +49,18 @@
                               </thead>
                               <tbody>
                                 <tr *ngFor="let notic of envoicesList; let i=index">
-                                  <ng-container *ngIf="notic.invoice_type != 'discount' && notic.invoice_type != 'add'">
-                                  <td>{{notic.invoice_counter}}</td>
-                                    <td>{{notic.date}}</td>
-                                    <td>{{notic.client}}</td>
+                                  <ng-container *ngIf="notic.documentType != 'discount' && notic.documentType != 'add'">
+                                  <td>{{notic.id}}</td>
+                                    <td>{{notic.createdAt}}</td>
+                                    <td>{{notic.client.name}}</td>
                                     
-                                    <td>{{notic.branch_name}}</td>
-                                    <td>{{notic.client_tax_number}}</td>
-                                    <td>{{notic.country}}</td>
-                                    <td>{{notic.total_after_comm_tax}}</td>
-                                    <td>{{notic.total_added_tax}}</td>
-                                    <td>{{notic.discount_value}}</td>
-                                    <td>{{notic.total_invoice}}</td>
+                                <td>{{notic.user.branch.name_en}}</td>
+                                    <td>{{notic.client.taxNumber}}</td>
+                                <td>{{notic.user.branch.address.country}}</td>
+                                    <td>{{notic.totalSalesAmount}}</td>
+                                    <td>{{notic.totalSalesAmount}}</td>
+                                    <td>{{notic.totalSalesAmount}}</td>
+                                    <td>{{notic.totalSalesAmount}}</td>
                                   <td>
                                     <ul>
                                       <li> 
@@ -72,6 +72,11 @@
                                       <li>
                                         <a (click)="deleteEnvoice(notic)" href="javascript:void(0);">
                                           <i class="far fa-trash-alt"></i>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a (click)="send(notic.id)" href="javascript:void(0);">
+                                          <i class="far fa-hand-pointer"></i>
                                         </a>
                                       </li>
                                     </ul>
@@ -88,7 +93,7 @@
        
       </div>
   </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -139,6 +144,6 @@
    
       </div>
     </div>
-  </div>
+  </div> -->
 
   <app-file-upload></app-file-upload>

@@ -24,10 +24,6 @@ export class AddSalesInvoiceComponent implements OnInit {
   envoiceModel: Envoice = new Envoice();
   envoicesList: Array<Envoice> = [];
   clientsList: Array<Client> = [];
-  // lines: Array<Line> = [];
-
-  // taxs:Array<any>=[]
-
   taxTypes: Array<{ id: string; code: string }> = [];
 
   subTypes: Array<{ id: string; code: string }> = [];
@@ -38,8 +34,6 @@ export class AddSalesInvoiceComponent implements OnInit {
     { id: '1', name: 'USD' },
     { id: '2', name: 'EG' },
   ];
-  itemPrice!: number;
-  salesTotal: number = 0;
   itemsDiscount: number = 0;
   netTotal: number = 0;
 
@@ -63,12 +57,19 @@ export class AddSalesInvoiceComponent implements OnInit {
     this.getItems();
     this.addLine();
     sidebarToggling();
-    const savedLines = sessionStorage.getItem('lines');
-    if (savedLines) {
-      this.lines = JSON.parse(savedLines);
-    }
   }
 
+  setItemPrice(id:any,line:any){
+    const price = (this.itemsList.find(item => item.id === id))?.price
+
+    console.log(id);
+    console.log(line);
+    line.form.patchValue({
+      price: price
+    })
+    
+    
+  }
   addLine(): void {
     const newLineForm = this.formBuilder.group({
       itemId: '',
@@ -76,7 +77,7 @@ export class AddSalesInvoiceComponent implements OnInit {
       quantity: 0,
       price: 0,
     });
-
+ 
     this.lines.push({
       form: newLineForm,
       expanded: true,
@@ -110,12 +111,14 @@ export class AddSalesInvoiceComponent implements OnInit {
 
   saveInvoice(): void {
     const lines = this.lines.map((line) => {
+      console.log({line});
+      // line.form.value.salesTotal=line.form.value.price*line.form.value.quantity
       return {
         ...line.form.value,
-        taxsss:line.taxs.map((x) => x.form.value)
+        taxbleItem:line.taxs.map((x) => x.form.value)
       }
     });
-    console.log(lines);
+    // console.log(lines);
     this.envoiceModel.lines=lines
     console.log(this.envoiceModel);
     
@@ -138,9 +141,6 @@ export class AddSalesInvoiceComponent implements OnInit {
     });
   }
 
-  setItemValue(i: any) {
-    this.itemPrice = i.price;
-  }
 
   getTaxs() {
     this.staticSer.getTaxs().subscribe((res: any) => {
