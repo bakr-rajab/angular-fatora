@@ -7,14 +7,11 @@ import { Observable } from 'rxjs';
 })
 class PermissionsService {
   constructor(private router: Router) { }
-
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     console.log("userRole", sessionStorage.getItem('userRole'))
-    if (sessionStorage.getItem('userRole') == 'User'
-      // && sessionStorage.getItem('endDate') >= new Date()
-    ) {
+    if (sessionStorage.getItem('userRole') == 'USER') {
       console.log('====================================');
-      console.log("user gyard");
+      console.log("user gyard >>>>>>>>");
       console.log('====================================');
       return true;
     } else {

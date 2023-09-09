@@ -15,7 +15,7 @@ class PermissionsService {
     const role = sessionStorage.getItem('userRole')
     console.log({ role });
 
-    if (role === 'superAdmin' || role === 'admin') {
+    if (role === 'SUPERADMIN' || role === 'ADMIN') {
       return true;
     } else {
       this.router.navigate(['/login']);

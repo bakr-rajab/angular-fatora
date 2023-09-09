@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EnumRoles } from '../models/roles/roles.model';
 
 @Component({
   selector: 'app-common-side-nav',
@@ -12,15 +13,15 @@ export class CommonSideNavComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('userRole') == 'superAdmin') {
+    if (sessionStorage.getItem('userRole') == EnumRoles.SUPERADMIN) {
       this.showSuperAdminPriv = true;
       this.showAdminPriv = false;
       this.showClientPriv = false;
-    } else if (sessionStorage.getItem('userRole') == 'admin') {
+    } else if (sessionStorage.getItem('userRole') == EnumRoles.ADMIN) {
       this.showAdminPriv = true;
       this.showClientPriv = false;
       this.showSuperAdminPriv = false;
-    } else if (sessionStorage.getItem('userRole') == 'User') {
+    } else if (sessionStorage.getItem('userRole') == EnumRoles.USER) {
       this.showClientPriv = true;
       this.showSuperAdminPriv = false;
       this.showAdminPriv = false;

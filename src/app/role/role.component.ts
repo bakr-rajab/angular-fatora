@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../service-layer/roles.service';
-import { Role } from '../models/roles/roles.model';
+import { EnumRoles, Role } from '../models/roles/roles.model';
 import { ChangeDetectorRef } from '@angular/core';
 
 declare function sidebarToggling(): any;
@@ -16,6 +16,7 @@ export class RoleComponent implements OnInit {
   roleModel: Role = {
     name: ''
   }
+  roleEnum= ['ADMIN','SUPERADMIN','USER','CLIENT','SUP-USER']
   rolesList: any
   response: any
   initTable: boolean = false

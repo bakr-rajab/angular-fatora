@@ -73,14 +73,20 @@
       <div class="modal-body">
         <form>
           <div class="row">
-
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input [(ngModel)]="roleModel.name" name="roleName" type="text" class="form-control" id="roleName"
-                  placeholder="اسم الصلاحيه">
-                <label for="floatingSelect">اسم الصلاحيه</label>
-              </div>
-            </div>
+            <mat-form-field class="col-lg-6 col-md-6">
+              <mat-label>اختر نوع الفاتوره</mat-label>
+              <mat-select
+                name="documentType"
+                [(ngModel)]="roleModel.name"
+              >
+                <mat-option
+                  *ngFor="let type of roleEnum"
+                  [value]="type"
+                >
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
             <div class="col-12 justify-content-end">
               <div class="modal-buttons d-flex align-items-center justify-content-end">
                 <button (click)="addRole()" type="submit" data-bs-dismiss="modal" class="btn btn-success">إضافة

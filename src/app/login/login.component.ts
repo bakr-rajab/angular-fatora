@@ -5,6 +5,7 @@ import { AuthUser } from '../models/user/auth-user.model';
 import { AuthResponse } from '../models/user/authResponse';
 import { GenericService } from '../service-layer/generic.service';
 import { AuthService } from '../service-layer/auth.service';
+import { EnumRoles } from '../models/roles/roles.model';
 
 @Component({
   selector: 'app-login',
@@ -38,19 +39,19 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('userId', this.response.id)
         sessionStorage.setItem('userName', this.response.name)
         sessionStorage.setItem('endDate', this.response?.company?.license?.endDate)
-        if (this.response.role.name === 'superAdmin' || this.response.role.name === 'admin') {
+        if (this.response.role.name === EnumRoles.SUPERADMIN || this.response.role.name === EnumRoles.ADMIN) {
           this.router.navigate(['/user'])
-        } else if (this.response.role.name == 'User') {
+        } else if (this.response.role.name == EnumRoles.USER) {
           console.log('====================================');
-          console.log("000000",this.response);
+          console.log("login response",this.response);
           console.log('====================================');
-          this.router.navigate(['/'])
-          if (this.response?.license?.endDate < Date.now()) {
-            console.log('====================================');
-            console.log("00000000");
-            console.log('====================================');
-            this.showExpiryError = true
-          }
+          this.router.navigate(['/items'])
+          // if (this.response?.license?.endDate < Date.now()) {
+          //   console.log('====================================');
+          //   console.log("00000000");
+          //   console.log('====================================');
+          //   this.showExpiryError = true
+          // }
         }
 
         this.showError = false
