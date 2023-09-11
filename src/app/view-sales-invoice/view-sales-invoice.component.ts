@@ -52,7 +52,12 @@ export class ViewSalesInvoiceComponent implements OnInit {
     this.router.navigate(['/editeEnvoice']);
   }
   send(id: string) {
-    console.log(id);
+    // call send method
+    this.apiCall.send(id).subscribe((res) => {
+      console.log(res);
+    });
+  
+
   }
 
   exportInvoice() {
