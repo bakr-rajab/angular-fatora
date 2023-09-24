@@ -4,6 +4,8 @@ export class Company {
   certificate!: string | null;
   activity!: any;
   taxNumber!: string | null;
+  pin!: number ;
+  dllLibPath!:string;
   clientId!: string;
   clientSecret1!: string;
   clientSecret2!: string;

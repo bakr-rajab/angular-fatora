@@ -15,7 +15,6 @@ declare function sidebarToggling(): any;
   styleUrls: ['./branches.component.css']
 })
 export class BranchesComponent implements OnInit {
-
   branchesList!: Branch[]
   branchModel = new Branch();
   addressModel = new Address();
@@ -50,7 +49,6 @@ export class BranchesComponent implements OnInit {
     })
   }
 
-
   AddBranch() {
     this.addressModel.branchId = this.branchModel.id;
     this.branchModel.address = this.addressModel
@@ -58,15 +56,17 @@ export class BranchesComponent implements OnInit {
     this.apiCall.create(this.branchModel).subscribe(res => {
       this.branchesList.push(res)
     })
-
   }
+
   setBranchToEdite(branch: any) {
-
+    console.log('====================================');
+    console.log(branch);
+    console.log('====================================');
   }
+
   delete(id: string) {
     this.apiCall.delete(id).subscribe(res => {
       if (res.affected === 1) this.branchesList = this.branchesList.filter(br => br.id != id)
     })
   }
-
 }

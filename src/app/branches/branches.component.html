@@ -17,7 +17,7 @@
             >
               إضافة فرع
             </button>
-            <!-- 
+            <!--
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#uploadFileModal">
               تحميل ملف
             </button> -->
@@ -34,6 +34,8 @@
                   <th>كود الفرع</th>
                   <th>اسم الفرع عربي</th>
                   <th>اسم الفرع إنجليزي</th>
+                  <th>تسلسل الفواتير</th>
+                  <th>اسم الشركه</th>
                   <th>الإجراءات</th>
                 </tr>
               </thead>
@@ -44,13 +46,15 @@
                   <td>{{ branch.code }}</td>
                   <td>{{ branch.name_ar }}</td>
                   <td>{{ branch.name_en }}</td>
+                  <td>{{ branch.invoiceSerial }}</td>
+                  <td>{{ branch.company.name }}</td>
 
                   <td>
                     <ul>
                       <li>
                         <a
                           (click)="setBranchToEdite(branch)"
-                          href=""
+
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModalEdit"
                         >
