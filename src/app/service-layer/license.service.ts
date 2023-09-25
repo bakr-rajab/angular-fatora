@@ -26,4 +26,7 @@ export class LicenseService {
   deleteOne(id: string): Observable<any> {
     return this.http.delete(environment.apiUrl + `/license/${id} `, httpOptions);
   }
+  submitDocument(id: string): Observable<any> {
+    return this.http.get(environment.apiUrl + `/license/submit/${id} `, httpOptions);
+  }
 }

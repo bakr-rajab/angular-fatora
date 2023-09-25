@@ -30,6 +30,6 @@ export class EnvoiceService {
         return this.http.delete(environment.apiUrl + `/invoice/${id}`, httpOptions);
     }
     send(id: string): Observable<any> {
-        return this.http.get(environment.apiUrl + `/invoice/${id}`, { responseType: 'json' });
+        return this.http.get(environment.apiUrl + `/integration/submit/${id}`, { responseType: 'json' });
     }
 }
