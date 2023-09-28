@@ -10,7 +10,7 @@
             <h1 class="page-title">الشركات</h1>
             <button
               type="button"
-              (click)="getActiviteis()"
+              (click)="resetForm(); getActiviteis()"
               class="btn btn-success"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
@@ -74,7 +74,7 @@
   </div>
 </div>
 <!--/app-container-->
-<!--Add user modal-->
+<!--Add Company modal-->
 <div
   class="modal fade"
   id="exampleModal"
@@ -150,7 +150,7 @@
                 <label for="floatingSelect">شهادة الشركه</label>
               </div>
             </div>
-               <mat-form-field class="col-6">
+            <mat-form-field class="col-6">
               <mat-label>pin </mat-label>
               <input
                 name="pin"
@@ -176,7 +176,7 @@
                 [(ngModel)]="companyModel.clientId"
               />
             </mat-form-field>
-                <mat-form-field class="col-6">
+            <mat-form-field class="col-6">
               <mat-label>client Secret 1</mat-label>
               <input
                 name="clientSecret1"
@@ -279,6 +279,7 @@
                 <label for="floatingSelect"> كود النشاط</label>
               </div>
             </div>
+
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <input
@@ -292,6 +293,40 @@
                 <label for="floatingSelect">شهادة الشركه</label>
               </div>
             </div>
+            <mat-form-field class="col-6">
+              <mat-label>pin </mat-label>
+              <input
+                name="pin"
+                type="number"
+                matInput
+                [(ngModel)]="companyModel.pin"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="col-6">
+              <mat-label>dllLibPath</mat-label>
+              <input
+                name="dllLibPath"
+                matInput
+                [(ngModel)]="companyModel.dllLibPath"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-6">
+              <mat-label>clientId </mat-label>
+              <input
+                name="clientId"
+                matInput
+                [(ngModel)]="companyModel.clientId"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-6">
+              <mat-label>client Secret 1</mat-label>
+              <input
+                name="clientSecret1"
+                matInput
+                [(ngModel)]="companyModel.clientSecret1"
+              />
+            </mat-form-field>
             <div class="col-12 justify-content-end">
               <div
                 class="modal-buttons d-flex align-items-center justify-content-end"
