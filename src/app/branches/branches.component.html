@@ -36,6 +36,7 @@
                   <th>اسم الفرع إنجليزي</th>
                   <th>تسلسل الفواتير</th>
                   <th>اسم الشركه</th>
+                  <th>البلد</th>
                   <th>الإجراءات</th>
                 </tr>
               </thead>
@@ -48,7 +49,7 @@
                   <td>{{ branch.name_en }}</td>
                   <td>{{ branch.invoiceSerial }}</td>
                   <td>{{ branch.company.name }}</td>
-                  <td>{{ branch.address.country?.name_ar }}</td>
+                  <td>{{ branch.address.country?.desc_ar }}</td>
 
                   <td>
                     <ul>
@@ -171,13 +172,13 @@
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
-                  [(ngModel)]="branchModel.address.country"
+                  [(ngModel)]="addressModel.country"
                   name="country"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                 >
                   <option *ngFor="let item of countries" [ngValue]="item.id">
-                    {{ item.id }}
+                    {{ item.desc_ar }}
                   </option>
                 </select>
                 <label for="floatingSelect"> الدوله</label>

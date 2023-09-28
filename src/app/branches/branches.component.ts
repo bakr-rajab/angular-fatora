@@ -68,7 +68,6 @@ export class BranchesComponent implements OnInit {
     this.addressModel.branchId = this.branchModel.id;
     this.branchModel.address = this.addressModel;
     console.log('addd', this.branchModel);
-    return;
     this.apiCall.create(this.branchModel).subscribe((res) => {
       this.branchesList.push(res);
     });
