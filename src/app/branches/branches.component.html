@@ -9,7 +9,7 @@
           <div class="d-flex align-items-start justify-content-between">
             <h1 class="page-title">الفروع</h1>
             <button
-              (click)="getCompanies()"
+              (click)="getCompanies(); getCountries()"
               type="button"
               class="btn btn-success"
               data-bs-toggle="modal"
@@ -48,13 +48,13 @@
                   <td>{{ branch.name_en }}</td>
                   <td>{{ branch.invoiceSerial }}</td>
                   <td>{{ branch.company.name }}</td>
+                  <td>{{ branch.address.country?.name_ar }}</td>
 
                   <td>
                     <ul>
                       <li>
                         <a
                           (click)="setBranchToEdite(branch)"
-
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModalEdit"
                         >
@@ -167,19 +167,23 @@
                 <label for="floatingInput">كود الفرع</label>
               </div>
             </div>
+
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input
-                  [(ngModel)]="addressModel.country"
+                <select
+                  [(ngModel)]="branchModel.address.country"
                   name="country"
-                  type="text"
-                  class="form-control"
-                  id="country"
-                  placeholder="الدوله"
-                />
-                <label for="country">الدوله</label>
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option *ngFor="let item of countries" [ngValue]="item.id">
+                    {{ item.id }}
+                  </option>
+                </select>
+                <label for="floatingSelect"> الدوله</label>
               </div>
             </div>
+
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <input
