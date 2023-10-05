@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { GenericService } from '../service-layer/generic.service';
 import { Branch } from '../models/branches/branch.model';
 import { BranchService } from '../service-layer/branch.service';
-import { CompanyService } from '../service-layer/company.service';
-import { Company } from '../models/company/company.model';
 import { Address } from '../models/address.model';
 import { StaticService } from '../service-layer/static.service';
+import { AddressService } from '../service-layer/adress.service';
+import { CompanyService } from '../service-layer/company.service';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -18,33 +17,31 @@ declare function sidebarToggling(): any;
 export class BranchesComponent implements OnInit {
   branchesList!: Branch[];
   branchModel = new Branch();
-  addressModel = new Address();
-  selectCompany!: any;
-  companyList!: Company[];
-  countries!: any[];
+  addressList!: Address[];
+  companyList!: any[];
   initTable: boolean = false;
+  selectAddress!: any;
+  selectCompany!: any;
   constructor(
     private apiCall: BranchService,
-    private companySer: CompanyService,
-    private staticSer: StaticService
+    private addressSer: AddressService,
+    private companySer: CompanyService
   ) {}
 
   ngOnInit(): void {
-    // paggnation();
+    paggnation();
     sidebarToggling();
     this.getAllBranches();
   }
 
-  getCompanies() {
-    this.companySer.getAll().subscribe((com) => {
-      this.companyList = com;
+  getAddresses() {
+    this.addressSer.getAll().subscribe((com) => {
+      this.addressList = com;
     });
   }
-  getCountries() {
-    this.staticSer.getCountries().subscribe((con) => {
-      console.log(con);
-
-      this.countries = con;
+  getCompanies() {
+    this.companySer.getAll().subscribe((con) => {
+      this.companyList = con;
     });
   }
 
@@ -58,15 +55,9 @@ export class BranchesComponent implements OnInit {
     });
   }
 
-  editeBranch() {
-    this.apiCall.update(this.branchModel).subscribe((res) => {
-      console.log(res);
-    });
-  }
-
   AddBranch() {
-    this.addressModel.branchId = this.branchModel.id;
-    this.branchModel.address = this.addressModel;
+    // this.addressModel.branchId = this.branchModel.id;
+    // this.branchModel.address = this.addressModel;
     console.log('addd', this.branchModel);
     this.apiCall.create(this.branchModel).subscribe((res) => {
       this.branchesList.push(res);
@@ -77,6 +68,18 @@ export class BranchesComponent implements OnInit {
     console.log('====================================');
     console.log(branch);
     console.log('====================================');
+    this.branchModel = branch;
+    this.selectAddress = branch.address?.id;
+    this.selectCompany = branch.company?.id;
+  }
+
+  UpdateBranch() {
+    this.branchModel.address = this.selectAddress;
+    this.branchModel.company = this.selectCompany;
+    console.log(this.branchModel);
+    this.apiCall.update(this.branchModel).subscribe((res) => {
+      if (res.affected) this.getAllBranches();
+    });
   }
 
   delete(id: string) {

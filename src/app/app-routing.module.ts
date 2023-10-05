@@ -5,7 +5,6 @@ import { AddDeductionNoticeComponent } from './add-deduction-notice/add-deductio
 import { AddNoticeComponent } from './add-notice/add-notice.component';
 import { AddSalesInvoiceComponent } from './add-sales-invoice/add-sales-invoice.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
-import { BranchesComponent } from './branches/branches.component';
 import { ClientsGuard } from './clientGaurd';
 import { ClientsComponent } from './clients/clients.component';
 import { CountryComponent } from './country/country.component';
@@ -30,150 +29,153 @@ import { ViewAddedNoticeComponent } from './view-added-notice/view-added-notice.
 import { ViewSalesInvoiceComponent } from './view-sales-invoice/view-sales-invoice.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
-
-
+import { BranchesComponent } from './address/branches.component';
+import { AddressComponent } from './branches/address.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'demo',
-    component: DemoComponent
+    component: DemoComponent,
   },
   {
     path: 'user',
     component: UserComponent,
-    canActivate: [UserGuard]
+    canActivate: [UserGuard],
   },
   {
     path: 'accepted-invoices',
     component: AcceptedInvoicesComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
+  },
+  {
+    path: 'address',
+    component: AddressComponent,
+    canActivate: [UserGuard],
   },
   {
     path: 'branches',
     component: BranchesComponent,
-    canActivate: [UserGuard]
+    canActivate: [UserGuard],
   },
   {
     path: 'clients',
     component: ClientsComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'country',
     component: CountryComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'add-Notice',
     component: AddNoticeComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'add-deduction-Notice',
     component: AddDeductionNoticeComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'analytics',
     component: AnalyticsComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'license',
     component: LicenseComponent,
-    canActivate: [UserGuard]
+    canActivate: [UserGuard],
   },
   {
     path: 'roles',
     component: RoleComponent,
-    canActivate: [UserGuard]
+    canActivate: [UserGuard],
   },
   {
     path: 'company',
     component: CompanyComponent,
-    canActivate: [UserGuard]
+    canActivate: [UserGuard],
   },
 
   {
     path: 'viewAddedNotice',
     component: ViewAddedNoticeComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'viewAddeddDeductionNotice',
     component: ViewAddedDeductionNoticeComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'salesInvoice',
     component: ViewSalesInvoiceComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'rejectedInvoices',
     component: RejectedInvoicesComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'addSalesInvoice',
     component: AddSalesInvoiceComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'sendInvoice',
     component: SendInvoiceComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'taxTypes',
     component: TaxTypesComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'items',
     component: ItemComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'units',
     component: UnitsComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'groups',
     component: TypesGroupComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'editeUser',
     component: EditUserComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'editeEnvoice',
     component: EditeEnvoiceComponent,
-    canActivate: [ClientsGuard]
+    canActivate: [ClientsGuard],
   },
   {
     path: 'home',
     component: HomeComponent,
-    children: [
-
-    ]
-  }
+    children: [],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

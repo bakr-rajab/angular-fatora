@@ -11,7 +11,6 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AcceptedInvoicesComponent } from './accepted-invoices/accepted-invoices.component';
 import { DemoComponent } from './demo/demo.component';
-import { BranchesComponent } from './branches/branches.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CountryComponent } from './country/country.component';
 import { AddNoticeComponent } from './add-notice/add-notice.component';
@@ -50,6 +49,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 
 import { MatCardModule } from '@angular/material/card';
+import { BranchesComponent } from './address/branches.component';
+import { AddressComponent } from './branches/address.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { MatCardModule } from '@angular/material/card';
     EditUserComponent,
     FileUploadComponent,
     RoleComponent,
-    CompanyComponent
+    CompanyComponent,
+    AddressComponent,
   ],
   imports: [
     RouterModule,
@@ -104,16 +106,15 @@ import { MatCardModule } from '@angular/material/card';
     MatSelectModule,
     ReactiveFormsModule,
     MatCardModule,
-    
   ],
   // providers: [GenericService],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

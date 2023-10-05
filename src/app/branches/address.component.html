@@ -7,20 +7,16 @@
       <div class="row">
         <div class="col-12">
           <div class="d-flex align-items-start justify-content-between">
-            <h1 class="page-title">الفروع</h1>
+            <h1 class="page-title">العناوين </h1>
             <button
-              (click)="getCompanies(); getCountries()"
+              (click)="getCountries()"
               type="button"
               class="btn btn-success"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              إضافة فرع
+              إضافة عنوان
             </button>
-            <!--
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#uploadFileModal">
-              تحميل ملف
-            </button> -->
           </div>
         </div>
       </div>
@@ -31,31 +27,26 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>كود الفرع</th>
-                  <th>اسم الفرع عربي</th>
-                  <th>اسم الفرع إنجليزي</th>
-                  <th>تسلسل الفواتير</th>
-                  <th>اسم الشركه</th>
+                  <th>العنوان </th>
                   <th>البلد</th>
                   <th>الإجراءات</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let branch of branchesList">
+                <tr *ngFor="let address of addressList">
                   <!-- <td>{{i+1}}</td> -->
-                  <td>{{ branch.id }}</td>
-                  <td>{{ branch.code }}</td>
-                  <td>{{ branch.name_ar }}</td>
-                  <td>{{ branch.name_en }}</td>
-                  <td>{{ branch.invoiceSerial }}</td>
-                  <td>{{ branch.company.name }}</td>
-                  <td>{{ branch.address.country?.desc_ar }}</td>
+                  <td>{{ address.id }}</td>
+                  <td>{{ address.street }}</td>
+                  <td>{{ address.country?.desc_ar }}</td>
 
                   <td>
                     <ul>
                       <li>
                         <a
-                          (click)="setBranchToEdite(branch)"
+                          (click)="
+                            setToEdite(address);
+                            getCountries()
+                          "
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModalEdit"
                         >
@@ -63,7 +54,7 @@
                         </a>
                       </li>
                       <li>
-                        <a (click)="delete(branch.id)">
+                        <a (click)="delete(address.id)">
                           <i class="far fa-trash-alt"></i>
                         </a>
                       </li>
@@ -90,7 +81,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">إضافة فرع جديد</h5>
+        <h5 class="modal-title" id="exampleModalLabel">إضافة عنوان جديد</h5>
         <button
           type="button"
           class="btn-close"
@@ -101,74 +92,6 @@
       <div class="modal-body">
         <form>
           <div class="row">
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="branchModel.name_ar"
-                  name="branchNameAr2"
-                  type="text"
-                  class="form-control"
-                  id="floatingInputText"
-                  placeholder="أدخل الاسم بالعربي"
-                />
-                <label for="floatingInput">اسم الفرع عربي</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="branchModel.name_en"
-                  name="branchNameEn2"
-                  type="text"
-                  class="form-control"
-                  id="floatingInputText2"
-                  placeholder="أدخل الاسم بالانجليزى"
-                />
-                <label for="floatingInput">اسم الفرع انجليزى</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <select
-                  [(ngModel)]="branchModel.company"
-                  name="company"
-                  class="form-select form-select-lg mb-3"
-                  aria-label=".form-select-lg example"
-                >
-                  <option *ngFor="let item of companyList" [ngValue]="item.id">
-                    {{ item.name }}
-                  </option>
-                </select>
-                <label for="floatingSelect"> الشركه</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="branchModel.invoiceSerial"
-                  name="invoiceSerial"
-                  type="number"
-                  class="form-control"
-                  id="floatingInputText2"
-                  placeholder="تسلسل الفاتوره"
-                />
-                <label for="floatingInput">تسلسل الفواتير</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="branchModel.code"
-                  name="branchCode"
-                  type="text"
-                  class="form-control"
-                  id="floatingInputText2"
-                  placeholder="كود الفرع"
-                />
-                <label for="floatingInput">كود الفرع</label>
-              </div>
-            </div>
-
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
@@ -295,12 +218,12 @@
                 class="modal-buttons d-flex align-items-center justify-content-end"
               >
                 <button
-                  (click)="AddBranch()"
+                  (click)="Create()"
                   type="submit"
                   data-bs-dismiss="modal"
                   class="btn btn-success"
                 >
-                  إضافة فرع
+                  إضافة 
                 </button>
                 <button
                   type="button"
@@ -319,54 +242,172 @@
 </div>
 <!--Add user modal-->
 <!--Add user modal-->
-<!-- <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModalEdit"
+  tabindex="-1"
+  aria-labelledby="exampleModalEditLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalEditLabel">
-          تعديل الفرع
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalEditLabel">تعديل الفرع</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="row">
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="branch.name_ar" name="branchNameAr" type="text" class="form-control"
-                  id="floatingText" placeholder="محمود حمدى فهمى">
-                <label for="floatingText">اسم الفرع عربي</label>
+                <select
+                  [(ngModel)]="selectCountry"
+                  name="country"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option *ngFor="let item of countries" [ngValue]="item">
+                    {{ item.desc_ar }}
+                  </option>
+                </select>
+                <label for="floatingSelect"> الدوله</label>
               </div>
             </div>
 
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
-                <input [(ngModel)]="branch.name_en" name="branchNameEn" type="text" class="form-control"
-                  id="floatingText" placeholder="محمود حمدى فهمى">
-                <label for="floatingText">اسم الفرع انجليزى</label>
+                <input
+                  [(ngModel)]="addressModel.governerate"
+                  name="gov"
+                  type="text"
+                  class="form-control"
+                  id="gov"
+                  placeholder="المحافظه"
+                />
+                <label for="gov">المحافظه</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="addressModel.regionCity"
+                  name="regionCity"
+                  type="text"
+                  class="form-control"
+                  id="regionCity"
+                  placeholder="المدينه"
+                />
+                <label for="regionCity">المدينه</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="addressModel.postalCode"
+                  name="postalCode"
+                  type="text"
+                  class="form-control"
+                  id="postalCode"
+                  placeholder="كود المدينه"
+                />
+                <label for="postalCode">كود المدينه</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="addressModel.street"
+                  name="street"
+                  type="text"
+                  class="form-control"
+                  id="street"
+                  placeholder="الشارع"
+                />
+                <label for="street">الشارع</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="addressModel.buildingNumber"
+                  name="buildingNumber"
+                  type="text"
+                  class="form-control"
+                  id="buildingNumber"
+                  placeholder="رقم المبني"
+                />
+                <label for="buildingNumber">رقم المبني</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="addressModel.floor"
+                  name="floor"
+                  type="text"
+                  class="form-control"
+                  id="floor"
+                  placeholder="الطابق"
+                />
+                <label for="floor">الطابق</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="addressModel.landmark"
+                  name="landmark"
+                  type="text"
+                  class="form-control"
+                  id="landmark"
+                  placeholder="علامه مميزه"
+                />
+                <label for="landmark">علامه مميزه</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="addressModel.additionalInformation"
+                  name="additionalInformation"
+                  type="text"
+                  class="form-control"
+                  id="additionalInformation"
+                  placeholder="بيانات اضافيه"
+                />
+                <label for="additionalInformation">بيانات اضافيه</label>
               </div>
             </div>
 
-            <div class="col-lg-6 col-md-12  mb-3">
-              <div class="form-floating">
-                <input [(ngModel)]="branch.code" name="branchCode" type="text" class="form-control"
-                  id="floatingInputText2" placeholder="كود الفرع">
-                <label for="floatingInput">كود الفرع</label>
-              </div>
-            </div>
             <div class="col-12 justify-content-end">
-              <div class="modal-buttons d-flex align-items-center justify-content-end">
-                <button (click)="editeBranch()" type="submit" data-bs-dismiss="modal"
-                  class="btn btn-success">تعديل</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              <div
+                class="modal-buttons d-flex align-items-center justify-content-end"
+              >
+                <button
+                  (click)="Update()"
+                  type="submit"
+                  data-bs-dismiss="modal"
+                  class="btn btn-success"
+                >
+                  تعديل 
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  إغلاق
+                </button>
               </div>
             </div>
           </div>
         </form>
       </div>
-
     </div>
   </div>
-</div> -->
-
-<app-file-upload></app-file-upload>
+</div>

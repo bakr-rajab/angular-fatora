@@ -1,4 +1,5 @@
 export class Address {
+  id!: string;
   branchId: string = '0';
   country!: any;
   governerate!: string;

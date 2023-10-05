@@ -1,0 +1,350 @@
+<!--app-container-->
+<div class="app-container">
+  <app-comman-header></app-comman-header>
+  <div class="app-main">
+    <app-common-side-nav></app-common-side-nav>
+    <div class="app-main_outer">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-start justify-content-between">
+            <h1 class="page-title">الفروع</h1>
+            <button
+              (click)="getCompanies(); getAddresses();"
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              إضافة فرع
+            </button>
+            
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="main-table">
+            <table id="example" class="table table-hover" style="width: 100%">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>كود الفرع</th>
+                  <th>اسم الفرع عربي</th>
+                  <th>اسم الفرع إنجليزي</th>
+                  <th>تسلسل الفواتير</th>
+                  <th>اسم الشركه</th>
+                  <th>البلد</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let branch of branchesList">
+                  <!-- <td>{{i+1}}</td> -->
+                  <td>{{ branch.id }}</td>
+                  <td>{{ branch.code }}</td>
+                  <td>{{ branch.name_ar }}</td>
+                  <td>{{ branch.name_en }}</td>
+                  <td>{{ branch.invoiceSerial }}</td>
+                  <td>{{ branch.company.name }}</td>
+                  <td>{{ branch.address.country?.desc_ar }}</td>
+
+                  <td>
+                    <ul>
+                      <li>
+                        <a
+                          (click)="
+                            setBranchToEdite(branch);
+                            getCompanies();
+                            getAddresses()
+                          "
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalEdit"
+                        >
+                          <i class="far fa-edit"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a (click)="delete(branch.id)">
+                          <i class="far fa-trash-alt"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/app-container-->
+<!--Add branch modal-->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">إضافة فرع جديد</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="branchModel.name_ar"
+                  name="branchNameAr2"
+                  type="text"
+                  class="form-control"
+                  id="floatingInputText"
+                  placeholder="أدخل الاسم بالعربي"
+                />
+                <label for="floatingInput">اسم الفرع عربي</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="branchModel.name_en"
+                  name="branchNameEn2"
+                  type="text"
+                  class="form-control"
+                  id="floatingInputText2"
+                  placeholder="أدخل الاسم بالانجليزى"
+                />
+                <label for="floatingInput">اسم الفرع انجليزى</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select
+                  [(ngModel)]="branchModel.company"
+                  name="company"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option *ngFor="let item of companyList" [ngValue]="item.id">
+                    {{ item.name }}
+                  </option>
+                </select>
+                <label for="floatingSelect"> الشركه</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="branchModel.invoiceSerial"
+                  name="invoiceSerial"
+                  type="number"
+                  class="form-control"
+                  id="floatingInputText2"
+                  placeholder="تسلسل الفاتوره"
+                />
+                <label for="floatingInput">تسلسل الفواتير</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="branchModel.code"
+                  name="branchCode"
+                  type="text"
+                  class="form-control"
+                  id="floatingInputText2"
+                  placeholder="كود الفرع"
+                />
+                <label for="floatingInput">كود الفرع</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select
+                  [(ngModel)]="branchModel.address"
+                  name="country"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option *ngFor="let item of addressList" [ngValue]="item.id">
+                    {{ item.street }}
+                  </option>
+                </select>
+                <label for="floatingSelect"> الدوله</label>
+              </div>
+            </div>
+            <div class="col-12 justify-content-end">
+              <div
+                class="modal-buttons d-flex align-items-center justify-content-end"
+              >
+                <button
+                  (click)="AddBranch()"
+                  type="submit"
+                  data-bs-dismiss="modal"
+                  class="btn btn-success"
+                >
+                  إضافة فرع
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  إغلاق
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Add user modal-->
+<!--Add user modal-->
+<div
+  class="modal fade"
+  id="exampleModalEdit"
+  tabindex="-1"
+  aria-labelledby="exampleModalEditLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalEditLabel">تعديل الفرع</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="branchModel.name_ar"
+                  name="branchNameAr2"
+                  type="text"
+                  class="form-control"
+                  id="floatingInputText"
+                  placeholder="أدخل الاسم بالعربي"
+                />
+                <label for="floatingInput">اسم الفرع عربي</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="branchModel.name_en"
+                  name="branchNameEn2"
+                  type="text"
+                  class="form-control"
+                  id="floatingInputText2"
+                  placeholder="أدخل الاسم بالانجليزى"
+                />
+                <label for="floatingInput">اسم الفرع انجليزى</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select
+                  [(ngModel)]="selectCompany"
+                  name="company"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option *ngFor="let item of companyList" [ngValue]="item.id">
+                    {{ item.name }}
+                  </option>
+                </select>
+                <label for="floatingSelect"> الشركه</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="branchModel.invoiceSerial"
+                  name="invoiceSerial"
+                  type="number"
+                  class="form-control"
+                  id="floatingInputText2"
+                  placeholder="تسلسل الفاتوره"
+                />
+                <label for="floatingInput">تسلسل الفواتير</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="branchModel.code"
+                  name="branchCode"
+                  type="text"
+                  class="form-control"
+                  id="floatingInputText2"
+                  placeholder="كود الفرع"
+                />
+                <label for="floatingInput">كود الفرع</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <select
+                  [(ngModel)]="selectAddress"
+                  name="country"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                >
+                  <option *ngFor="let item of addressList" [ngValue]="item.id">
+                    {{ item.street }}
+                  </option>
+                </select>
+                <label for="floatingSelect"> العنوان </label>
+              </div>
+            </div>
+
+            <div class="col-12 justify-content-end">
+              <div
+                class="modal-buttons d-flex align-items-center justify-content-end"
+              >
+                <button
+                  (click)="UpdateBranch()"
+                  type="submit"
+                  data-bs-dismiss="modal"
+                  class="btn btn-success"
+                >
+                  تعديل فرع
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  إغلاق
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-file-upload></app-file-upload>
