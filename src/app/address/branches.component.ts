@@ -29,7 +29,7 @@ export class BranchesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    paggnation();
+    // paggnation();
     sidebarToggling();
     this.getAllBranches();
   }
