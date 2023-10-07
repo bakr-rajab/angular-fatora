@@ -32,7 +32,7 @@ export class AddSalesInvoiceComponent implements OnInit {
   itemsList: Array<Item> = [];
   currencyList: Array<any> = [
     { id: '1', name: 'USD' },
-    { id: '2', name: 'EG' },
+    { id: '2', name: 'EGP' },
   ];
   itemsDiscount: number = 0;
   netTotal: number = 0;
