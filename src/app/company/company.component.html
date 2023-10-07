@@ -96,35 +96,30 @@
       <div class="modal-body">
         <form>
           <div class="row">
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="companyModel.name"
-                  name="roleName"
-                  type="text"
-                  class="form-control"
-                  id="roleName"
-                  placeholder="اسم الشركه"
-                />
-                <label for="floatingSelect">اسم الشركه</label>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="companyModel.taxNumber"
-                  name="taxNumber"
-                  type="text"
-                  class="form-control"
-                  id="tax"
-                  placeholder="الرقم الضريبي"
-                />
-                <label for="floatingSelect">الرقم الضريبي</label>
-              </div>
-            </div>
+            <mat-form-field class="col-6">
+              <mat-label>اسم الشركه </mat-label>
+              <input
+                required
+                name="name"
+                matInput
+                placeholder="name"
+                [(ngModel)]="companyModel.name"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-6">
+              <mat-label>الرقم الضريبي </mat-label>
+              <input
+                required
+                name="taxNumber"
+                matInput
+                placeholder="taxNumber"
+                [(ngModel)]="companyModel.taxNumber"
+              />
+            </mat-form-field>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
+                  required
                   [(ngModel)]="companyModel.activity"
                   name="activity"
                   class="form-select form-select-lg mb-3"
@@ -137,22 +132,20 @@
                 <label for="floatingSelect"> كود النشاط</label>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 mb-3">
-              <div class="form-floating">
-                <input
-                  [(ngModel)]="companyModel.certificate"
-                  name="roleName"
-                  type="text"
-                  class="form-control"
-                  id="roleName"
-                  placeholder="اسم الشركه"
-                />
-                <label for="floatingSelect">شهادة الشركه</label>
-              </div>
-            </div>
+            <mat-form-field class="col-6">
+              <mat-label>شهاده الشركه</mat-label>
+              <input
+                required
+                name="certificate"
+                matInput
+                placeholder="Egy Trust"
+                [(ngModel)]="companyModel.certificate"
+              />
+            </mat-form-field>
             <mat-form-field class="col-6">
               <mat-label>pin </mat-label>
               <input
+                required
                 name="pin"
                 type="number"
                 matInput
@@ -163,14 +156,17 @@
             <mat-form-field class="col-6">
               <mat-label>dllLibPath</mat-label>
               <input
+                value="epass2003.dll"
                 name="dllLibPath"
                 matInput
+                placeholder="epass2003.dll"
                 [(ngModel)]="companyModel.dllLibPath"
               />
             </mat-form-field>
             <mat-form-field class="col-6">
-              <mat-label>clientId </mat-label>
+              <mat-label>clientId111 </mat-label>
               <input
+                required
                 name="clientId"
                 matInput
                 [(ngModel)]="companyModel.clientId"
@@ -179,6 +175,7 @@
             <mat-form-field class="col-6">
               <mat-label>client Secret 1</mat-label>
               <input
+                required
                 name="clientSecret1"
                 matInput
                 [(ngModel)]="companyModel.clientSecret1"
@@ -191,12 +188,12 @@
                 <button
                   (click)="addCompany()"
                   type="submit"
-                  data-bs-dismiss="modal"
                   class="btn btn-success"
                 >
                   اضافه شركه
                 </button>
                 <button
+                  id="modalCreate"
                   type="button"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"

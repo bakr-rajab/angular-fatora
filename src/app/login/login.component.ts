@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (err) => {
-        this.snackbarSer.openSnackBar(err.error.message, 3000, 'notif-fail'); //
+        // this.snackbarSer.openSnackBar(err.error.message, 3000, 'notif-fail'); //
       }
     );
   }

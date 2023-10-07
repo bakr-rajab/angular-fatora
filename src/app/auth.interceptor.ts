@@ -8,10 +8,11 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from './service-layer/auth.service';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private snackbar: SnackbarService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -25,7 +26,9 @@ export class AuthInterceptor implements HttpInterceptor {
       },
     });
     return next.handle(modifiedReq).pipe(
+      
       catchError((error: HttpErrorResponse) => {
+        this.snackbar.openSnackBar(error.error.message, 3000, 'notif-fail'); //
         console.log('eeee', error);
 
         return throwError(error);

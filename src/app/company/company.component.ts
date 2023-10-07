@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Company } from '../models/company/company.model';
 import { CompanyService } from '../service-layer/company.service';
 import { StaticService } from '../service-layer/static.service';
+import { SnackbarService } from '../snackbar.service';
 
 declare function sidebarToggling(): any;
 declare function paggnation(): any;
@@ -13,7 +14,6 @@ declare function paggnation(): any;
 })
 export class CompanyComponent implements OnInit {
   activityList: any[] = [];
-
   companyModel: Company = new Company();
   activityId!: string;
   companyList: any;
@@ -22,7 +22,8 @@ export class CompanyComponent implements OnInit {
   constructor(
     private staticSer: StaticService,
     private apiCall: CompanyService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private snackbar: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -56,17 +57,25 @@ export class CompanyComponent implements OnInit {
   }
 
   addCompany() {
-    console.log(this.companyModel);
-    this.apiCall.createCompany(this.companyModel).subscribe((res) => {
-      if (res) this.companyList = [...this.companyList, res];
-    });
+    this.areFieldsFilled()
+      ? this.snackbar.openSnackBar('Please fill all fields', 3000, 'notif-fail')
+      : this.apiCall.createCompany(this.companyModel).subscribe((res) => {
+          if (res) {
+            this.companyList = [...this.companyList, res];
+            this.closeModal();
+            this.resetForm();
+          }
+        });
   }
+  closeModal() {
+    document.getElementById('modalCreate')?.click();
+  }
+
   setToEdit(company: Company) {
     this.activityId = company.activity?.id;
     delete company.branch;
     delete company.license;
     this.companyModel = company;
-    console.log('777777777777777', this.companyModel);
   }
   getActiviteis() {
     this.staticSer.getActivity().subscribe((act) => {
@@ -87,5 +96,21 @@ export class CompanyComponent implements OnInit {
 
   resetForm() {
     this.companyModel = new Company();
+  }
+  areFieldsFilled(): boolean {
+    const { name, taxNumber, activity, certificate, clientId, clientSecret1 } =
+      this.companyModel;
+    // Check if any of the required fields are empty
+    if (
+      !name ||
+      !taxNumber ||
+      !activity ||
+      !certificate ||
+      !clientId ||
+      !clientSecret1
+    ) {
+      return true;
+    }
+    return false;
   }
 }

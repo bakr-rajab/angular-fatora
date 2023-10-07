@@ -39,12 +39,13 @@
 
       <div class="col-md-12">
         <div class="form-floating mb-3">
-          <input [(ngModel)]="authModel.email" name="taxNumber" type="text" class="form-control" id="floatingInput"
+          <input [(ngModel)]="authModel.email" [required]="true" name="taxNumber" type="text" class="form-control" id="floatingInput"
             placeholder="الايميل">
           <label for="floatingInput">الايميل</label>
         </div>
         <div class="form-floating">
           <input
+            required="required"
             [(ngModel)]="authModel.password"
             name="pass"
             type="password"
@@ -59,9 +60,6 @@
       <button class="btn btn-lg btn-block btn-rounded mb-4 mt-5" type="submit">
         <a (click)="onLogin()"> تسجيل الدخول </a>
       </button>
-      <span *ngIf="showError" style="color: red" class="error-message">
-        عفوا كلمة المرور او الرقم الضريبى غير صحيح
-      </span>
       <span *ngIf="!showExpiryError" style="color: red" class="error-message">
         انتهت مدة الرخصه
       </span>
