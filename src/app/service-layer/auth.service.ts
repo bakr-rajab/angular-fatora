@@ -3,17 +3,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-const AUTH_API = environment.apiUrl
+const AUTH_API = environment.apiUrl;
 
 const httpOptions = {
-  headers: environment.headers
+  headers: environment.headers,
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   // taxNumber!: number;
   // password!: string;
   private token!: string;
@@ -23,7 +23,7 @@ export class AuthService {
       AUTH_API + '/auth/login',
       JSON.stringify(body),
       httpOptions
-    )
+    );
   }
 
   setToken(token: string) {
@@ -34,6 +34,6 @@ export class AuthService {
     return this.token;
   }
   deleteToken(): string {
-    return this.token = "";
+    return (this.token = '');
   }
 }

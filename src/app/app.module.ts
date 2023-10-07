@@ -51,6 +51,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { BranchesComponent } from './address/branches.component';
 import { AddressComponent } from './branches/address.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { AddressComponent } from './branches/address.component';
     MatSelectModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatSnackBarModule,
   ],
   // providers: [GenericService],
   providers: [
