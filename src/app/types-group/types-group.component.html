@@ -40,6 +40,7 @@
                 <tr>
                   <th>#</th>
                   <th>اسم المجموعة</th>
+                  <th>كود المجموعة</th>
                   <th>الاجراءات</th>
                 </tr>
               </thead>
@@ -47,6 +48,7 @@
                 <tr *ngFor="let group of groupsList">
                   <td>{{ group.id }}</td>
                   <td>{{ group.name }}</td>
+                  <td>{{ group.code }}</td>
                   <td>
                     <ul>
                       <li>

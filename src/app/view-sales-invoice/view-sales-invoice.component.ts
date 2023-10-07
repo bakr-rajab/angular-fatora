@@ -16,6 +16,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
   initTable: boolean = false;
   errorMsg = false;
   dateFrom = '';
+  InvoiceStatus = ['fa-thumbs-o-down', 'fa-rocket', 'sent'];
   constructor(private apiCall: EnvoiceService, private router: Router) {}
 
   ngOnInit(): void {
@@ -56,8 +57,6 @@ export class ViewSalesInvoiceComponent implements OnInit {
     this.apiCall.send(id).subscribe((res) => {
       console.log(res);
     });
-  
-
   }
 
   exportInvoice() {
