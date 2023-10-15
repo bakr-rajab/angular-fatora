@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
       },
     });
     return next.handle(modifiedReq).pipe(
-      
+
       catchError((error: HttpErrorResponse) => {
         this.snackbar.openSnackBar(error.error.message, 3000, 'notif-fail'); //
         console.log('eeee', error);

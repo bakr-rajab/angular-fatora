@@ -35,16 +35,13 @@ export class ViewSalesInvoiceComponent implements OnInit {
     });
   }
 
-  deleteEnvoice(envoice: any) {
-    // this.deleteEnvoiceReq = {
-    //   "target": "invoice",
-    //   "action": "delete",
-    //   "key": "invoice_code",
-    //   "value": envoice.invoice_code
-    // }
-    // this.apiCall.restServiceCall(this.deleteEnvoiceReq).subscribe(res => {
-    // })
-    // this.getAllEnvoices()
+  deleteEnvoice(id: string) {
+    this.apiCall.delete(id).subscribe((res) => {
+      if (res.rowAffected) {
+        // TODO:show notification
+        this.getAllEnvoices();
+      }
+    });
   }
   setEnvoiceToEdite(envocie: any) {
     sessionStorage.setItem('envoiceCode', envocie.invoice_code);

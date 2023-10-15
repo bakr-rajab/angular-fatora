@@ -57,18 +57,18 @@ export class AddSalesInvoiceComponent implements OnInit {
     this.getItems();
     this.addLine();
     sidebarToggling();
+    console.log(sessionStorage.getItem('internalId'));
+    // this.envoiceModel.internalId = sessionStorage.getItem('internalId')
   }
 
-  setItemPrice(id:any,line:any){
-    const price = (this.itemsList.find(item => item.id === id))?.price
+  setItemPrice(id: any, line: any) {
+    const price = this.itemsList.find((item) => item.id === id)?.price;
 
     console.log(id);
     console.log(line);
     line.form.patchValue({
-      price: price
-    })
-    
-    
+      price: price,
+    });
   }
   addLine(): void {
     const newLineForm = this.formBuilder.group({
@@ -77,7 +77,7 @@ export class AddSalesInvoiceComponent implements OnInit {
       quantity: 0,
       price: 0,
     });
- 
+
     this.lines.push({
       form: newLineForm,
       expanded: true,
@@ -111,21 +111,20 @@ export class AddSalesInvoiceComponent implements OnInit {
 
   saveInvoice(): void {
     const lines = this.lines.map((line) => {
-      console.log({line});
+      console.log({ line });
       // line.form.value.salesTotal=line.form.value.price*line.form.value.quantity
       return {
         ...line.form.value,
-        taxbleItem:line.taxs.map((x) => x.form.value)
-      }
+        taxbleItem: line.taxs.map((x) => x.form.value),
+      };
     });
     // console.log(lines);
-    this.envoiceModel.lines=lines
+    this.envoiceModel.lines = lines;
     console.log(this.envoiceModel);
-    
-    this.apiCall.create(this.envoiceModel).subscribe(res=>{
+
+    this.apiCall.create(this.envoiceModel).subscribe((res) => {
       console.log(res);
-      
-    })
+    });
   }
 
   getClients() {
@@ -141,7 +140,6 @@ export class AddSalesInvoiceComponent implements OnInit {
     });
   }
 
-
   getTaxs() {
     this.staticSer.getTaxs().subscribe((res: any) => {
       this.taxTypes = res;
@@ -149,16 +147,16 @@ export class AddSalesInvoiceComponent implements OnInit {
   }
 
   getSubTypes(id: any) {
-    const sub:any = this.taxTypes.find(item => item.id === id);
-    
-    this.subTypes=sub.subtax
+    const sub: any = this.taxTypes.find((item) => item.id === id);
+
+    this.subTypes = sub.subtax;
   }
 
   getAllBranches() {}
   getAllUser() {}
 
   getAllTypes() {}
-  
+
   createInvocieType() {}
   calculateFinalEnvoice() {}
   setBranch() {
@@ -167,36 +165,19 @@ export class AddSalesInvoiceComponent implements OnInit {
   setUser() {
     // this.client_id = this.selectedUser.tax_number
   }
-  setType() {
-  
-  }
-  calculatePriceAndTotalPrice() {
-   }
-  deleteType(type: any, index: any) {
-   
-  }
-  settingDeductionRatio() {
-   
-  }
+  setType() {}
+  calculatePriceAndTotalPrice() {}
+  deleteType(type: any, index: any) {}
+  settingDeductionRatio() {}
   setPayment() {
     // this.payM = this.patmentType
   }
-  createEnvoice() {
-  
-  }
-  resetTypesModal() {
-  
-  }
+  createEnvoice() {}
+  resetTypesModal() {}
 
-  changeTypePriceOnPurpose() {
-   
-  }
+  changeTypePriceOnPurpose() {}
 
-  getCountries() {
-   
-  }
+  getCountries() {}
 
-  setCountry() {
-   
-  }
+  setCountry() {}
 }

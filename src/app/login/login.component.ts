@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userRole', this.response.role.name);
           sessionStorage.setItem('userId', this.response.id);
           sessionStorage.setItem('userName', this.response.name);
+          sessionStorage.setItem('internalId',this.response.internalId)
           sessionStorage.setItem(
             'endDate',
             this.response?.company?.license?.endDate
