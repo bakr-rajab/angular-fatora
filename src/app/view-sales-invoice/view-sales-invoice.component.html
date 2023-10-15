@@ -46,8 +46,8 @@
             >
               <thead>
                 <tr>
-                  <th>uuid</th>
                   <th>رقم الفاتوره</th>
+                  <th>uuid</th>
                   <th>تاريخ الفاتوره</th>
                   <th>العميل</th>
 
@@ -70,8 +70,9 @@
                       notic.documentType != 'add'
                     "
                   >
+                    <!-- <td>{{ notic.id }}</td> -->
+                    <td>{{ notic.internalId }}</td>
                     <td>{{ notic.uuid }}</td>
-                    <td>{{ notic.id }}</td>
                     <td>{{ notic.createdAt }}</td>
                     <td>{{ notic.client.name }}</td>
                     <td>{{ notic.user.branch.name_en }}</td>
@@ -136,16 +137,16 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        
+
           <div class="row">
             <div class="col-12">
                <div class="main-form">
                  <form>
                    <div class="row">
-       
+
                      <div class="col-lg-6 col-md-12 mb-3">
                        <div class="form-floating">
-                         <input [(ngModel)]="dateFrom" name="date" type="date" class="form-control" id="floatingInput" 
+                         <input [(ngModel)]="dateFrom" name="date" type="date" class="form-control" id="floatingInput"
                            placeholder="05/2/2022" value="05/2/2022">
                            <label for="floatingInput">التاريخ من</label>
                        </div>
@@ -153,28 +154,28 @@
 
                      <div class="col-lg-6 col-md-12 mb-3">
                       <div class="form-floating">
-                        <input [(ngModel)]="dateTo" name="date" type="date" class="form-control" id="floatingInput" 
+                        <input [(ngModel)]="dateTo" name="date" type="date" class="form-control" id="floatingInput"
                           placeholder="05/2/2022" value="05/2/2022">
                           <label for="floatingInput"> التاريخ الى</label>
                       </div>
                     </div>
 
                   <p *ngIf="errorMsg" style="color: red">حدث خطأ</p>
-                     
+
                    </div>
                   </form>
                </div>
             </div>
           </div>
            <div class="modal-buttons d-flex align-items-center justify-content-end">
-                  
+
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
                 <button (click)="exportInvoice()" type="button" class="btn btn-success">
-                تحميل 
+                تحميل
               </button>
                 </div>
         </div>
-   
+
       </div>
     </div>
   </div> -->
