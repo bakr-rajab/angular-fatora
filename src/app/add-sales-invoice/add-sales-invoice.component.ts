@@ -26,7 +26,8 @@ export class AddSalesInvoiceComponent implements OnInit {
   clientsList: Array<Client> = [];
   taxTypes: Array<{ id: string; code: string }> = [];
 
-  subTypes: Array<{ id: string; code: string }> = [];
+  // subTypes: Array<{ id: string; code: string }> = [];
+  subTypes: any;
 
   taxableItems: Array<TaxableItem> = [];
   itemsList: Array<Item> = [];
@@ -64,8 +65,6 @@ export class AddSalesInvoiceComponent implements OnInit {
   setItemPrice(id: any, line: any) {
     const price = this.itemsList.find((item) => item.id === id)?.price;
 
-    console.log(id);
-    console.log(line);
     line.form.patchValue({
       price: price,
     });
@@ -90,6 +89,7 @@ export class AddSalesInvoiceComponent implements OnInit {
       taxId: '',
       subTaxId: '',
       rate: '',
+      sub: [],
     });
 
     line.taxs.push({ form: newTaxForm });
@@ -146,10 +146,17 @@ export class AddSalesInvoiceComponent implements OnInit {
     });
   }
 
-  getSubTypes(id: any) {
-    const sub: any = this.taxTypes.find((item) => item.id === id);
+  setSub(v: any) {
+    const sub: any = this.taxTypes.find((item) => item.id === v.value.taxId);
+    v.value.sub = sub.subtax;
+    console.log(v);
+  }
 
-    this.subTypes = sub.subtax;
+  getSubTypes(v: any, id: any) {
+    // const sub: any = this.taxTypes.find((item) => item.id === id);
+    // console.log(sub.subtax);
+    // v.value.sub = [...sub.subtax];
+    // console.log(v);
   }
 
   getAllBranches() {}

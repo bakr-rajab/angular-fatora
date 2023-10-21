@@ -263,7 +263,9 @@
                               <mat-label>اختر النوع</mat-label>
                               <mat-select
                                 formControlName="taxId"
-                                (selectionChange)="getSubTypes($event.value)"
+                                (selectionChange)="
+                                  getSubTypes(tax.form, $event.value)
+                                "
                               >
                                 <mat-option
                                   *ngFor="let taxType of taxTypes"
@@ -276,12 +278,15 @@
 
                             <mat-form-field appearance="fill">
                               <mat-label>اختر sub</mat-label>
-                              <mat-select formControlName="subTaxId">
+                              <mat-select
+                                formControlName="subTaxId"
+                                (click)="setSub(tax.form)"
+                              >
                                 <mat-option
-                                  *ngFor="let taxType of subTypes"
-                                  [value]="taxType.id"
+                                  *ngFor="let sub of tax.form.value.sub"
+                                  [value]="sub.id"
                                 >
-                                  {{ taxType.code }}
+                                  {{ sub.code }}
                                 </mat-option>
                               </mat-select>
                             </mat-form-field>
