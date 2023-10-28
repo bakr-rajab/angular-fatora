@@ -8,7 +8,9 @@ import { Item } from '../models/item.model';
 import { ClientService } from '../service-layer/client.service';
 import { ItemService } from '../service-layer/item.service';
 import { StaticService } from '../service-layer/static.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { take, takeUntil } from 'rxjs/operators';
+import { ReplaySubject, Subject } from 'rxjs';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -30,6 +32,7 @@ export class AddSalesInvoiceComponent implements OnInit {
   subTypes: any;
 
   taxableItems: Array<TaxableItem> = [];
+  public items: ReplaySubject<Item[]> = new ReplaySubject<Item[]>(1);
   itemsList: Array<Item> = [];
   currencyList: Array<any> = [
     { id: '1', name: 'USD' },
@@ -43,7 +46,9 @@ export class AddSalesInvoiceComponent implements OnInit {
     expanded: boolean;
     taxs: { form: FormGroup }[];
   }[] = [];
+  protected _onDestroy = new Subject<void>();
 
+  public itemCtrl = new FormControl<string>('');
   constructor(
     private apiCall: EnvoiceService,
     private clientSer: ClientService,
@@ -58,8 +63,33 @@ export class AddSalesInvoiceComponent implements OnInit {
     this.getItems();
     this.addLine();
     sidebarToggling();
+    this.items.next(this.itemsList.slice());
     console.log(sessionStorage.getItem('internalId'));
     // this.envoiceModel.internalId = sessionStorage.getItem('internalId')
+    this.itemCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterBanks();
+      });
+  }
+  protected filterBanks() {
+    if (!this.itemsList.length) {
+      return;
+    }
+    let search: any = this.itemCtrl.value;
+
+    if (!search) {
+      this.items.next(this.itemsList.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.items.next(
+      this.itemsList.filter(
+        (bank) => bank.name.toLowerCase().indexOf(search?.toLowerCase()) > -1
+      )
+    );
   }
 
   setItemPrice(id: any, line: any) {
@@ -68,6 +98,10 @@ export class AddSalesInvoiceComponent implements OnInit {
     line.form.patchValue({
       price: price,
     });
+  }
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
   addLine(): void {
     const newLineForm = this.formBuilder.group({
@@ -135,8 +169,8 @@ export class AddSalesInvoiceComponent implements OnInit {
 
   getItems() {
     this.itemSer.getAll().subscribe((res: any) => {
-      console.log('eee', res);
       this.itemsList = res;
+      this.items.next(res.slice());
     });
   }
 

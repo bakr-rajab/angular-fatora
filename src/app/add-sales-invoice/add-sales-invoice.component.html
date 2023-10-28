@@ -198,9 +198,14 @@
                         <mat-select
                           (selectionChange)="setItemPrice($event.value, line)"
                           formControlName="itemId"
-                        >
+                          >
+                          <mat-option>
+                            <ngx-mat-select-search
+                              [formControl]="itemCtrl"
+                            ></ngx-mat-select-search>
+                          </mat-option>
                           <mat-option
-                            *ngFor="let item of itemsList"
+                            *ngFor="let item of  items | async"
                             [value]="item.id"
                           >
                             {{ item.name }} &nbsp; - &nbsp;{{ item.taxCode }}
