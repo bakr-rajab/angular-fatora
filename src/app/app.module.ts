@@ -9,19 +9,18 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { AcceptedInvoicesComponent } from './accepted-invoices/accepted-invoices.component';
-import { DemoComponent } from './demo/demo.component';
+// import { AcceptedInvoicesComponent } from './accepted-invoices/accepted-invoices.component';
+// import { DemoComponent } from './demo/demo.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CountryComponent } from './country/country.component';
-import { AddNoticeComponent } from './add-notice/add-notice.component';
-import { AddDeductionNoticeComponent } from './add-deduction-notice/add-deduction-notice.component';
+// import { AddNoticeComponent } from './add-notice/add-notice.component';
+// import { AddDeductionNoticeComponent } from './add-deduction-notice/add-deduction-notice.component';
 import { CommonSideNavComponent } from './common-side-nav/common-side-nav.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { LicenseComponent } from './license/license.component';
 import { ViewAddedNoticeComponent } from './view-added-notice/view-added-notice.component';
 import { ViewAddedDeductionNoticeComponent } from './view-added-deduction-notice/view-added-deduction-notice.component';
 import { ViewSalesInvoiceComponent } from './view-sales-invoice/view-sales-invoice.component';
-import { RejectedInvoicesComponent } from './rejected-invoices/rejected-invoices.component';
 import { AddSalesInvoiceComponent } from './add-sales-invoice/add-sales-invoice.component';
 import { SendInvoiceComponent } from './send-invoice/send-invoice.component';
 import { TaxTypesComponent } from './tax-types/tax-types.component';
@@ -61,20 +60,20 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    AcceptedInvoicesComponent,
-    DemoComponent,
+    // AcceptedInvoicesComponent,
+    // DemoComponent,
     BranchesComponent,
     ClientsComponent,
     CountryComponent,
-    AddNoticeComponent,
-    AddDeductionNoticeComponent,
+    // AddNoticeComponent,
+    // AddDeductionNoticeComponent,
     CommonSideNavComponent,
     AnalyticsComponent,
     LicenseComponent,
     ViewAddedNoticeComponent,
     ViewAddedDeductionNoticeComponent,
     ViewSalesInvoiceComponent,
-    RejectedInvoicesComponent,
+    // RejectedInvoicesComponent,
     AddSalesInvoiceComponent,
     SendInvoiceComponent,
     TaxTypesComponent,
