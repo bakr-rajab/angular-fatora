@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AcceptedInvoicesComponent } from './accepted-invoices/accepted-invoices.component';
-import { AddDeductionNoticeComponent } from './add-deduction-notice/add-deduction-notice.component';
-import { AddNoticeComponent } from './add-notice/add-notice.component';
+// import { AcceptedInvoicesComponent } from './accepted-invoices/accepted-invoices.component';
+// import { AddDeductionNoticeComponent } from './add-deduction-notice/add-deduction-notice.component';
+// import { AddNoticeComponent } from './add-notice/add-notice.component';
 import { AddSalesInvoiceComponent } from './add-sales-invoice/add-sales-invoice.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { ClientsGuard } from './clientGaurd';
 import { ClientsComponent } from './clients/clients.component';
 import { CountryComponent } from './country/country.component';
-import { DemoComponent } from './demo/demo.component';
+// import { DemoComponent } from './demo/demo.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditeEnvoiceComponent } from './edite-envoice/edite-envoice.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LicenseComponent } from './license/license.component';
 import { LoginComponent } from './login/login.component';
-import { RejectedInvoicesComponent } from './rejected-invoices/rejected-invoices.component';
+// import { RejectedInvoicesComponent } from './rejected-invoices/rejected-invoices.component';
 import { SalesInvoicesComponent } from './sales-invoices/sales-invoices.component';
 import { SendInvoiceComponent } from './send-invoice/send-invoice.component';
 import { TaxTypesComponent } from './tax-types/tax-types.component';
@@ -42,20 +42,20 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  {
-    path: 'demo',
-    component: DemoComponent,
-  },
+  // {
+  //   path: 'demo',
+  //   component: DemoComponent,
+  // },
   {
     path: 'user',
     component: UserComponent,
     canActivate: [UserGuard],
   },
-  {
-    path: 'accepted-invoices',
-    component: AcceptedInvoicesComponent,
-    canActivate: [ClientsGuard],
-  },
+  // {
+  //   path: 'accepted-invoices',
+  //   component: AcceptedInvoicesComponent,
+  //   canActivate: [ClientsGuard],
+  // },
   {
     path: 'address',
     component: AddressComponent,
@@ -76,16 +76,16 @@ const routes: Routes = [
     component: CountryComponent,
     canActivate: [ClientsGuard],
   },
-  {
-    path: 'add-Notice',
-    component: AddNoticeComponent,
-    canActivate: [ClientsGuard],
-  },
-  {
-    path: 'add-deduction-Notice',
-    component: AddDeductionNoticeComponent,
-    canActivate: [ClientsGuard],
-  },
+  // {
+  //   path: 'add-Notice',
+  //   component: AddNoticeComponent,
+  //   canActivate: [ClientsGuard],
+  // },
+  // {
+  //   path: 'add-deduction-Notice',
+  //   component: AddDeductionNoticeComponent,
+  //   canActivate: [ClientsGuard],
+  // },
   {
     path: 'analytics',
     component: AnalyticsComponent,
@@ -122,11 +122,11 @@ const routes: Routes = [
     component: ViewSalesInvoiceComponent,
     canActivate: [ClientsGuard],
   },
-  {
-    path: 'rejectedInvoices',
-    component: RejectedInvoicesComponent,
-    canActivate: [ClientsGuard],
-  },
+  // {
+  //   path: 'rejectedInvoices',
+  //   component: RejectedInvoicesComponent,
+  //   canActivate: [ClientsGuard],
+  // },
   {
     path: 'addSalesInvoice',
     component: AddSalesInvoiceComponent,
