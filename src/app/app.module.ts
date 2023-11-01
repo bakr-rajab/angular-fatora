@@ -18,8 +18,8 @@ import { CountryComponent } from './country/country.component';
 import { CommonSideNavComponent } from './common-side-nav/common-side-nav.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { LicenseComponent } from './license/license.component';
-import { ViewAddedNoticeComponent } from './view-added-notice/view-added-notice.component';
-import { ViewAddedDeductionNoticeComponent } from './view-added-deduction-notice/view-added-deduction-notice.component';
+// import { ViewAddedNoticeComponent } from './view-added-notice/view-added-notice.component';
+// import { ViewAddedDeductionNoticeComponent } from './view-added-deduction-notice/view-added-deduction-notice.component';
 import { ViewSalesInvoiceComponent } from './view-sales-invoice/view-sales-invoice.component';
 import { AddSalesInvoiceComponent } from './add-sales-invoice/add-sales-invoice.component';
 import { SendInvoiceComponent } from './send-invoice/send-invoice.component';
@@ -70,8 +70,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     CommonSideNavComponent,
     AnalyticsComponent,
     LicenseComponent,
-    ViewAddedNoticeComponent,
-    ViewAddedDeductionNoticeComponent,
+    // ViewAddedNoticeComponent,
+    // ViewAddedDeductionNoticeComponent,
     ViewSalesInvoiceComponent,
     // RejectedInvoicesComponent,
     AddSalesInvoiceComponent,
