@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
 
   getAllUser() {
     this.apiCall.getAllUsers().subscribe(res => {
-      console.log(res)
+      console.log('resssss', res);
       this.usersRes = res
       this.usersList = this.usersRes
       console.log(this.usersList)
