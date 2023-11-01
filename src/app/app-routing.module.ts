@@ -24,8 +24,8 @@ import { ItemComponent } from './items/items.component';
 import { UnitsComponent } from './units/units.component';
 import { UserGuard } from './user.guard';
 import { UserComponent } from './user/user.component';
-import { ViewAddedDeductionNoticeComponent } from './view-added-deduction-notice/view-added-deduction-notice.component';
-import { ViewAddedNoticeComponent } from './view-added-notice/view-added-notice.component';
+// import { ViewAddedDeductionNoticeComponent } from './view-added-deduction-notice/view-added-deduction-notice.component';
+// import { ViewAddedNoticeComponent } from './view-added-notice/view-added-notice.component';
 import { ViewSalesInvoiceComponent } from './view-sales-invoice/view-sales-invoice.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
@@ -107,16 +107,16 @@ const routes: Routes = [
     canActivate: [UserGuard],
   },
 
-  {
-    path: 'viewAddedNotice',
-    component: ViewAddedNoticeComponent,
-    canActivate: [ClientsGuard],
-  },
-  {
-    path: 'viewAddeddDeductionNotice',
-    component: ViewAddedDeductionNoticeComponent,
-    canActivate: [ClientsGuard],
-  },
+  // {
+  //   path: 'viewAddedNotice',
+  //   component: ViewAddedNoticeComponent,
+  //   canActivate: [ClientsGuard],
+  // },
+  // {
+  //   path: 'viewAddeddDeductionNotice',
+  //   component: ViewAddedDeductionNoticeComponent,
+  //   canActivate: [ClientsGuard],
+  // },
   {
     path: 'salesInvoice',
     component: ViewSalesInvoiceComponent,

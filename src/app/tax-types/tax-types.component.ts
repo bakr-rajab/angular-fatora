@@ -7,7 +7,7 @@ declare function sidebarToggling(): any
 @Component({
   selector: 'app-tax-types',
   templateUrl: './tax-types.component.html',
-  styleUrls: ['./tax-types.component.css']
+  // styleUrls: ['./tax-types.component.css']
 })
 export class TaxTypesComponent implements OnInit {
   taxTypeReq:any
