@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GenericService } from '../service-layer/generic.service';
 import { EnvoiceService } from '../service-layer/envoice.service';
 import { Envoice } from '../models/envoice.model';
 
@@ -9,7 +8,7 @@ declare function sidebarToggling(): any;
 @Component({
   selector: 'app-view-sales-invoice',
   templateUrl: './view-sales-invoice.component.html',
-  styleUrls: ['./view-sales-invoice.component.css'],
+  // styleUrls: ['./view-sales-invoice.component.css'],
 })
 export class ViewSalesInvoiceComponent implements OnInit {
   envoicesList: Array<any> = [];
@@ -57,24 +56,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
   }
 
   exportInvoice() {
-    // this.exportFileReuest = {
-    //   "target": "invoice",
-    //   "action": "export_invoice_report",
-    //   "invoice_report_type": "general",
-    //   "start_date": this.dateFrom,
-    //   "end_date": this.dateTo,
-    //   "file_path": "/home/accountantnlu/the_accountant/data_output/",
-    //   "user_id": "c2a0c6abc57140be87f6d7a9ae187db9"
-    // }
-    // this.apiCall.restServiceCall(this.exportFileReuest).subscribe(res => {
-    //   this.expoerRes = res;
-    //   if (this.expoerRes.status == true) {
-    //     this.showDownLoadLink = true
-    //     this.download(this.expoerRes.data.file_paht)
-    //   } else if (this.expoerRes.status == "False") {
-    //     this.errorMsg = true;
-    //   }
-    // })
+   
   }
 
   download(url: any) {

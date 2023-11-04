@@ -11,7 +11,6 @@ class PermissionsService {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     //your logic goes here
-    // console.log("1111", new Date())
     const role = sessionStorage.getItem('userRole')
     console.log({ role });
 
@@ -28,16 +27,4 @@ class PermissionsService {
 export const UserGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
   return inject(PermissionsService).canActivate(next, state);
 }
-// export class UserGuard implements CanActivate {
-//   constructor(private router: Router) { }
-//   canActivate() {
-//     console.log("1111", new Date())
-//     console.log("22222", sessionStorage.getItem('endDate'))
-//     if (sessionStorage.getItem('userRole') == 'superAdmin') {
-//       return true;
-//     } else {
-//       this.router.navigate(['/login']);
-//       return false;
-//     }
-//   }
-// }
+

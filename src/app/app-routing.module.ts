@@ -4,20 +4,14 @@ import { AddSalesInvoiceComponent } from './add-sales-invoice/add-sales-invoice.
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { ClientsGuard } from './clientGaurd';
 import { ClientsComponent } from './clients/clients.component';
-import { CountryComponent } from './country/country.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
-import { EditeEnvoiceComponent } from './edite-envoice/edite-envoice.component';
+
 import { HomeComponent } from './home/home.component';
 import { LicenseComponent } from './license/license.component';
 import { LoginComponent } from './login/login.component';
-import { SendInvoiceComponent } from './send-invoice/send-invoice.component';
-import { TaxTypesComponent } from './tax-types/tax-types.component';
 import { TypesGroupComponent } from './types-group/types-group.component';
 import { ItemComponent } from './items/items.component';
-import { UnitsComponent } from './units/units.component';
 import { UserGuard } from './user.guard';
 import { UserComponent } from './user/user.component';
-import { ViewSalesInvoiceComponent } from './view-sales-invoice/view-sales-invoice.component';
 import { RoleComponent } from './role/role.component';
 import { CompanyComponent } from './company/company.component';
 import { BranchesComponent } from './address/branches.component';
@@ -33,20 +27,12 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  // {
-  //   path: 'demo',
-  //   component: DemoComponent,
-  // },
+ 
   {
     path: 'user',
     component: UserComponent,
     canActivate: [UserGuard],
   },
-  // {
-  //   path: 'accepted-invoices',
-  //   component: AcceptedInvoicesComponent,
-  //   canActivate: [ClientsGuard],
-  // },
   {
     path: 'address',
     component: AddressComponent,
@@ -62,21 +48,7 @@ const routes: Routes = [
     component: ClientsComponent,
     canActivate: [ClientsGuard],
   },
-  {
-    path: 'country',
-    component: CountryComponent,
-    canActivate: [ClientsGuard],
-  },
-  // {
-  //   path: 'add-Notice',
-  //   component: AddNoticeComponent,
-  //   canActivate: [ClientsGuard],
-  // },
-  // {
-  //   path: 'add-deduction-Notice',
-  //   component: AddDeductionNoticeComponent,
-  //   canActivate: [ClientsGuard],
-  // },
+  
   {
     path: 'analytics',
     component: AnalyticsComponent,
@@ -96,51 +68,16 @@ const routes: Routes = [
     path: 'company',
     component: CompanyComponent,
     canActivate: [UserGuard],
-  },
-
-  // {
-  //   path: 'viewAddedNotice',
-  //   component: ViewAddedNoticeComponent,
-  //   canActivate: [ClientsGuard],
-  // },
-  // {
-  //   path: 'viewAddeddDeductionNotice',
-  //   component: ViewAddedDeductionNoticeComponent,
-  //   canActivate: [ClientsGuard],
-  // },
-  {
-    path: 'salesInvoice',
-    component: ViewSalesInvoiceComponent,
-    canActivate: [ClientsGuard],
-  },
-  // {
-  //   path: 'rejectedInvoices',
-  //   component: RejectedInvoicesComponent,
-  //   canActivate: [ClientsGuard],
-  // },
+  },  
   {
     path: 'addSalesInvoice',
     component: AddSalesInvoiceComponent,
     canActivate: [ClientsGuard],
   },
-  {
-    path: 'sendInvoice',
-    component: SendInvoiceComponent,
-    canActivate: [ClientsGuard],
-  },
-  {
-    path: 'taxTypes',
-    component: TaxTypesComponent,
-    canActivate: [ClientsGuard],
-  },
+ 
   {
     path: 'items',
     component: ItemComponent,
-    canActivate: [ClientsGuard],
-  },
-  {
-    path: 'units',
-    component: UnitsComponent,
     canActivate: [ClientsGuard],
   },
   {
@@ -148,16 +85,8 @@ const routes: Routes = [
     component: TypesGroupComponent,
     canActivate: [ClientsGuard],
   },
-  {
-    path: 'editeUser',
-    component: EditUserComponent,
-    canActivate: [ClientsGuard],
-  },
-  {
-    path: 'editeEnvoice',
-    component: EditeEnvoiceComponent,
-    canActivate: [ClientsGuard],
-  },
+ 
+ 
   {
     path: 'home',
     component: HomeComponent,
