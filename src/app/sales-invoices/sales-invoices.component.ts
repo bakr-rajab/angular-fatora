@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GenericService } from '../service-layer/generic.service';
+// import { GenericService } from '../service-layer/generic.service';
 
 declare function paggnation():any;
 declare function sidebarToggling(): any;
@@ -16,7 +16,7 @@ export class SalesInvoicesComponent implements OnInit {
   envoicesList:any
   initTable:boolean = false
 
-  constructor(private apiCall: GenericService) { }
+  constructor() { }
 
   ngOnInit(): void {
     sidebarToggling();
@@ -24,19 +24,19 @@ export class SalesInvoicesComponent implements OnInit {
   }
 
   getAllEnvoices(){
-    this.getAllEnvoicesReq={
-      "target":"invoice",
-      "action":"get_all_invoices",
-      "user_id":sessionStorage.getItem('userId')
-      }
-      this.apiCall.restServiceCall(this.getAllEnvoicesReq).subscribe(res =>{ 
-        this.envoicesRes = res
-        this.envoicesList = this.envoicesRes.data
-        if(this.initTable== false){
-          paggnation();
-          this.initTable = true;
-        }
-      })
+    // this.getAllEnvoicesReq={
+    //   "target":"invoice",
+    //   "action":"get_all_invoices",
+    //   "user_id":sessionStorage.getItem('userId')
+    //   }
+    //   this.apiCall.restServiceCall(this.getAllEnvoicesReq).subscribe(res =>{ 
+    //     this.envoicesRes = res
+    //     this.envoicesList = this.envoicesRes.data
+    //     if(this.initTable== false){
+    //       paggnation();
+    //       this.initTable = true;
+    //     }
+    //   })
   }
 
  

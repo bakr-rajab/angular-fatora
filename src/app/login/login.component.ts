@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { reduce } from 'rxjs';
 import { AuthUser } from '../models/user/auth-user.model';
 import { AuthResponse } from '../models/user/authResponse';
-import { GenericService } from '../service-layer/generic.service';
 import { AuthService } from '../service-layer/auth.service';
 import { EnumRoles } from '../models/roles/roles.model';
 

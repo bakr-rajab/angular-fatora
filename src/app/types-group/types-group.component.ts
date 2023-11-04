@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GenericService } from '../service-layer/generic.service';
 import { GroupService } from '../service-layer/group.service';
 import { Group } from '../models/group.model';
 

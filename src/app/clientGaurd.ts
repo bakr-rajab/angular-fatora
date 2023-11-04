@@ -25,16 +25,4 @@ export const ClientsGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state:
   return inject(PermissionsService).canActivate(next, state);
 }
 
-// export class ClientsGuard {
-//   constructor(public router: Router) { }
-//   canActivate() {
-//     if (sessionStorage.getItem('userRole') == 'user'
-//       // && sessionStorage.getItem('endDate') >= new Date()
-//     ) {
-//       return true;
-//     } else {
-//       this.router.navigate(['/login']);
-//       return false;
-//     }
-//   }
-// }
+

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Branch } from '../models/branches/branch.model';
 import { BranchService } from '../service-layer/branch.service';
 import { Address } from '../models/address.model';
-import { StaticService } from '../service-layer/static.service';
 import { AddressService } from '../service-layer/adress.service';
 import { CompanyService } from '../service-layer/company.service';
 
@@ -12,7 +11,7 @@ declare function sidebarToggling(): any;
 @Component({
   selector: 'app-branches',
   templateUrl: './branches.component.html',
-  styleUrls: ['./branches.component.css'],
+  // styleUrls: ['./branches.component.css'],
 })
 export class BranchesComponent implements OnInit {
   branchesList!: Branch[];

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-comman-header',
   templateUrl: './comman-header.component.html',
-  styleUrls: ['./comman-header.component.css']
+  // styleUrls: ['./comman-header.component.css']
 })
 export class CommanHeaderComponent implements OnInit {
 
