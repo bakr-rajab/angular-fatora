@@ -1,0 +1,14 @@
+[debug] [2023-11-06T22:53:58.362Z] ----------------------------------------------------------------------
+[debug] [2023-11-06T22:53:58.363Z] Command:       /home/bakr/.nvm/versions/node/v20.4.0/bin/node /home/bakr/.nvm/versions/node/v20.4.0/bin/firebase deploy
+[debug] [2023-11-06T22:53:58.364Z] CLI Version:   12.8.0
+[debug] [2023-11-06T22:53:58.364Z] Platform:      linux
+[debug] [2023-11-06T22:53:58.364Z] Node Version:  v20.4.0
+[debug] [2023-11-06T22:53:58.364Z] Time:          Tue Nov 07 2023 00:53:58 GMT+0200 (Eastern European Standard Time)
+[debug] [2023-11-06T22:53:58.364Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-06T22:53:58.416Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-06T22:53:58.417Z] > authorizing via signed-in user (abobakr.r.bakry@gmail.com)
+[debug] [2023-11-06T22:53:58.417Z] [iam] checking project envoice-1949f for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-11-06T22:53:58.418Z] > refreshing access token with scopes: []
+[debug] [2023-11-06T22:53:58.419Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-11-06T22:53:58.419Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
