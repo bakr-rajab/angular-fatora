@@ -35,6 +35,7 @@
                   <th>الرقم الضريبي</th>
                   <th>الشهاده</th>
                   <th>كود النشاط</th>
+                  <th>مدة الترخيص</th>
                   <th>الاجراءات</th>
                 </tr>
               </thead>
@@ -45,7 +46,7 @@
                   <td>{{ comp.taxNumber }}</td>
                   <td>{{ comp.certificate }}</td>
                   <td>{{ comp.activity?.code }}</td>
-                  <!-- <td>{{ comp.activity?.code }}</td> -->
+                  <td>{{ dateDiff(comp?.endDate) }}</td>
                   <td>
                     <ul>
                       <li>
@@ -116,6 +117,25 @@
                 [(ngModel)]="companyModel.taxNumber"
               />
             </mat-form-field>
+            <div class="col-lg-6 col-md-6 mb-6">
+              <div class="form-floating">
+                <mat-form-field class="example-full-width">
+                  <mat-label>حدد تاريخ انتهاء الرخصه</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    [(ngModel)]="companyModel.endDate"
+                    name="datep"
+                  />
+                  <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon
+                      >keyboard_arrow_down</mat-icon
+                    >
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
             <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
@@ -256,6 +276,25 @@
                   placeholder="الرقم الضريبي"
                 />
                 <label for="floatingSelect">الرقم الضريبي</label>
+              </div>
+            </div>
+              <div class="col-lg-6 col-md-12 mb-3">
+              <div class="form-floating">
+                <mat-form-field class="example-full-width">
+                  <mat-label>حدد تاريخ انتهاء الرخصه</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    [(ngModel)]="companyModel.endDate"
+                    name="datep"
+                  />
+                  <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon
+                      >keyboard_arrow_down</mat-icon
+                    >
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
               </div>
             </div>
             <div class="col-lg-6 col-md-12 mb-3">

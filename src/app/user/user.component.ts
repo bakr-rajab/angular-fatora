@@ -8,13 +8,14 @@ import { CompanyService } from '../service-layer/company.service';
 import { Company } from '../models/company/company.model';
 import { Branch } from '../models/branches/branch.model';
 import { BranchService } from '../service-layer/branch.service';
-
+import * as moment from 'moment';
+// import * as moment from 'moment';
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
   user: User = new User();
@@ -24,96 +25,94 @@ export class UserComponent implements OnInit {
   selectedBranch!: any;
   companysList!: Array<Company>;
   branchList!: Branch[];
-  usersRes: any
+  usersRes: any;
   usersList!: User[];
-  initTable: boolean = false
+  initTable: boolean = false;
 
-  constructor(private apiCall: UserService,
+  constructor(
+    private apiCall: UserService,
     private roleService: RoleService,
     private companyService: CompanyService,
     private branchService: BranchService,
     private cd: ChangeDetectorRef
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // this.user = new User();
-    sidebarToggling()
-    this.getAllUser()
+    sidebarToggling();
+    this.getAllUser();
     //   this.getActivityCodes()
   }
 
   createUser() {
-    // this.user.company = { id: this.user.companyId }
-    // console.log(this.user)
-    this.apiCall.createUser(this.user).subscribe(res => {
-      console.log(res)
-      this.usersList.push(res)
-    })
+    this.apiCall.createUser(this.user).subscribe((res) => {
+      this.usersList.push(res);
+    });
   }
-
+  dateDiff(end: string) {
+    return moment(end).diff(moment(), 'day') + 1;
+  }
   getAllUser() {
-    this.apiCall.getAllUsers().subscribe(res => {
-      console.log('resssss', res);
-      this.usersRes = res
-      this.usersList = this.usersRes
-      console.log(this.usersList)
+    this.apiCall.getAllUsers().subscribe((res) => {
+      this.usersRes = res;
+      this.usersList = this.usersRes;
+      console.log(this.usersList);
 
       if (this.initTable == false) {
         paggnation();
         this.initTable = true;
       }
-    })
+    });
   }
 
   updateUser() {
     this.user.branch = this.selectedBranch;
     this.user.company = this.selectedCompany;
     this.user.role = this.selectedRole;
-    console.log("44", this.user);
-    return this.apiCall.updateUser(this.user.id, this.user).subscribe(res => {
-      console.log(res)
+    console.log('44', this.user);
+    return this.apiCall.updateUser(this.user.id, this.user).subscribe((res) => {
+      console.log(res);
       if (res.affected == 1) {
-        this.getAllUser()
+        this.getAllUser();
       }
-    })
+    });
   }
 
   deleteUser(id: string) {
-    this.apiCall.deleteUser(id).subscribe(res => {
+    this.apiCall.deleteUser(id).subscribe((res) => {
       console.log(res);
-      this.cd.detectChanges()
+      this.cd.detectChanges();
       if (res.affected == 1) {
         this.usersList = this.usersList.filter((item: any) => item.id != id);
         console.log(this.usersList);
       }
-    })
-    this.cd.detectChanges()
+    });
+    this.cd.detectChanges();
   }
 
-
   setUserData(user: User) {
-    this.user = user
+    this.user = user;
     this.selectedCompany = user.company.id;
     this.selectedBranch = user.branch.id;
     this.selectedRole = user.role.id;
   }
   getRoles() {
-    this.roleService.getRoles().subscribe(roles => {
-      this.roleList = roles
-    })
+    this.roleService.getRoles().subscribe((roles) => {
+      this.roleList = roles;
+    });
   }
 
   getCompanys() {
-    this.companyService.getAll().subscribe(comp => {
+    this.companyService.getAll().subscribe((comp) => {
       console.log(comp);
 
-      this.companysList = comp
-    })
+      this.companysList = comp;
+    });
   }
 
   getBranches() {
-    this.branchService.getAll().subscribe(br => {
-      this.branchList = br
-    })
+    this.branchService.getAll().subscribe((br) => {
+      this.branchList = br;
+    });
   }
 }

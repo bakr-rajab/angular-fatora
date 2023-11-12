@@ -32,11 +32,12 @@
                 <tr>
                   <th>اسم المستخدم</th>
                   <th>الإيميل</th>
-                  <!-- <th>كود النشاط</th> -->
                   <th>رقم التليفون</th>
                   <th>الصلاحية</th>
                   <th>الرقم الضريبى</th>
                   <th>الشركه</th>
+                  <th>مدة الترخيص</th>
+                  <th>الحاله</th>
                   <th>الإجراءات</th>
                 </tr>
               </thead>
@@ -44,11 +45,24 @@
                 <tr *ngFor="let user of usersList">
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
-                  <!-- <td>{{user.activity.code}}</td> -->
                   <td>{{ user.phone }}</td>
                   <td>{{ user.role?.name }}</td>
                   <td>{{ user.company?.taxNumber }}</td>
                   <td>{{ user.company?.name }}</td>
+                  <td>{{ dateDiff(user.company?.endDate) }}</td>
+                  <td>
+                    <ul>
+                      <li>
+                        <i
+                          class="fas {{
+                            user.online
+                              ? 'fa-toggle-on bg-success'
+                              : 'fa-toggle-off bg-secondary'
+                          }}"
+                        ></i>
+                      </li>
+                    </ul>
+                  </td>
                   <td>
                     <ul>
                       <li>

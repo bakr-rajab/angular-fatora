@@ -11,4 +11,5 @@ export class Company {
   clientId!: string;
   clientSecret1!: string;
   clientSecret2!: string;
+  endDate!: string;
 }

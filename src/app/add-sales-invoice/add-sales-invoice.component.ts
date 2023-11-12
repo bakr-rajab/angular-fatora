@@ -64,8 +64,6 @@ export class AddSalesInvoiceComponent implements OnInit {
     this.addLine();
     sidebarToggling();
     this.items.next(this.itemsList.slice());
-    console.log(sessionStorage.getItem('internalId'));
-    // this.envoiceModel.internalId = sessionStorage.getItem('internalId')
     this.itemCtrl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {

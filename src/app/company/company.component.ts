@@ -3,6 +3,7 @@ import { Company } from '../models/company/company.model';
 import { CompanyService } from '../service-layer/company.service';
 import { StaticService } from '../service-layer/static.service';
 import { SnackbarService } from '../snackbar.service';
+import * as moment from 'moment';
 
 declare function sidebarToggling(): any;
 declare function paggnation(): any;
@@ -71,6 +72,9 @@ export class CompanyComponent implements OnInit {
     document.getElementById('modalCreate')?.click();
   }
 
+  dateDiff(end: string) {
+    return moment(end).diff(moment(), 'day');
+  }
   setToEdit(company: Company) {
     this.activityId = company.activity?.id;
     delete company.branch;

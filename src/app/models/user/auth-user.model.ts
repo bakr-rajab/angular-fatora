@@ -12,4 +12,5 @@ export class User {
   company!: any;
   role!: any;
   branch!: any;
+  online!: boolean;
 }

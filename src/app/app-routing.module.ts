@@ -13,7 +13,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditeEnvoiceComponent } from './edite-envoice/edite-envoice.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { LicenseComponent } from './license/license.component';
+// import { LicenseComponent } from './license/license.component';
 import { LoginComponent } from './login/login.component';
 // import { RejectedInvoicesComponent } from './rejected-invoices/rejected-invoices.component';
 import { SalesInvoicesComponent } from './sales-invoices/sales-invoices.component';
@@ -90,11 +90,6 @@ const routes: Routes = [
     path: 'analytics',
     component: AnalyticsComponent,
     canActivate: [ClientsGuard],
-  },
-  {
-    path: 'license',
-    component: LicenseComponent,
-    canActivate: [UserGuard],
   },
   {
     path: 'roles',

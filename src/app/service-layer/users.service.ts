@@ -6,17 +6,21 @@ import { environment } from '../../environments/environment';
 
 const API_URL = environment.apiUrl;
 const httpOptions = {
-  headers: environment.headers
+  headers: environment.headers,
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   createUser(data: User): Observable<User | any> {
-    return this.http.post(API_URL + '/users', JSON.stringify(data), httpOptions)
+    return this.http.post(
+      API_URL + '/users',
+      JSON.stringify(data),
+      httpOptions
+    );
   }
 
   getAllUsers(): Observable<any> {
@@ -27,8 +31,8 @@ export class UserService {
     return this.http.get(API_URL + '/users/${id}', { responseType: 'json' });
   }
 
-  updateUser(id: string, value: User): Observable<any> {
-    return this.http.patch(API_URL + `/users/${id} `, value)
+  updateUser(id: string, value: Partial<User>): Observable<any> {
+    return this.http.patch(API_URL + `/users/${id} `, value);
   }
 
   deleteUser(id: string): Observable<any> {
