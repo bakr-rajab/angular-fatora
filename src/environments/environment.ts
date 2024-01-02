@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 export const environment = {
   production: false,
-  apiUrl: 'https://wild-tan-scorpion-sock.cyclic.app',
+  apiUrl: 'https://blue-violet-snapper-sock.cyclic.app',
   // apiUrl: 'https://bakr-rajab-super-duper-broccoli-jq9999g75wq3jwq-4001.preview.app.github.dev',
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
