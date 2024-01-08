@@ -52,6 +52,9 @@ import { BranchesComponent } from './address/branches.component';
 import { AddressComponent } from './branches/address.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -109,6 +112,10 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatCardModule,
     MatSnackBarModule,
     NgxMatSelectSearchModule,
+    MatTableModule, // <-- Added Table Module
+    MatPaginatorModule, // <-- Added Paginator Module
+    MatProgressBarModule, // <-- Added Loader Module
+    
   ],
   // providers: [GenericService],
   providers: [

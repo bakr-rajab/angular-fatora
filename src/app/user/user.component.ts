@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../service-layer/users.service';
 import { User } from '../models/user/auth-user.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,8 +9,10 @@ import { Company } from '../models/company/company.model';
 import { Branch } from '../models/branches/branch.model';
 import { BranchService } from '../service-layer/branch.service';
 import * as moment from 'moment';
-// import * as moment from 'moment';
-declare function paggnation(): any;
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { SnackbarService } from '../snackbar.service';
 declare function sidebarToggling(): any;
 @Component({
   selector: 'app-user',
@@ -19,61 +21,116 @@ declare function sidebarToggling(): any;
 })
 export class UserComponent implements OnInit {
   user: User = new User();
-  roleList!: Role[];
-  selectedRole!: any;
-  selectedCompany!: any;
-  selectedBranch!: any;
-  companysList!: Array<Company>;
-  branchList!: Branch[];
-  usersRes: any;
-  usersList!: User[];
-  initTable: boolean = false;
-
-  constructor(
-    private apiCall: UserService,
-    private roleService: RoleService,
-    private companyService: CompanyService,
-    private branchService: BranchService,
-    private cd: ChangeDetectorRef
-  ) {}
-
+  ELEMENT_DATA: User[] = [];
+  isloading = false;
+  totalRows = 0;
+  pageSize = 10;
+  cPage = 0;
+  pageSizeOptions: number[] = [10, 20, 30, 40, 50];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'email',
+    'phone',
+    'role',
+    'company',
+    'tax',
+    'date',
+    'status',
+    'actions',
+  ];
+  dataSource: MatTableDataSource<User> = new MatTableDataSource(this.ELEMENT_DATA);
+    
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+    
+    roleList!: Role[];
+    selectedRole!: any;
+    selectedCompany!: any;
+    selectedBranch!: any;
+    companysList!: Array<Company>;
+    branchList!: Branch[];
+    
+    constructor(
+      private apiCall: UserService,
+      private roleService: RoleService,
+      private companyService: CompanyService,
+      private branchService: BranchService,
+      private cd: ChangeDetectorRef,
+      private snackbarSer: SnackbarService
+      ) {}
+      ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  
   ngOnInit(): void {
     // this.user = new User();
     sidebarToggling();
     this.getAllUser();
     //   this.getActivityCodes()
   }
+  toggleStatus(id: any, status: boolean) {
+    this.isloading = true;
+    this.apiCall.updateUser(id, { online: !status }).subscribe((data) => {
+      console.log(data);
+      if (data.affected === 1) {
+        this.getAllUser();  
+        this.snackbarSer.openSnackBar('تم تعديل الحالة بنجاح', 4000, 'success');
+      }
+      this.isloading = false;
+    });
+
+  }
 
   createUser() {
     this.apiCall.createUser(this.user).subscribe((res) => {
-      this.usersList.push(res);
+      this.dataSource.data.push(res);
+      this.dataSource._updateChangeSubscription();
+      this.snackbarSer.openSnackBar('تم الاضافة بنجاح', 4000, 'success');
     });
   }
   dateDiff(end: string) {
     return moment(end).diff(moment(), 'day') + 1;
   }
   getAllUser() {
-    this.apiCall.getAllUsers().subscribe((res) => {
-      this.usersRes = res;
-      this.usersList = this.usersRes;
-      console.log(this.usersList);
+    this.isloading = true;
 
-      if (this.initTable == false) {
-        paggnation();
-        this.initTable = true;
-      }
+    this.apiCall.getAllUsers(this.cPage + 1, this.pageSize).subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.items);
+      setTimeout(() => {
+        this.paginator.pageIndex = res.meta.currentPage - 1;
+        this.paginator.length = res.meta.totalItems;
+        this.isloading = false;
+      });
     });
+  }
+  pageChanged(event: PageEvent) {
+    console.log({ event });
+    this.pageSize = event.pageSize;
+    this.cPage = event.pageIndex;
+    this.getAllUser();
   }
 
   updateUser() {
     this.user.branch = this.selectedBranch;
     this.user.company = this.selectedCompany;
     this.user.role = this.selectedRole;
-    console.log('44', this.user);
+   
     return this.apiCall.updateUser(this.user.id, this.user).subscribe((res) => {
       console.log(res);
       if (res.affected == 1) {
         this.getAllUser();
+        // this.dataSource._updateChangeSubscription();
+        this.snackbarSer.openSnackBar('تم التعديل بنجاح', 4000, 'success');
       }
     });
   }
@@ -83,8 +140,8 @@ export class UserComponent implements OnInit {
       console.log(res);
       this.cd.detectChanges();
       if (res.affected == 1) {
-        this.usersList = this.usersList.filter((item: any) => item.id != id);
-        console.log(this.usersList);
+        this.dataSource.data = this.dataSource.data.filter((item: any) => item.id != id);
+        this.snackbarSer.openSnackBar('تم الحذف بنجاح', 4000, 'success');
       }
     });
     this.cd.detectChanges();

@@ -23,74 +23,133 @@
       <div class="row">
         <div class="col-12">
           <div class="main-table">
-            <table
-              id="example"
-              class="display table table-hover"
-              style="width: 100%"
-            >
-              <thead>
-                <tr>
-                  <th>اسم المستخدم</th>
-                  <th>الإيميل</th>
-                  <th>رقم التليفون</th>
-                  <th>الصلاحية</th>
-                  <th>الرقم الضريبى</th>
-                  <th>الشركه</th>
-                  <th>مدة الترخيص</th>
-                  <th>الحاله</th>
-                  <th>الإجراءات</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let user of usersList">
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.phone }}</td>
-                  <td>{{ user.role?.name }}</td>
-                  <td>{{ user.company?.taxNumber }}</td>
-                  <td>{{ user.company?.name }}</td>
-                  <td>{{ dateDiff(user.company?.endDate) }}</td>
-                  <td>
-                    <ul>
-                      <li>
-                        <i
-                          class="fas {{
-                            user.online
-                              ? 'fa-toggle-on bg-success'
-                              : 'fa-toggle-off bg-secondary'
-                          }}"
-                        ></i>
-                      </li>
-                    </ul>
-                  </td>
-                  <td>
-                    <ul>
-                      <li>
-                        <a
-                          (click)="
-                            setUserData(user);
-                            getCompanys();
-                            getRoles();
-                            getBranches()
-                          "
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModalEdit"
-                        >
-                          <i class="far fa-edit"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a (click)="deleteUser(user.id)">
-                          <i class="far fa-trash-alt"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="row">
+              <mat-form-field [dir]="'rtl'">
+                <mat-label>ابحث</mat-label>
+                <input
+                  matInput
+                  (keyup)="applyFilter($event)"
+                  placeholder="ابحث عن مستخدم"
+                  #input
+                />
+              </mat-form-field>
+              <div class="mat-elevation-z8">
+                <mat-progress-bar
+                [dir]="'rtl'"
+                  mode="indeterminate"
+                  *ngIf="isloading"
+                ></mat-progress-bar>
+                <table  [dir]="'rtl'" mat-table [dataSource]="dataSource" matSort>
+                  <ng-container matColumnDef="id">
+                    <th  mat-header-cell *matHeaderCellDef >رقم:</th>
+                    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+                  </ng-container>
 
-            <div></div>
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>اسم المستخدم</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.name }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef>رقم التليفون </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.phone }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>الإيميل </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.email }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="tax">
+                    <th mat-header-cell *matHeaderCellDef>الرقم الضريبى </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.company.taxNumber }}
+                    </td>
+                  </ng-container> 
+
+                   <ng-container matColumnDef="company">
+                    <th mat-header-cell *matHeaderCellDef>الشركه </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.company.name }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="role">
+                    <th mat-header-cell *matHeaderCellDef>الصلاحية </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.role.name }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>مدة الترخيص</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ dateDiff(element.company.endDate) }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>الحاله</th>
+                    <td mat-cell *matCellDef="let element">
+                      <ul>
+                        <li>
+                          <button  (click)="toggleStatus(element.id,element.online)" mat-mini-fab color="default" aria-label="Example icon button with a home icon">
+                        <mat-icon color="{{element.online?'primary':'accent'}}">power_settings_new</mat-icon>
+                   </button>
+                        </li>
+                      </ul>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>الاجراءات</th>
+                    <td mat-cell *matCellDef="let element">
+                      <ul>
+                        <li>
+                          <a
+                            (click)="
+                              setUserData(element);
+                              getCompanys();
+                              getRoles();
+                              getBranches()
+                            "
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModalEdit"
+                          >
+                            <i class="far fa-edit"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a (click)="deleteUser(element.id)">
+                            <i class="far fa-trash-alt"></i>
+                          </a>
+                        </li>
+
+                      </ul>
+                    </td> 
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                  ></tr>
+                </table>
+
+                <mat-paginator
+                [dir]="'rtl'"
+                  #paginator
+                  [pageIndex]="cPage"
+                  [pageSize]="pageSize"
+                  (page)="pageChanged($event)"
+                  [pageSizeOptions]="pageSizeOptions"
+                  aria-label="Select page 44"
+                >
+                </mat-paginator>
+              </div>
+            </div>
           </div>
         </div>
       </div>

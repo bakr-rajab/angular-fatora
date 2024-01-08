@@ -23,8 +23,10 @@ export class UserService {
     );
   }
 
-  getAllUsers(): Observable<any> {
-    return this.http.get(API_URL + '/users/all', { responseType: 'json' });
+  getAllUsers(page = 1, size = 10): Observable<any> {
+    return this.http.get(API_URL + `/users/all?page=${page}&pageSize=${size}`, {
+      responseType: 'json',
+    });
   }
 
   getUser(_id: string): Observable<any> {
