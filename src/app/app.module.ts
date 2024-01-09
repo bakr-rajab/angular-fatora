@@ -55,6 +55,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,7 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule, // <-- Added Table Module
     MatPaginatorModule, // <-- Added Paginator Module
     MatProgressBarModule, // <-- Added Loader Module
-    
+    MatTooltipModule,
   ],
   // providers: [GenericService],
   providers: [

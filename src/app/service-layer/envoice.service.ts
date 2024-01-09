@@ -30,8 +30,8 @@ export class EnvoiceService {
     );
   }
 
-  getAll(): Observable<any> {
-    return this.http.get(environment.apiUrl + '/invoice', {
+  getAll(page:number,pageSize:number): Observable<any> {
+    return this.http.get(environment.apiUrl + `/invoice?page=${page}&pageSize=${pageSize}`, {
       responseType: 'json',
     });
   }
