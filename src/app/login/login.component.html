@@ -1,5 +1,6 @@
 <body>
   <!--login Form-->
+ 
   <form class="form-login">
     <div class="row">
       <div class="col-md-12 text-center mb-4">
@@ -39,8 +40,15 @@
 
       <div class="col-md-12">
         <div class="form-floating mb-3">
-          <input [(ngModel)]="authModel.email" [required]="true" name="taxNumber" type="text" class="form-control" id="floatingInput"
-            placeholder="الايميل">
+          <input
+            [(ngModel)]="authModel.email"
+            [required]="true"
+            name="taxNumber"
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="الايميل"
+          />
           <label for="floatingInput">الايميل</label>
         </div>
         <div class="form-floating">
@@ -64,8 +72,13 @@
         انتهت مدة الرخصه
       </span>
     </div>
+    <mat-progress-bar
+    [dir]="'rtl'"
+    mode="indeterminate"
+    *ngIf="isLoading"
+    ></mat-progress-bar>
   </form>
-  <!--/login Form-->
+  
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/all.min.js"></script>
 </body>

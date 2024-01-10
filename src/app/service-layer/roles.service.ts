@@ -5,7 +5,7 @@ import { User } from '../models/user/auth-user.model';
 import { environment } from '../../environments/environment';
 import { Role } from '../models/roles/roles.model';
 
-console.log(environment.apiUrl);
+// console.log(environment.apiUrl);
 
 const httpOptions = {
   headers: environment.headers

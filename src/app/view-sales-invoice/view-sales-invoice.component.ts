@@ -1,5 +1,5 @@
 import { SnackbarService } from './../snackbar.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { GenericService } from '../service-layer/generic.service';
 import { EnvoiceService } from '../service-layer/envoice.service';
@@ -8,7 +8,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-declare function paggnation(): any;
 declare function sidebarToggling(): any;
 @Component({
   selector: 'app-view-sales-invoice',
@@ -35,6 +34,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
     // 'totalDiscountAmount',
     'status',
     'actions',
+    'download',
   ];
   dataSource: MatTableDataSource<Envoice> = new MatTableDataSource(
     this.envoicesList
@@ -42,6 +42,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
   InvoiceStatus = ['fa-thumbs-o-down', 'fa-rocket', 'sent'];
 
   constructor(
+    private cd: ChangeDetectorRef,
     private apiCall: EnvoiceService,
     private router: Router,
     private snack: SnackbarService
@@ -61,6 +62,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
       .subscribe((res) => {
         this.dataSource = new MatTableDataSource(res.items);
         this.paginator.length = res.meta?.totalItems;
+        this.cd.detectChanges();
         this.isLoading = false;
       });
   }
@@ -95,7 +97,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
     setTimeout(() => {
       this.apiCall.send(id).subscribe((res) => {
         if (res) {
-          this.snack.openSnackBar('تم ارسال الفاتورة بنجاح', 400, 'success');
+          this.snack.openSnackBar('تم ارسال الفاتورة بنجاح', 4000, 'success');
           this.getAllEnvoices();
         } else {
           this.snack.openSnackBar(

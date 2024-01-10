@@ -5,7 +5,6 @@ import { ChangeDetectorRef } from '@angular/core';
 
 declare function sidebarToggling(): any;
 declare function paggnation(): any;
-
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
