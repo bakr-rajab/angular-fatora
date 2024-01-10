@@ -60,7 +60,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
       .getAll(this.currentPage + 1, this.pageSize)
       .subscribe((res) => {
         this.dataSource = new MatTableDataSource(res.items);
-        this.paginator.length = res.meta.totalItems;
+        this.paginator.length = res.meta?.totalItems;
         this.isLoading = false;
       });
   }
