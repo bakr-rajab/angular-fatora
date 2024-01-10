@@ -94,7 +94,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
     this.isLoading = true;
     setTimeout(() => {
       this.apiCall.send(id).subscribe((res) => {
-        if (res.status == true) {
+        if (res) {
           this.snack.openSnackBar('تم ارسال الفاتورة بنجاح', 400, 'success');
           this.getAllEnvoices();
         } else {
