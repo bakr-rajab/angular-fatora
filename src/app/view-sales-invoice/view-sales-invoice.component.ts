@@ -1,7 +1,6 @@
 import { SnackbarService } from './../snackbar.service';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { GenericService } from '../service-layer/generic.service';
 import { EnvoiceService } from '../service-layer/envoice.service';
 import { Envoice } from '../models/envoice.model';
 import { MatTableDataSource } from '@angular/material/table';
@@ -39,7 +38,6 @@ export class ViewSalesInvoiceComponent implements OnInit {
   dataSource: MatTableDataSource<Envoice> = new MatTableDataSource(
     this.envoicesList
   );
-  InvoiceStatus = ['fa-thumbs-o-down', 'fa-rocket', 'sent'];
 
   constructor(
     private cd: ChangeDetectorRef,

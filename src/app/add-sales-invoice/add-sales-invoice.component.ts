@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from '../models/client.model';
 import { Envoice, Line, TaxableItem } from '../models/envoice.model';
@@ -9,7 +9,7 @@ import { ClientService } from '../service-layer/client.service';
 import { ItemService } from '../service-layer/item.service';
 import { StaticService } from '../service-layer/static.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { ReplaySubject, Subject } from 'rxjs';
 
 declare function paggnation(): any;
@@ -31,6 +31,7 @@ export class AddSalesInvoiceComponent implements OnInit {
   // subTypes: Array<{ id: string; code: string }> = [];
   subTypes: any;
 
+  public clients: ReplaySubject<Client[]> = new ReplaySubject<Client[]>(1);
   taxableItems: Array<TaxableItem> = [];
   public items: ReplaySubject<Item[]> = new ReplaySubject<Item[]>(1);
   itemsList: Array<Item> = [];
@@ -48,6 +49,7 @@ export class AddSalesInvoiceComponent implements OnInit {
   }[] = [];
   protected _onDestroy = new Subject<void>();
 
+  public clientCtrl = new FormControl<string>('');
   public itemCtrl = new FormControl<string>('');
   constructor(
     private apiCall: EnvoiceService,
@@ -63,13 +65,46 @@ export class AddSalesInvoiceComponent implements OnInit {
     this.getItems();
     this.addLine();
     sidebarToggling();
+
     this.items.next(this.itemsList.slice());
+
+    this.clients.next(this.clientsList.slice());
     this.itemCtrl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
         this.filterBanks();
       });
+
+    this.clientCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterClients();
+      });
   }
+  protected filterClients() {
+    if (!this.clientsList.length) {
+      console.log('no clients');
+      return;
+    }
+    let search: any = this.clientCtrl.value;
+
+    if (!search) {
+      this.clients.next(this.clientsList.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.clients.next(
+      this.clientsList.filter(
+        (cl) => cl.name.toLowerCase().indexOf(search?.toLowerCase()) > -1
+      ) ||
+        this.clientsList.filter((cl) =>
+          cl.taxNumber?.toString().includes(search?.toString())
+        )
+    );
+  }
+
   protected filterBanks() {
     if (!this.itemsList.length) {
       return;
@@ -162,13 +197,14 @@ export class AddSalesInvoiceComponent implements OnInit {
   getClients() {
     this.clientSer.getAll().subscribe((res: any) => {
       this.clientsList = res;
+      this.clients.next(res.slice());
     });
   }
 
   getItems() {
-    this.itemSer.getAll().subscribe((res: any) => {
-      this.itemsList = res;
-      this.items.next(res.slice());
+    this.itemSer.getAll().subscribe((res) => {
+      this.itemsList = res.items;
+      this.items.next(res.items.slice());
     });
   }
 

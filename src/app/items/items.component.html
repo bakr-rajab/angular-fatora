@@ -32,52 +32,113 @@
       <div class="row">
         <div class="col-12">
           <div class="main-table">
-            <table
-              id="example"
-              class="display table table-hover"
-              style="width: 100%"
-            >
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>كود الصنف</th>
-                  <th>اسم الصنف</th>
-                  <th>الكود الضريبي</th>
-                  <th>الوحدة</th>
-                  <th>سعر البيع</th>
-                  <th>الاجراءات</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of itemList">
-                  <td>{{ item.id }}</td>
-                  <td>{{ item.code }}</td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.taxCode }}</td>
-                  <td>{{ item.unit }}</td>
-                  <td>{{ item.price }}</td>
-                  <td>
-                    <ul>
-                      <li>
-                        <a
-                          (click)="setItemToEdite(item)"
-                          href=""
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModalEditeType"
-                        >
-                          <i class="far fa-edit"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a (click)="delete(item.id)">
-                          <i class="far fa-trash-alt"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          
+            <div class="row">
+              <mat-form-field [dir]="'rtl'">
+                <mat-label>ابحث</mat-label>
+                <input
+                  matInput
+                  (keyup)="applyFilter($event)"
+                  placeholder="ابحث"
+                  #input
+                />
+              </mat-form-field>
+              <div class="mat-elevation-z8">
+                <mat-progress-bar
+                  [dir]="'rtl'"
+                  mode="indeterminate"
+                  *ngIf="isLoading"
+                ></mat-progress-bar>
+                <table
+                  [dir]="'rtl'"
+                  mat-table
+                  [dataSource]="dataSource"
+                  matSort
+                >
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>رقم:</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.id }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>اسم الصنف</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.name }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="code">
+                    <th mat-header-cell *matHeaderCellDef>كود الصنف</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.code }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="taxCode">
+                    <th mat-header-cell *matHeaderCellDef>الكود الضريبي</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.taxCode }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="unit">
+                    <th mat-header-cell *matHeaderCellDef>الوحدة</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.unit }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef>سعر البيع</th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.price }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>الاجراءات</th>
+                    <td mat-cell *matCellDef="let element">
+                      <ul>
+                        <li>
+                          <a
+                            (click)="setItemToEdite(element)"
+                            href=""
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModalEditeType"
+                          >
+                            <i class="far fa-edit"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a (click)="delete(element.id)">
+                            <i class="far fa-trash-alt"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                  ></tr>
+                </table>
+
+                <mat-paginator
+                  [dir]="'rtl'"
+                  #paginator
+                  [pageIndex]="currentPage"
+                  [pageSize]="pageSize"
+                  (page)="pageChanged($event)"
+                  [pageSizeOptions]="pageSizeOptions"
+                  aria-label="Select page 44"
+                >
+                </mat-paginator>
+              </div>
+            </div>
           </div>
         </div>
       </div>

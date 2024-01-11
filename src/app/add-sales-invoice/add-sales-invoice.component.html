@@ -42,14 +42,21 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+
                   <mat-form-field class="col-lg-6 col-md-6">
                     <mat-label>اختر العميل</mat-label>
                     <mat-select name="client" [(ngModel)]="envoiceModel.client">
+                      <mat-option>
+                        <ngx-mat-select-search
+                          [formControl]="clientCtrl"
+                        >
+                      </ngx-mat-select-search>
+                      </mat-option>
                       <mat-option
-                        *ngFor="let cient of clientsList"
+                        *ngFor="let cient of clients |async"
                         [value]="cient.id"
                       >
-                        {{ cient.name }}
+                        {{ cient.name }} &nbsp; - &nbsp;{{ cient.taxNumber }}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -198,14 +205,14 @@
                         <mat-select
                           (selectionChange)="setItemPrice($event.value, line)"
                           formControlName="itemId"
-                          >
+                        >
                           <mat-option>
                             <ngx-mat-select-search
                               [formControl]="itemCtrl"
                             ></ngx-mat-select-search>
                           </mat-option>
                           <mat-option
-                            *ngFor="let item of  items | async"
+                            *ngFor="let item of items | async"
                             [value]="item.id"
                           >
                             {{ item.name }} &nbsp; - &nbsp;{{ item.taxCode }}

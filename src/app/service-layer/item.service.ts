@@ -25,8 +25,8 @@ export class ItemService {
         return this.http.patch(environment.apiUrl + `/item/${data.id}`, JSON.stringify(data), httpOptions)
     }
 
-    getAll(): Observable<any> {
-        return this.http.get(environment.apiUrl + '/item/all', { responseType: 'json' });
+    getAll(page=1,pageSize=1000): Observable<any> {
+        return this.http.get(environment.apiUrl + `/item/all?page=${page}&pageSize=${pageSize}`, { responseType: 'json' });
     }
 
     delete(id: string): Observable<any> {
