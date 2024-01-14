@@ -1,3 +1,4 @@
+import { SnackbarService } from './../snackbar.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from '../models/client.model';
@@ -57,7 +58,8 @@ export class AddSalesInvoiceComponent implements OnInit {
     private itemSer: ItemService,
     private staticSer: StaticService,
     private formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    private SnackbarService: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -191,6 +193,12 @@ export class AddSalesInvoiceComponent implements OnInit {
 
     this.apiCall.create(this.envoiceModel).subscribe((res) => {
       console.log(res);
+      this.SnackbarService.openSnackBar(
+        'تم اضافة الفاتورة بنجاح',
+        10000,
+        'notif-success'
+      );
+      this.router.navigate(['/salesInvoice']);
     });
   }
 

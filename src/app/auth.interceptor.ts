@@ -10,12 +10,14 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from './service-layer/auth.service';
 import { SnackbarService } from './snackbar.service';
 import { LocalStorageService } from './service-layer/local-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private snackbar: SnackbarService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private rourer: Router
   ) {}
 
   intercept(
@@ -35,7 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         this.snackbar.openSnackBar(error.error.message, 3000, 'notif-fail'); //
         console.log('eeee', error);
-
+        if (error.status === 401) this.rourer.navigate(['/login']);
         return throwError(error);
       })
     );

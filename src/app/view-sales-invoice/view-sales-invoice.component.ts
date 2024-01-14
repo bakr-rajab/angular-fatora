@@ -6,6 +6,7 @@ import { Envoice } from '../models/envoice.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { SelectionModel } from '@angular/cdk/collections';
 
 declare function sidebarToggling(): any;
 @Component({
@@ -21,20 +22,46 @@ export class ViewSalesInvoiceComponent implements OnInit {
   currentPage = 0;
   pageSizeOptions: number[] = [10, 20, 30, 40, 50];
   displayedColumns: string[] = [
-    // 'id',
+    'select',
     'internalId',
     'uuid',
     'createdAt',
     'branch',
     'client',
-    'tax',
+    'tax', //tacNumber
     'address',
-    'totalSalesAmount',
-    // 'totalDiscountAmount',
+    'total',
+    'rate',
+    'totalDiscound',
+    'netTotal',
     'status',
     'actions',
     'download',
   ];
+
+  calcTotalSales(line: any) {
+    return line.reduce((acc: any, l: any) => acc + +l.salesTotal, 0);
+  }
+
+  calcNetTotal(line: any) {
+    return line.reduce((acc: any, l: any) => acc + +l.netTotal, 0);
+  }
+
+  calcDiscoundRate(line: any) {
+    return line.reduce((acc: any, l: any) => acc + +l.discoundRate, 0);
+  }
+  calcTotalDiscound(line: any) {
+    return line.reduce((acc: any, l: any) => acc + +l.discount_amount, 0);
+  }
+
+  checkboxLabel(row: Envoice) {
+    return 'select';
+    // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
+    //   +row.id + 1
+    // }`;
+  }
+
+  selection = new SelectionModel<Envoice>(true, []);
   dataSource: MatTableDataSource<Envoice> = new MatTableDataSource(
     this.envoicesList
   );
@@ -89,6 +116,30 @@ export class ViewSalesInvoiceComponent implements OnInit {
     this.router.navigate(['/editeEnvoice']);
   }
 
+  async sendAll() {
+    this.isLoading = true;
+    for (let row of this.selection.selected) {
+      try {
+        let res = await this.apiCall.send(row.id).toPromise();
+        if (res) {
+          this.snack.openSnackBar(
+            `تم ارسال الفاتورة  :${row.internalId}:بنجاح', 7000, 'success`
+          );
+          this.getAllEnvoices();
+        } else {
+          this.snack.openSnackBar(
+            ` ${row.internalId} -حدث خطأ اثناء ارسال الفاتورة`,
+            4000,
+            'danger'
+          );
+        }
+      } catch (error) {
+        // handle error
+      }
+    }
+    this.isLoading = false;
+  }
+
   send(id: string) {
     // call send method
     this.isLoading = true;
@@ -114,6 +165,7 @@ export class ViewSalesInvoiceComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
   pageChanged(event: PageEvent) {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
