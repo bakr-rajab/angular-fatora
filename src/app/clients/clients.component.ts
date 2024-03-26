@@ -3,6 +3,7 @@ import { Client, ClientType } from '../models/client.model';
 import { Address } from '../models/address.model';
 import { ClientService } from '../service-layer/client.service';
 import { StaticService } from '../service-layer/static.service';
+import { map, Observable } from 'rxjs';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -23,20 +24,32 @@ export class ClientsComponent implements OnInit {
   clientTypes = ['P', 'F', 'B'];
   selectCountry!: any;
   countries!: any[];
-
+  clients$: Observable<Client[]>;
+  filteredClients$: Observable<Client[]>;
+  searchTerm: string;
   ngOnInit(): void {
     sidebarToggling();
     this.getAll();
   }
 
+  applyFilter() {
+    this.filteredClients$ = this.clients$.pipe(
+      map((clients) =>
+        clients.filter(
+          (client) =>
+            client.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+            client.email
+              .toLowerCase()
+              .includes(this.searchTerm.toLowerCase()) ||
+            client.taxNumber.toString().includes(this.searchTerm)
+          // client.phone.toString().includes(this.searchTerm)
+        )
+      )
+    );
+  }
   getAll() {
-    this.restCall.getAll().subscribe((res) => {
-      this.clientsList = res;
-      if (this.initTable == false) {
-        paggnation();
-        this.initTable = true;
-      }
-    });
+    this.clients$ = this.restCall.getAll();
+    this.filteredClients$ = this.clients$;
   }
   getCountries() {
     this.staticSer.getCountries().subscribe((con) => {

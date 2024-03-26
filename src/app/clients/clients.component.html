@@ -9,7 +9,7 @@
           <div class="d-flex align-items-start justify-content-between">
             <h1 class="page-title">العملاء</h1>
             <button
-              (click)="modalReset();getCountries()"
+              (click)="modalReset(); getCountries()"
               type="button"
               class="btn btn-success"
               data-bs-toggle="modal"
@@ -20,57 +20,73 @@
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by name or email"
+          [(ngModel)]="searchTerm"
+          (input)="applyFilter()"
+        />
+      </div>
+
       <div class="row">
         <div class="col-12">
           <div class="main-table">
-            <table
-              id="example"
-              class="display table table-hover"
-              style="width: 100%"
+            <cdk-virtual-scroll-viewport
+              itemSize="50"
+              class="table-responsive"
+              style="height: 500px"
             >
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>اسم العميل</th>
-                  <th>الإيميل</th>
-                  <th>الموبايل</th>
-                  <th>رقم التسجيل الضريبي</th>
-                  <th>العنوان</th>
-                  <th>نوع النشاط</th>
-                  <th>الاجراءات</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let client of clientsList">
-                  <td>{{ client.id }}</td>
-                  <td>{{ client.name }}</td>
-                  <td>{{ client.email }}</td>
-                  <td>{{ client.phone }}</td>
-                  <td>{{ client.taxNumber }}</td>
-                  <td>{{ client?.address?.street }}</td>
-                  <td>{{ client.type }}</td>
-                  <td>
-                    <ul>
-                      <li>
-                        <a
-                          (click)="setClientToEdite(client);getCountries()"
-                          href=""
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModalEditClient"
-                        >
-                          <i class="far fa-edit"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a (click)="delete(client.id)">
-                          <i class="far fa-trash-alt"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <table
+                id="example"
+                class="display table table-hover"
+                style="width: 100%"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>اسم العميل</th>
+                    <th>الإيميل</th>
+                    <th>الموبايل</th>
+                    <th>رقم التسجيل الضريبي</th>
+                    <th>العنوان</th>
+                    <th>نوع النشاط</th>
+                    <th>الاجراءات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *cdkVirtualFor="let client of filteredClients$ | async">
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.name }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.phone }}</td>
+                    <td>{{ client.taxNumber }}</td>
+                    <td>{{ client?.address?.street }}</td>
+                    <td>{{ client.type }}</td>
+                    <td>
+                      <ul>
+                        <li>
+                          <a
+                            (click)="setClientToEdite(client); getCountries()"
+                            href=""
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModalEditClient"
+                          >
+                            <i class="far fa-edit"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a (click)="delete(client.id)">
+                            <i class="far fa-trash-alt"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </cdk-virtual-scroll-viewport>
           </div>
         </div>
       </div>
@@ -169,7 +185,7 @@
                 <label for="floatingSelect"> نوع العميل </label>
               </div>
             </div>
-             <div class="col-lg-6 col-md-12 mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
               <div class="form-floating">
                 <select
                   [(ngModel)]="addressModel.country"

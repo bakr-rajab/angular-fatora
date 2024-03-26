@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Address } from '../models/address.model';
 import { StaticService } from '../service-layer/static.service';
 import { AddressService } from '../service-layer/adress.service';
+import { Observable } from 'rxjs';
 
 declare function paggnation(): any;
 declare function sidebarToggling(): any;
@@ -10,9 +11,10 @@ declare function sidebarToggling(): any;
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddressComponent implements OnInit {
-  addressList!: Address[];
+  addressList!: Observable<Address[]>;
   addressModel = new Address();
   countries!: any[];
   initTable: boolean = false;
@@ -35,18 +37,20 @@ export class AddressComponent implements OnInit {
   }
 
   getAll() {
-    this.apiCall.getAll().subscribe((res) => {
-      this.addressList = res;
-      if (this.initTable == false) {
-        paggnation();
-        this.initTable = true;
-      }
-    });
+    this.addressList = this.apiCall.getAll();
+
+    // .subscribe((res) => {
+    // this.addressList = res;
+    // if (this.initTable == false) {
+    //   paggnation();
+    //   this.initTable = true;
+    // }
+    // });
   }
 
   Create() {
     this.apiCall.create(this.addressModel).subscribe((res) => {
-      this.addressList.push(res);
+      // this.addressList.push(res);
     });
   }
 
@@ -71,8 +75,8 @@ export class AddressComponent implements OnInit {
 
   delete(id: string) {
     this.apiCall.delete(id).subscribe((res) => {
-      if (res.affected === 1)
-        this.addressList = this.addressList.filter((br) => br.id != id);
+      // if (res.affected === 1)
+      //   this.addressList = this.addressList.filter((br) => br.id != id);
     });
   }
 }

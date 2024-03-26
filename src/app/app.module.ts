@@ -57,6 +57,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [
@@ -118,7 +120,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatPaginatorModule, // <-- Added Paginator Module
     MatProgressBarModule, // <-- Added Loader Module
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ScrollingModule,
+    CdkTableModule,
   ],
   // providers: [GenericService],
   providers: [

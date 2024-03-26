@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Branch } from '../models/branches/branch.model';
 import { BranchService } from '../service-layer/branch.service';
 import { Address } from '../models/address.model';
@@ -32,6 +32,9 @@ export class BranchesComponent implements OnInit {
     // paggnation();
     sidebarToggling();
     this.getAllBranches();
+    console.log(
+      '=======================bbbbbbbbbbbbbbbbbbbbbbbbbbb============='
+    );
   }
 
   getAddresses() {
