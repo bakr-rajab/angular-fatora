@@ -254,11 +254,11 @@
                   aria-label="Floating label select example"
                 >
                   <option
-                    [ngValue]="unit.desc_en"
+                    [ngValue]="unit.code"
                     *ngFor="let unit of unitList"
                     selected
                   >
-                    {{ unit.desc_en }}
+                    {{ unit.code }}
                   </option>
                 </select>
                 <label for="floatingSelect">الوحدة</label>
