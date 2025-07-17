@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 export const environment = {
   production: false,
-  apiUrl: 'https://envoice-nest-app.onrender.com',
+  apiUrl: 'http://localhost:4000', // Local development API URL
 
   // apiUrl: 'https://bakr-rajab-super-duper-broccoli-jq9999g75wq3jwq-4001.preview.app.github.dev',
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
